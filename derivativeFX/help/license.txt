@@ -1,0 +1,3 @@
+License$$$Choose the license of your derivative work. 
+In this field are only licenses which are compatible with the license(s) of the originalfile(s).
+For CreativeCommons it takes automatically the newest version of the license, if you want a older version you can change the template later in the summary.  
