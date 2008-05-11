@@ -1,0 +1,2 @@
+Template {{RetouchedPicture}}$$$You can add the template <a href="http://commons.wikimedia.org/wiki/Template:RetouchedPicture" target="_blank">RetouchedPicture</a> to the description page.
+If you want this, please enter the changes wich you did and a editor, e.g. "Luxo" for User:Luxo.
