@@ -143,11 +143,13 @@ function checkimg(image)
     if(originalRequest.responseText == "FALSE")
     {
       window.alert("Image name already exist. Please choose a different name.");
+      $("existwarn").show();
       setBox("used");
     }
     else
     {
       setBox("ok");
+      $("existwarn").hide();
     }
   }
   
