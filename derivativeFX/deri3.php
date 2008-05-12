@@ -222,7 +222,8 @@ Select your derivative file:<br>
 
   <br>
   Destination filename: <br>  
-  <input type="text" name="wpDestFile" size="50" id="newfilename" onchange='checkimg(this.value)' onkeyup="checkimg(this.value);"><br>
+  <input type="text" name="wpDestFile" size="50" id="newfilename" onchange='checkimg(this.value)' onkeyup="checkimg(this.value);"><br><br>
+<span id="existwarn" style="display:none;border-width:1px;border-color:red;border-style:solid;padding:5px;background-color:#FFE4E1;"><img src="warn.png"> Destination filename already exist. Do you want overwrite existing file?<br></span>
 <br>
 Summary:<br>
 
