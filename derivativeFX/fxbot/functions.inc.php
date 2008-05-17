@@ -26,6 +26,7 @@ This file is part of derivativeFX.
 function wikitextload($page)
 {
 
+$page = urlencode($page);
 
 $project = "commons.wikimedia.org";
 
@@ -98,7 +99,7 @@ function addnote($derivatives,$origtitle)
   
   $rawdesc = wikitextload($origtitle);
   
-  
+  if(!$rawdesc){ die("leer"); }
   
   if(stristr($rawdesc, "{{DerivativeVersions"))
   {
