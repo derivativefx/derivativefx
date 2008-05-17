@@ -18,13 +18,13 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-include("logindata.php");//Include PW & UN
+
 
 // ############### EDIT WIKIPEDIA - FUNCTION ###############
 function wikiedit($project,$page,$newtext,$description,$minor,$username,$password)
 {
 
-
+$page = urlencode($page);
 
 logfile($page,"Schreibe Text am ".date("r",time())." in die Seite '$page'.\n");
 
@@ -256,8 +256,8 @@ echo"ende.";
 }
 else
 {
-logfile($page,"ANMELDUNG FEHLGESCHLAGEN, KONNTE NICHT ANMELDEN!\n");
-
+logfile($page,"ANMELDUNG FEHLGESCHLAGEN, KONNTE NICHT ANMELDEN!\n$bodyy");
+die();
 }
 
 }
@@ -267,10 +267,10 @@ function logfile($artikelname,$text)
 
 $artikelname = str_replace(array("."," ",":","&","/"), array("-", "_", "-","-","-"), $artikelname);
 
-$dateiname = "/home/luxo/Bilderbot/logfile/schreiben/".$artikelname."-".date("dmy",time()).".txt";
+/*$dateiname = "/home/luxo/Bilderbot/logfile/schreiben/".$artikelname."-".date("dmy",time()).".txt";
 $fp = fopen($dateiname, "a");
 fputs($fp,$text);
-fclose($fp);
+fclose($fp);*/
 echo $text;
 }
 

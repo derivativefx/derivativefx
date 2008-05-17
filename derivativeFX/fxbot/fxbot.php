@@ -18,9 +18,10 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-
+include("logindata.php");//Include PW & UN
 include("functions.inc.php");
 include("login.php");
+
 addlog("Bot gestartet! (".time().")");
 include("/home/luxo/public_html/contributions/logindata.php");//pw & bn einbinden
 $dblink = mysql_connect($databankname, $userloginname, $databasepw) or die(mysql_error());//Allgemein (TS-Database)
@@ -97,7 +98,7 @@ foreach($images as $name => $array)
   if($array["newdesc"])
   {
     addlog("Speichere neue Bildbeschreibung von $name.");
-    wikiedit("commons.wikimedia.org",$name,$array["newdesc"],"Bot: notice of a derivative work added","true");
+    wikiedit("commons.wikimedia.org",$name,$array["newdesc"],"Bot: notice of a derivative work added","true",$username,$password);
     sleep(15);
   }
   $images[$name]["donetime"] = time();
