@@ -129,6 +129,8 @@ function checkimg(image)
         $("newfilename").value = inam;
       }
       setBox("loading");
+      $("existwarn").hide();
+      $("dontexist").hide();
       var myAjax = new Ajax.Request(
       "checkexist.php?image="+image,
       { method: 'get', onComplete: abbr }
@@ -144,12 +146,14 @@ function checkimg(image)
     {
       window.alert("Image name already exist. Please choose a different name.");
       $("existwarn").show();
+      $("dontexist").hide();
       setBox("used");
     }
     else
     {
       setBox("ok");
       $("existwarn").hide();
+      $("dontexist").show();
     }
   }
   
