@@ -100,7 +100,7 @@ $originals[] = $imagename;
 }
 
 //Beginne Formular aufzubauen
-$formular  = "{{Information\n|Description=".stripslashes($_POST['description'])."\n";
+$formular  = "{{Information\n|Description=".trim(stripslashes($_POST['description']))."\n";
 $formular .= "|Source=";
 foreach($imagesdata as $imagename => $imagedata)
 {
@@ -157,7 +157,7 @@ foreach($imagedata["imageinfo"] as $vkey => $cntns)
 
 }
 $formular .= "\n";
-
+$formular .= "''Uploaded with [[:tools:~luxo/derivativeFX/|derivativeFX]]''\n\n";
 //Kategorien anhängen
 foreach($_POST as $Cname => $Cvalue)
 {
@@ -176,6 +176,17 @@ $checksum = md5($token / 3);
 $nextarray = array("originals" => $originals, "token" => $token, "time" => time());
 
 $nextarray = base64_encode(serialize($nextarray));
+
+//new filename propositions
+
+foreach($imagesdata as $imagename => $imagedata)
+{
+$onlyname = substr($imagename,0,strrpos($imagename,"."));
+$extension = substr($imagename,strrpos($imagename,".")+1);
+$newnames[] =  substr($onlyname,6)."-2.".$extension;
+$newnames[] =  substr($onlyname,6)."-".date("Y-d-m",time()).".".$extension;
+$newnames[] =  substr($onlyname,6)."_new.".$extension;
+}
 
 
 ?>
@@ -197,14 +208,32 @@ $nextarray = base64_encode(serialize($nextarray));
     function enableupload()
     {
       var button = $("startupload");
+      var cb = $("accbut");
       
-      if(button.disabled == true)
+      if(cb.checked == true)
       {
         button.disabled = false;
       }
       else
       {
         button.disabled = true;
+      }   
+    }
+    
+    function propositionsc()
+    {
+      var props = $("propositions");
+      var probsymb = $("probsymb");
+      
+      if(props.style.display == "none")
+      {
+        props.style.display = "block";
+        probsymb.firstChild.data = "▲";
+      }
+      else
+      {
+        props.style.display = "none";
+        probsymb.firstChild.data = "▼";
       }   
     }
     
@@ -222,24 +251,31 @@ Select your derivative file:<br>
 
   <br>
   Destination filename: <br>  
+  <span style="background-color:white;font-size:x-small">propositions <a href="javascript:propositionsc();" id="probsymb">▼</a><br>
+  <span style="display:none" id="propositions"><ul>
+  <?php
+  foreach($newnames as $titlesx) { echo"<li><a href='javascript:$(\"newfilename\").value=\"".htmlspecialchars($titlesx)."\";checkimg($(\"newfilename\").value);'>".htmlspecialchars($titlesx)."</a></li>\n"; }
+  ?></ul></span>
+  <br></span>
   <input type="text" name="wpDestFile" size="50" id="newfilename" onchange='checkimg(this.value)' onkeyup="checkimg(this.value);"><br><br>
 <span id="existwarn" style="display:none;border-width:1px;border-color:red;border-style:solid;padding:5px;background-color:#FFE4E1;"><img src="warn.png"> Destination filename already exist. Do you want overwrite existing file?<br></span>
+<span id="dontexist" style="display:none;border-width:1px;border-color:green;border-style:solid;padding:5px;background-color:#E0FFE0;"><img src="ok.png"> Destination filename doesn't exist.<br></span>
 <br>
 Summary:<br>
 
   <textarea rows='25' cols='90' name="wpUploadDescription"><?php echo htmlspecialchars($formular); ?></textarea><br>
   <input type='hidden' name='wpLicense' value='' />
-<input checked="checked" name="wpWatchthis" value="true" type="checkbox"> Watch this page
+<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label for="wpWatchthis">Watch this page</label>
   <br>
 
-  <input name="addorig" id="notibutton" value="true" type="checkbox"> Add a notice to the original file(s) about
-this derivative work. (by Bot)<br>
+  <input name="addorig" id="notibutton" value="true" type="checkbox"><label for="notibutton">Add a notice to the original file(s) about
+this derivative work. (by 'User:Bilderbot', at 02:00 UTC)</label><br>
 
   <br>
 
   <br>
 
-  <input name="acceptterm" value="true" type="checkbox" onClick="enableupload();"><span class="acceptterm" >
+  <input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <label for='accbut'>
 You confirm that all details in&nbsp;the file description above are
   <span style="font-weight: bold;">correct and conformable
 with the license(s) of the original-file(s)</span>. This tool and
@@ -247,7 +283,7 @@ his developer&nbsp;assume no accountability about the correctness
 of the generated content. &nbsp;It has been created in the hope
 that it will be useful, but <span style="font-weight: bold;">WITHOUT
 ANY WARRANTY. You are accountable for
-the correctness! </span>Image name, original files and time is logged.<br></span>
+the correctness! </span>Image name, original files and time is logged.<br></label></span>
 
   <br>
 
