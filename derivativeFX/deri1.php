@@ -45,13 +45,11 @@ include("functions.php");
       Please download a current browser like
       <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.opera.com">Opera</a> or <a href="http://www.apple.com/de/safari/">Safari</a>.
       <br />
-      Microsoft's Internet Explorer despise this standards, this tool doesn't work correctly with it.  
+      Microsoft's Internet Explorer don't follow this standards, this tool doesn't work correctly with it.  
       <br />
       <br />
-       <a href="http://getfirefox.com/"
-title="Get Firefox - Web browsing redefined."><img
-src="http://www.mozilla.org/products/firefox/buttons/getfirefox_large2.png"
-width="178" height="60" border="0" alt="Get Firefox"></a> <br />
+      You can use the <a href="http://commons.wikimedia.org/wiki/Special:Upload">standard upload form</a>, don't forgot to add a notice about the authors of the original files and respect their licenses. 
+      <br />
     </div>
     <script type="text/javascript">
     if (navigator.appName.indexOf("Explorer") == -1)

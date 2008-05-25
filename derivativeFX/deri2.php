@@ -111,10 +111,10 @@ echo"$countimage Image(s) received...<br />";
 //Nun in verschiedene Kategorien einteilen
 $categorys = array(
 "PD" => array(), //Falls nur ein Bild übermittelt wird, kann diese Kat verwendet werden.
-"GFDL" => array(),
 "CC-by-sa" => array(),
 "CC-by" => array(),
 "CC-sa" => array(),
+"GFDL" => array(),
 "FWL" => array(),
 "MPL" => array(),
 "FAL" => array(),
@@ -300,7 +300,7 @@ foreach($images as $imagename => $licarray)
     //Kategorien hinzufügen
     
   
-  echo"Search categories with CommonSense...<br />";
+  echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
   $tempcatar = catscan(substr($imagename,6));
   echo count($tempcatar)." categories found for ".substr($imagename,6)."...";
   $categorys = array_merge($categorys, $tempcatar);
@@ -411,7 +411,7 @@ the
 {{RetouchedPicture}} to the description".helpcontent("templateretouched")."
 <span id='addreto'><br /><br />
   Changes: <input size='50' name='changestemp'><br />
-  Editor: <input size='50' name='editor'> <small>Without wikisyntax, e.g. \"Harry\"</small>
+  Editor: <input size='50' name='editor'> <small>Without wikisyntax, e.g. \"Test\" for User:Test</small>
 </span></div>
 <br /><a href=\"Javascript:showhide('othertemplates')\">Other Templates...</a><br />
 <span id='othertemplates' style='display:none'>
