@@ -111,14 +111,15 @@ foreach($images as $name => $array)
   {
     foreach($array["derivatives"] as $derivativfile)
     {
-      $resu1 = mysql_query( "UPDATE derivativefx SET status='done', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string($name)."' AND derivative='".mysql_real_escape_string($derivativfile)."'", $dblink) or die(mysql_error());
+      $resu1 = mysql_query( "UPDATE derivativefx SET status='done', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string(str_replace(" ", "_",$name))."' AND derivative='".mysql_real_escape_string(str_replace(" ","_",$derivativfile))."'", $dblink) or die(mysql_error());
+      echo"UPDATE derivativefx SET status='done', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string($name)."' AND derivative='".mysql_real_escape_string($derivativfile)."'";
     }
   }
   if($array["error"])
   {
     foreach($array["error"] as $derivativfile)
     {
-      $resu1 = mysql_query( "UPDATE derivativefx SET status='noexist', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string($name)."' AND derivative='".mysql_real_escape_string($derivativfile)."'", $dblink) or die(mysql_error());
+      $resu1 = mysql_query( "UPDATE derivativefx SET status='noexist', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string(str_replace(" ","_",$name))."' AND derivative='".mysql_real_escape_string(str_replace(" ","_",$derivativfile))."'", $dblink) or die(mysql_error());
     }
   }
 }

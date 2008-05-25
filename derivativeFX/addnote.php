@@ -51,7 +51,7 @@ $_SESSION[md5($file)] = md5($data);
   <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 <body style="direction: ltr;" class="bodynorm">
-<img src="derivativeFX_small.png" />
+<img src="derivativeFX_small.png" /><br>
 <?php
 
 if($die == true)
@@ -65,8 +65,9 @@ else if(md5($dataarray['token'] / 3) == $token AND $dataarray['time'] + 3600 > t
 {
 echo"<h1>Thank you</h1>Your file <b>$file</b> is going to Wikimedia:Commons.<br /><br />";
 if($adanote == "true") {
-echo"<b>User:Bilderbot will add in the next time a notice about this new derivative file to the original file(s).</b>\n"; }
+echo"User:Bilderbot will add at 02:00 a notice about this new derivative file to the original file(s).\n"; }
 //print_r($dataarray);
+
 
 
 /*Das ganze in die Tabelle eintragen
@@ -114,13 +115,17 @@ mysql_query( "INSERT INTO derivativefx SET file='".mysql_real_escape_string($ori
 }
 else
 {
-echo"Whooops, error!<br />
-<br />";
+?>
+<h1 color="red">Whooops, error!<h1>
+<br />
+<?php
 }
 
 
 
 ?>
+ <input type="button" value="Close"
+onclick="window.close()">
 <hr />
 <center>by Luxo</center>
 </body>

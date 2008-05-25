@@ -98,7 +98,14 @@ Legend:<br>
   }
   else
   {
-   echo"<td>(not done)</td>"; 
+    if($status == "nobot")
+    {
+      echo"<td>-</td>";
+    }
+    else
+    {
+      echo"<td>(not done)</td>";
+    } 
   }
   echo"</tr>\n";
       }
