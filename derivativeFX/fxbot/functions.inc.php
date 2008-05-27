@@ -147,7 +147,8 @@ function addnote($derivatives,$origtitle)
     "|other_versions=",
     "|other_versions =",
     "| other_versions =",
-    "| other_versions=");
+    "| other_versions=",
+    "|other_versions	=");
     
     $count = "";
     $ersetzt = false;
@@ -192,7 +193,7 @@ function addnote($derivatives,$origtitle)
       $pre = $rawdesc;
       $after = "";
     }
-    $rawdesc = $pre."\n".$newtemp."\n".$after;
+    $rawdesc = $pre."\n== derivative works ==\n".$newtemp."\n".$after;
       
   }
 
