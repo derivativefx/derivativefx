@@ -278,7 +278,7 @@ this derivative work. (by 'User:Bilderbot', at 02:00 UTC)</label><br>
   <input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <label for='accbut'>
 You confirm that all details in&nbsp;the file description above are
   <span style="font-weight: bold;">correct and conformable
-with the license(s) of the original-file(s)</span>. This tool and
+with the license(s) of the original-file(s). Images could contain copyrighted paintings and the original-license does not extend to derivatives that isolate them.</span> This tool is not able to check for such copyrighted things. derivativeFX and
 his developer&nbsp;assume no accountability about the correctness
 of the generated content. &nbsp;It has been created in the hope
 that it will be useful, but <span style="font-weight: bold;">WITHOUT
