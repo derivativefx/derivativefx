@@ -45,17 +45,12 @@ include("functions.php");
       Please download a current browser like
       <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.opera.com">Opera</a> or <a href="http://www.apple.com/de/safari/">Safari</a>.
       <br />
-      Microsoft's Internet Explorer don't follow this standards, this tool doesn't work correctly with it.  
-      <br />
       <br />
       You can use the <a href="http://commons.wikimedia.org/wiki/Special:Upload">standard upload form</a>, don't forgot to add a notice about the authors of the original files and respect their licenses. 
       <br />
     </div>
     <script type="text/javascript">
-    if (navigator.appName.indexOf("Explorer") == -1)
-    {
     $('JavascriptWarn').hide();
-    }
     </script>
     <div id="firstform" style="display:none">
     <br /> Welcome to derivativeFX!
@@ -81,13 +76,12 @@ include("functions.php");
       }
     }
     
-    if (navigator.appName.indexOf("Explorer") == -1 )
-    {
+
       if(skipcheck != true)
       {
         $('firstform').show();
       }
-    }
+
     </script>
     
 <div id="secondform" style="display:none">
@@ -124,7 +118,7 @@ Please wait<br />
       </div>
       <br />
         <br />
-      <input name="morethanone" value="add more original files" type="button" OnClick="more()">
+      <input id="mtobut" name="morethanone" value="add more original files" type="button" OnClick="more()">
       <br />
       
       <br />

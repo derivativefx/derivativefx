@@ -115,9 +115,15 @@ if(origvalues[name] != image)
     {
     //Lizenzen in array aufsplitten
     var rawlicenses = licence.split("|");
-    $("origlizid_"+name).defaultValue = licence;
-
     
+    if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
+    {
+      $("origlizid_"+name).defaultValue = licence;
+    }
+    else //IE-Hack
+    {
+     document.imageselect.origliz_1.value = licence;
+    }
     
     //var outputlic = rawlicenses.join(", ");
      var outputlic = "";
@@ -167,17 +173,34 @@ if(origvalues[name] != image)
     }
        else
         {
-        $("lic"+name).appendChild(document.createTextNode("This image has been requested for deletion!"));
-        $("lic"+name).className = "delete";
-                var titlewo = image.substr(6);
-    $('img'+name).src = "http://commons.wikimedia.org/w/thumb.php?w=120&f="+titlewo
-    $('img'+name).show()
-    $("origlizid_"+name).defaultValue = "Delete";
+          $("lic"+name).appendChild(document.createTextNode("This image has been requested for deletion!"));
+          $("lic"+name).className = "delete";
+                  var titlewo = image.substr(6);
+          $('img'+name).src = "http://commons.wikimedia.org/w/thumb.php?w=120&f="+titlewo
+          $('img'+name).show()
+          
+          if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
+          {
+            $("origlizid_"+name).defaultValue = "Delete";
+          }
+          else
+          {
+              document.imageselect.origliz_1.value = "Delete";  
+          }
+    
         }
    }
    else
    {
-   $("origlizid_"+name).defaultValue = " ";
+    if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
+     {
+      $("origlizid_"+name).defaultValue = " ";
+     }
+     else
+     {
+        document.imageselect.origliz_1.value = " ";
+     }
+     
    $("lic"+name).appendChild(document.createTextNode("File doesn't exist!"));
    $("lic"+name).className = "notexist";
        $('img'+name).hide()
@@ -205,6 +228,8 @@ if(origvalues[name] != image)
 }
 
 function more()
+{
+if (navigator.appName.indexOf("Explorer") == -1 ) //nurfür nicht-IE-Browser
 {
 originals = originals + 1;
 //Add one more 
@@ -337,7 +362,11 @@ myDiv.appendChild(mybr4);
 $("placeformore").appendChild(myDiv);
 
 
-
+}
+else
+{
+  window.alert("Sorry, this function doesn't work yet with Internet Explorer.");
+}
 }
 
 function licprevi(temlate)
