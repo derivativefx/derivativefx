@@ -274,12 +274,19 @@ var myinput = document.createElement("input");
   myvalue.nodeValue = "Image:";
   myinput.setAttributeNode(myvalue);
   
+  if (navigator.appName.indexOf("Explorer") == -1 ) //DOM
+  {
   //onmouseover = loadlic()
   var myonmouse = document.createAttribute("onkeyup");
   myonmouse.nodeValue = "loadlic('"+originals+"',this.value)";
-  
+  myinput.setAttributeNode(myonmouse);
+  }
+  else//IE - buggy
+  {
+  myinput.attachEvent("onkeyup","loadlic('"+originals+"',this.value)");
+  }
 
-      myinput.setAttributeNode(myonmouse);
+      
       
 myDiv.appendChild(myinput);
 
