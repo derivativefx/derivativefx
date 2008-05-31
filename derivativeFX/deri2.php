@@ -120,7 +120,8 @@ $categorys = array(
 "FAL" => array(),
 "GPL" => array(),
 "LGPL" => array(),
-"CeCILL" => array()
+"CeCILL" => array(),
+"Attribution" => array()
 );
 
 //Lizenzen in Kats aufteilen
@@ -131,14 +132,23 @@ $imagelizok[$imagename] = false;
   {
   $vergeben = false;
     //GFDL
-    if(substr($licence,0,4) == "GFDL" OR $licence == "Picswiss" OR $licence == "PolishSenateCopyright" OR $licence == "PolishPresidentCopyright" OR $licence == "Pressefotos Die Gruenen")
+    if(substr($licence,0,4) == "GFDL" OR $licence == "Picswiss" OR $licence == "PolishSenateCopyright" OR $licence == "PolishPresidentCopyright" OR $licence == "Pressefotos Die Gruenen"  or strtolower($licence) == "attribution")
     {
       $categorys['GFDL'][$imagename] = $licence;
       $vergeben = true;
     }
     
+    //Attribution
+    if(strtolower($licence) == "attribution")
+    {
+      $categorys['Attribution'][$imagename] = $licence;
+      $categorys['CC-by'][$imagename] = $licence;
+      $categorys['CC-by-sa'][$imagename] = $licence;
+      $vergeben = true;
+    }
+    
     //GPL
-    if($licence == "GPL")
+    if($licence == "GPL" or strtolower($licence) == "attribution")
     {
       $categorys['GPL'][$imagename] = $licence;
       $vergeben = true;
@@ -203,7 +213,7 @@ $imagelizok[$imagename] = false;
     }
     
     
-    if(strtolower(substr($licence,0,3)) == "pd-")
+    if(strtolower(substr($licence,0,3)) == "pd-" or strtolower($licence) == "copyrighted free use")
     {
     $vergeben = true;
           $categorys['PD'][$imagename] = $licence;
@@ -336,6 +346,7 @@ foreach($images as $imagename => $licarray)
 
 //Templates
 $licensesar = array(
+"Attribution" => "Attribution",
 "CC-by-sa" => "Cc-by-sa-3.0",
 "CC-by" => "Cc-by-3.0",
 "CC-sa" => "cc-sa-1.0",
