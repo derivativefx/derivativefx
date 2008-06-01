@@ -37,7 +37,7 @@ include("functions.php");
   </head>
   <body class="bodynorm" id="bodyid">
     <br />
-    <img src="derivativeFX_small.png" />
+    <img src="image.php" />
     <br />
         <div id="JavascriptWarn">
       <br /><h1>Sorry,</h1> You must have a browser which support the JavaScript-standards of the <a href="http://www.w3.org/">World Wide Web Consortium</a> (W3C) to use this tool. <br />
