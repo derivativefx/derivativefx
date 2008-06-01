@@ -113,29 +113,49 @@ function upchecker()
 }
 
 
+var lastkeyup = 1;
+function lasttatch()
+{
+lastkeyup = new Date(); //jetzt
+}
+
+
 
 var imgcache = "";
+var aktiv = "";
 function checkimg(image)
 {
   if(image.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi))
   {
     if(imgcache != image)
     {
-      var checkerc = image.substr(0,6);
-      if(checkerc.toLowerCase() == "image:")
-      {
-        var inam = image.substr(6);
-        image = inam;
-        $("newfilename").value = inam;
-      }
       setBox("loading");
       $("existwarn").hide();
       $("dontexist").hide();
-      var myAjax = new Ajax.Request(
-      "checkexist.php?image="+image,
-      { method: 'get', onComplete: abbr }
-      );
-      imgcache = image;
+      window.clearTimeout(aktiv);
+      //frühstens 1sek nach onkeyup überprüfen
+      var jetztzeit = new Date();
+      var diffzeit = jetztzeit - lastkeyup; //diff in Milisek
+      //diffzeit = 4000;
+      if(diffzeit > 1000) //1sekunden
+      {
+        var checkerc = image.substr(0,6);
+        if(checkerc.toLowerCase() == "image:")
+        {
+          var inam = image.substr(6);
+          image = inam;
+          $("newfilename").value = inam;
+        }
+        var myAjax = new Ajax.Request(
+        "checkexist.php?image="+image,
+        { method: 'get', onComplete: abbr }
+        );
+        imgcache = image;
+      }
+      else
+      {
+        aktiv = setTimeout('checkimg("'+image+'")',3000);
+      }
     }
   }
 }
@@ -144,7 +164,9 @@ function checkimg(image)
   {
     if(originalRequest.responseText == "FALSE")
     {
+      $("falseimg").src = "http://commons.wikimedia.org/w/thumb.php?w=120&f="+$("newfilename").value;
       window.alert("Image name already exist. Please choose a different name.");
+      $("imgtitle").firstChild.data = $("newfilename").value;
       $("existwarn").show();
       $("dontexist").hide();
       setBox("used");

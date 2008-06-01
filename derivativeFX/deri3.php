@@ -257,8 +257,8 @@ Select your derivative file:<br>
   foreach($newnames as $titlesx) { echo"<li><a href='javascript:$(\"newfilename\").value=\"".htmlspecialchars($titlesx)."\";checkimg($(\"newfilename\").value);'>".htmlspecialchars($titlesx)."</a></li>\n"; }
   ?></ul></span>
   <br></span>
-  <input type="text" name="wpDestFile" size="50" id="newfilename" onchange='checkimg(this.value)' onkeyup="checkimg(this.value);"><br><br>
-<span id="existwarn" style="display:none;border-width:1px;border-color:red;border-style:solid;padding:5px;background-color:#FFE4E1;"><img src="warn.png"> Destination filename already exist. Do you want overwrite existing file?<br></span>
+  <input type="text" name="wpDestFile" size="50" id="newfilename" onchange="checkimg(this.value);" onkeyup="lasttatch();checkimg(this.value);"><br><br>
+<div id="existwarn" style="display:none;border-width:1px;border-color:red;border-style:solid;padding:5px;background-color:#FFE4E1;"><img src="warn.png"> Destination filename already exist. Do you want overwrite existing file?<br><img id="falseimg" src="http://commons.wikimedia.org/w/thumb.php?w=120&f=" /><br><b>Image:</b><b id="imgtitle">...</b></div>
 <span id="dontexist" style="display:none;border-width:1px;border-color:green;border-style:solid;padding:5px;background-color:#E0FFE0;"><img src="ok.png"> Destination filename doesn't exist.<br></span>
 <br>
 Summary:<br>
