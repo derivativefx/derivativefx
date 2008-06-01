@@ -1,3 +1,4 @@
+<?php
 /*
 Copyright Luxo 2008
 
@@ -17,7 +18,11 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-
+$language = $_GET['lang'];
+include("/home/luxo/public_html/derivativeFX/language.php");
+header("Content-Type: application/x-javascript");
+?>
+    
 function upchecker()
 {
   //window.document.lastform.xxx.value
@@ -28,7 +33,7 @@ function upchecker()
   if(!window.document.lastform.wpUploadFile.value)
   {
     ret = false;
-    Begruendung[n] = "Please attach a file.";
+    Begruendung[n] = "<?php echo $lng['x']['attac']; ?>";
     n++;
     setBox("used","atfile");
   }
@@ -38,7 +43,8 @@ function upchecker()
   if(!wpDestFile.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi))
   {
     ret = false;
-    Begruendung[n] = "No correct file extension found in destination file. ("+wpDestFile+")";
+    //Begruendung[n] = "No correct file extension found in destination file. ("+wpDestFile+")";
+        Begruendung[n] = "<?php echo sprintf($lng['x']['corfi'],'"+wpDestFile+"'); ?>";
     n++;
     setBox("used");
   }
@@ -60,11 +66,12 @@ function upchecker()
     {
       ret = false;
       setBox("used");
-      var chk = window.confirm("Your selected file has not the same file extension ("+bb[bel]+") like the destination name ("+aa[ael]+")! Change dest. name to '"+aa[0]+"."+bb[bel]+"'?");
+      //var chk = window.confirm("Your selected file has not the same file extension ("+bb[bel]+") like the destination name ("+aa[ael]+")! Change dest. name to '"+aa[0]+"."+bb[bel]+"'?");
+      var chk = window.confirm("<?php echo sprintf($lng['x']['notsa'],'"+bb[bel]+"','"+aa[ael]+"','"+aa[0]+"."+bb[bel]+"'); ?>");
       if(chk == true)
       {
          window.document.lastform.wpDestFile.value = aa[0]+"."+bb[bel];
-         setBox("ok");
+         checkimg($("newfilename").value);
       }
     }
   }

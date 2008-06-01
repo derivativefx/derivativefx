@@ -1,3 +1,5 @@
+<?php
+
 /*
 Copyright Luxo 2008
 
@@ -17,6 +19,10 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+$language = $_GET['lang'];
+include("/home/luxo/public_html/derivativeFX/language.php");
+header("Content-Type: application/x-javascript");
+?>
 
 var originals = 1;
 var origvalues = new Array();
@@ -35,8 +41,8 @@ function skipcookie()
         //window.alert("cookie set!");
       }
       else
-      {
-        window.alert("Please enable cookies to skip the login check in the next time.");
+      { //Please enable cookies to skip the login check in the next time.
+        window.alert("<?php echo $lng['x']['skco']; ?>");
       }
     }
 }
@@ -172,8 +178,8 @@ if(origvalues[name] != image)
     
     }
        else
-        {
-          $("lic"+name).appendChild(document.createTextNode("This image has been requested for deletion!"));
+        {//This image has been requested for deletion!
+          $("lic"+name).appendChild(document.createTextNode("<?php echo $lng['x']['reqdel']; ?>"));
           $("lic"+name).className = "delete";
                   var titlewo = image.substr(6);
           $('img'+name).src = "http://commons.wikimedia.org/w/thumb.php?w=120&f="+titlewo
@@ -201,7 +207,7 @@ if(origvalues[name] != image)
         document.imageselect.origliz_1.value = " ";
      }
      
-   $("lic"+name).appendChild(document.createTextNode("File doesn't exist!"));
+   $("lic"+name).appendChild(document.createTextNode("<?php echo $lng['en']['notex']; ?>"));
    $("lic"+name).className = "notexist";
        $('img'+name).hide()
    }
@@ -250,7 +256,7 @@ myDiv.setAttributeNode(divid);
 var mybr1 = document.createElement("br");
 myDiv.appendChild(mybr1);
 //1. Text:
-var firstText = document.createTextNode("Original "+originals+":");
+var firstText = document.createTextNode("<?php echo $lng['x']['orig']; ?> "+originals+":");
 myDiv.appendChild(firstText);
 //<br>
 var mybr2 = document.createElement("br");
@@ -321,7 +327,7 @@ myDiv.appendChild(myinput2);
 var mybr3 = document.createElement("br");
 myDiv.appendChild(mybr3);
 //text 2
-var secondtext = document.createTextNode("License of this file: ");
+var secondtext = document.createTextNode("<?php echo $lng['x']['lotf']; ?>: ");
 myDiv.appendChild(secondtext);
 //span
 var myspan = document.createElement("span");
@@ -333,7 +339,7 @@ var myspan = document.createElement("span");
     myspanclass.nodeValue = "license";
     myspan.setAttributeNode(myspanclass);
     
-var lictext = document.createTextNode("please add name");
+var lictext = document.createTextNode("<?php echo $lng['x']['pan']; ?>");
 myspan.appendChild(lictext);
   myDiv.appendChild(myspan);  
   

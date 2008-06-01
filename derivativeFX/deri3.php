@@ -1,4 +1,5 @@
 <?php
+
 /*
 Copyright Luxo 2008
 
@@ -18,13 +19,16 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+    
+    
 if($_SERVER["REQUEST_METHOD"] != "POST")
 {
 header('Location: http://'. $_SERVER['SERVER_NAME'] .'/~luxo/derivativeFX/deri1.php');
 die();
 }
 //error_reporting(E_ALL);
-
+$language = $_GET['lang'];
+include("language.php");
 
 //print_r($_POST);
 $imagesdata = unserialize(base64_decode($_POST['data']));
@@ -199,8 +203,9 @@ $newnames[] =  substr($onlyname,6)."_new.".$extension;
   <meta content="Luxo" name="author">
   <link rel="stylesheet" type="text/css" href="style/style.css">
     <script type="text/javascript" src="js/prototype.js"></script>
-        <script type="text/javascript" src="js/checkupload.js"></script>
+    <script type="text/javascript" src="js/checkupload.js.php?lang=<?php echo $language; ?>"></script>
     <script type="text/javascript">
+
     var checksum = "<?php echo $checksum; ?>";
     var data     = "<?php echo $nextarray; ?>";
     
@@ -239,55 +244,48 @@ $newnames[] =  substr($onlyname,6)."_new.".$extension;
     
 
     </script>
+
 </head>
 <body style="direction: ltr;" class="bodynorm">
 <img src="derivativeFX_small.png" />
 <form id="comform" method='post' enctype='multipart/form-data' action="http://commons.wikimedia.org/wiki/Special:Upload" name="lastform"><br>
 
-Select your derivative file:<br>
+<?php echo $lng['x']['selfil']; ?>:<br>
 
   <input name="wpUploadFile" type="file" size="50"><br>
   <input type='hidden' name='wpSourceType' value='file' id="atfile" />
 
   <br>
-  Destination filename: <br>  
-  <span style="background-color:white;font-size:x-small">propositions <a href="javascript:propositionsc();" id="probsymb">▼</a><br>
+  <?php echo $lng['x']['destin']; ?>: <br>  
+  <span style="background-color:white;font-size:x-small"><?php echo $lng['x']['propos']; ?> <a href="javascript:propositionsc();" id="probsymb">▼</a><br>
   <span style="display:none" id="propositions"><ul>
   <?php
   foreach($newnames as $titlesx) { echo"<li><a href='javascript:$(\"newfilename\").value=\"".htmlspecialchars($titlesx)."\";checkimg($(\"newfilename\").value);'>".htmlspecialchars($titlesx)."</a></li>\n"; }
   ?></ul></span>
   <br></span>
   <input type="text" name="wpDestFile" size="50" id="newfilename" onchange="checkimg(this.value);" onkeyup="lasttatch();checkimg(this.value);"><br><br>
-<div id="existwarn" style="display:none;border-width:1px;border-color:red;border-style:solid;padding:5px;background-color:#FFE4E1;"><img src="warn.png"> Destination filename already exist. Do you want overwrite existing file?<br><img id="falseimg" src="http://commons.wikimedia.org/w/thumb.php?w=120&f=" /><br><b>Image:</b><b id="imgtitle">...</b></div>
-<span id="dontexist" style="display:none;border-width:1px;border-color:green;border-style:solid;padding:5px;background-color:#E0FFE0;"><img src="ok.png"> Destination filename doesn't exist.<br></span>
+<div id="existwarn" style="display:none;border-width:1px;border-color:red;border-style:solid;padding:5px;background-color:#FFE4E1;"><img src="warn.png"> <?php echo $lng['x']['desexi']; ?><br><img id="falseimg" src="http://commons.wikimedia.org/w/thumb.php?w=120&f=" /><br><b>Image:</b><b id="imgtitle">...</b></div>
+<span id="dontexist" style="display:none;border-width:1px;border-color:green;border-style:solid;padding:5px;background-color:#E0FFE0;"><img src="ok.png"> <?php echo $lng['x']['desoke']; ?><br></span>
 <br>
-Summary:<br>
+<?php echo $lng['x']['summar']; ?>:<br>
 
   <textarea rows='25' cols='90' name="wpUploadDescription"><?php echo htmlspecialchars($formular); ?></textarea><br>
   <input type='hidden' name='wpLicense' value='' />
-<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label for="wpWatchthis">Watch this page</label>
+<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
   <br>
 
-  <input name="addorig" id="notibutton" value="true" type="checkbox"><label for="notibutton">Add a notice to the original file(s) about
-this derivative work. (by 'User:Bilderbot', at 02:00 UTC)</label><br>
+  <input name="addorig" id="notibutton" value="true" type="checkbox"><label for="notibutton"><?php echo $lng['x']['addnot']; ?></label><br>
 
   <br>
 
   <br>
 
   <input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <label for='accbut'>
-You confirm that all details in&nbsp;the file description above are
-  <span style="font-weight: bold;">correct and conformable
-with the license(s) of the original-file(s). Images could contain copyrighted paintings and the original-license does not extend to derivatives that isolate them.</span> This tool is not able to check for such copyrighted things. derivativeFX and
-his developer&nbsp;assume no accountability about the correctness
-of the generated content. &nbsp;It has been created in the hope
-that it will be useful, but <span style="font-weight: bold;">WITHOUT
-ANY WARRANTY. You are accountable for
-the correctness! </span>Image name, original files and time is logged.<br></label></span>
+<?php echo $lng['x']['accept']; ?><br></label></span>
 
   <br>
 
-  <input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload' value="Upload file" title="Start upload" type="submit" > &nbsp;<br>
+  <input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload' value="<?php  echo $lng['x']['start']; ?>" title="Start upload" type="submit" > &nbsp;<br>
 
   <br>
 <input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>

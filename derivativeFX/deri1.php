@@ -18,7 +18,9 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+$language = $_GET['lang'];
 include("functions.php");
+include("language.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html style="direction: ltr;" lang="en">
@@ -31,14 +33,29 @@ include("functions.php");
     var skipcheck = <?php if($_GET['skipcheck'] == 'true' or $_COOKIE['skipcheck'] == 'true') { echo'true'; } else { echo'false'; } ?>;
     </script>
     <script type="text/javascript" src="js/prototype.js"></script>
-    <script type="text/javascript" src="js/commands.js"></script>
+    <script type="text/javascript" src="js/commands.js.php?lang=<?php echo $language; ?>"></script>
     <link rel="stylesheet" type="text/css" href="style/style.css">
         
   </head>
   <body class="bodynorm" id="bodyid">
     <br />
-    <img src="image.php" />
+    <img src="image.php?lang=<?php echo $language; ?>" />
     <br />
+    <?php
+    //SPRACHEN
+    $cotn = 0;
+    foreach($lng as $shortcut => $lgarry)
+    {
+      if($shortcut != "x")
+      {
+        if($cotn != 0)
+        { echo"| "; }
+        echo"<a href='?lang=$shortcut'>".$lgarry['name']."</a> ";
+        $cotn = 1;
+      }
+    }
+    
+    ?><br><br>
         <div id="JavascriptWarn">
       <br /><h1>Sorry,</h1> You must have a browser which support the JavaScript-standards of the <a href="http://www.w3.org/">World Wide Web Consortium</a> (W3C) to use this tool. <br />
       
@@ -53,19 +70,19 @@ include("functions.php");
     $('JavascriptWarn').hide();
     </script>
     <div id="firstform" style="display:none">
-    <br /> Welcome to derivativeFX!
+    <br /> <?php echo $lng['x']['welc']; ?>
     <br /> <?php echo helpcontent('whatisthat',"What's derivativeFX?"); ?><br />
     
-    <br /> Please confirm that you are logged in to Wikimedia:Commons. 
+    <br /> <?php echo $lng['x']['conf']; ?> 
     <br />
     <iframe src="http://commons.wikimedia.org/wiki/Special:Mypage" OnLoad="$('onlyfornext').enable('loggedinnext')" name="checkuser" width="700" height="200" align="left"
         scrolling="no" marginheight="0" marginwidth="0" frameborder="1">
   </iframe>
-      <br style="clear:both">If you see your userpage in this frame, you are logged in. If not, please <a href="http://commons.wikimedia.org/w/index.php?title=Special:Userlogin">log in</a>.<br />
-      <input id="checkskip" name="checkskip" value="true" type="checkbox"> Skip this check next time<br />
+      <br style="clear:both"><?php echo $lng['x']['look']; ?><a href="http://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br />
+      <input id="checkskip" name="checkskip" value="true" type="checkbox"> <?php echo $lng['x']['skip']; ?><br />
       <br />
       <form id="onlyfornext">
-    <input id="loggedinnext" disabled="disabled" value="Ok - I'm logged in." name="loggedin" type="button" onClick="skipcookie();$('firstform').hide();$('secondform').show();<?php if($_GET['image']) { echo"getname('".htmlspecialchars($_GET['image'], ENT_QUOTES)."');"; } ?>"></form></div>
+    <input id="loggedinnext" disabled="disabled" value="<?php echo $lng['x']['okin']; ?>" name="loggedin" type="button" onClick="skipcookie();$('firstform').hide();$('secondform').show();<?php if($_GET['image']) { echo"getname('".htmlspecialchars($_GET['image'], ENT_QUOTES)."');"; } ?>"></form></div>
     <script type="text/javascript">
     if(skipcheck == true)
     {
@@ -85,7 +102,7 @@ include("functions.php");
     </script>
     
 <div id="secondform" style="display:none">
-<form enctype="multipart/form-data" method="post" action="deri2.php" name="imageselect" id="sendform">
+<form enctype="multipart/form-data" method="post" action="deri2.php?lang=<?php echo $language; ?>" name="imageselect" id="sendform">
 <span id="loading" style="display:none"><table
  style="width: 10%; text-align: left; margin-left: auto; margin-right: auto;"
  border="1" cellpadding="2" cellspacing="0">
@@ -94,35 +111,35 @@ include("functions.php");
       <td style="text-align: center; vertical-align: middle;"><img
  style="width: 32px; height: 32px;" alt=""
  src="loader.gif"><br />
-Loading...<br />
-Please wait<br />
+<?php echo $lng['x']['load']; ?>...<br />
+<?php echo $lng['x']['wait']; ?><br />
       </td>
     </tr>
   </tbody>
 </table>
 </span>
     <!--http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL-self-->
-    <p align="right" id="licprev" style="display:none">preview of <span id="licinprev" class="license">the GFDL</span>:
+    <p align="right" id="licprev" style="display:none"><?php echo $lng['x']['prov']; ?> <span id="licinprev" class="license">the GFDL</span>:
     <iframe src="http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL" id="licenceframe" width="50%" height="310" align="right"
         scrolling="auto" marginheight="0" marginwidth="0" frameborder="0">
 </iframe></p>
-     Original Work:
+     <?php echo $lng['x']['orwo']; ?>:
       <br />
       <input id="firstfield" size="50" name="original_1" value="Image:" onkeyup="loadlic('1',this.value)" autocomplete="off">
       <input name="origliz_1" id="origlizid_1" value="" type="hidden">
       <br />
-      License of this file: <span class="license" id="lic1">please add name</span>
+      <?php echo $lng['x']['lotf']; ?>: <span class="license" id="lic1"><?php echo $lng['x']['pan']; ?></span>
       <br /><img src="loader.gif" style="display:none" id="img1" />
       <div id="placeformore">
 
       </div>
       <br />
         <br />
-      <input id="mtobut" name="morethanone" value="add more original files" type="button" OnClick="more()">
+      <input id="mtobut" name="morethanone" value="<?php echo $lng['x']['admo']; ?>" type="button" OnClick="more()">
       <br />
       
       <br />
-      <input value="OK - Next" disabled="disabled" type="submit" id="sendtonext"><!-- disabled="disabled" -->
+      <input value="<?php echo $lng['x']['next']; ?>" disabled="disabled" type="submit" id="sendtonext"><!-- disabled="disabled" -->
     </form></div>
 
     <hr style="height: 2px; width: 60%;">

@@ -18,6 +18,8 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+    $language = $_GET['lang'];
+include("language.php");
 include("functions.php");
 
 if($_SERVER["REQUEST_METHOD"] != "POST")
@@ -381,8 +383,7 @@ if($isaccord == false)
 {
   
   //Keine Lizenzübereinstimmungen gefunden!
-  echo"<h1>Sorry,</h1> your images can't be merged!<br /><br />The <b>licenses are incompatible</b> or the <b>licenses can't be detected</b>.<br />
-  See above for all license tags the tool found for this images:<br /><br />\n<ul>";
+  echo $lng['x']['nomerg']."<br /><br />\n<ul>";
   foreach($images as $imagename => $licarray)
   {
     //$imagelizok
@@ -397,19 +398,17 @@ if($isaccord == false)
     }
     echo"</ul>";
   }
-  echo"</ul>\n<br /><sup class='marker'>1.)</sup>Unknown templates<br />";
-  echo"<sup class='marker'>2.)</sup>no known license found for this image!";
+  echo"</ul>\n<br /><sup class='marker'>1.)</sup>".$lng['x']['unktem']."<br />";
+  echo"<sup class='marker'>2.)</sup>".$lng['x']['unlimg'];
 }
 else
 {
 echo"<img src='derivativeFX_small.png' />";
 
 
-echo"<form enctype='multipart/form-data' method='post' action='deri3.php' name='sendform'>Description:".helpcontent("description")." <br />
+echo"<form enctype='multipart/form-data' method='post' action='deri3.php?lang=$language' name='sendform'>".$lng['x']['descri'].":".helpcontent("description")." <br />
 
-  <font style='font-style: italic;' size='-1'>for
-the
-  <code>|description=</code> -parameter in {{Information}}</font><br />
+  <font style='font-style: italic;' size='-1'>".$lng['x']['forpar']."</font><br />
   <textarea name='data' style='display:none'>".base64_encode(serialize($imagedatas))."</textarea>
   <textarea cols='70' rows='10' name='description'>".htmlspecialchars($outputdescription)."</textarea><br />
 
@@ -418,31 +417,30 @@ the
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
 
 <div class='tempinc'>
-  <input checked='checked' onClick=\"showhide('addreto')\" name='addtempret' value='true' type='checkbox'> Add Template
-{{RetouchedPicture}} to the description".helpcontent("templateretouched")."
+  <input checked='checked' onClick=\"showhide('addreto')\" name='addtempret' value='true' type='checkbox'>".sprintf($lng['x']['addtem'],"{{RetouchedPicture}}")." ".helpcontent("templateretouched")."
 <span id='addreto'><br /><br />
-  Changes: <input size='50' name='changestemp'><br />
-  Editor: <input size='50' name='editor'> <small>Without wikisyntax, e.g. \"Test\" for User:Test</small>
+  ".$lng['x']['change'].": <input size='50' name='changestemp'><br />
+  ".$lng['x']['editor'].": <input size='50' name='editor'> <small>".$lng['x']['edihin']."</small>
 </span></div>
-<br /><a href=\"Javascript:showhide('othertemplates')\">Other Templates...</a><br />
+<br /><a href=\"Javascript:showhide('othertemplates')\">".$lng['x']['others']."...</a><br />
 <span id='othertemplates' style='display:none'>
 <div class='tempinc'>
-<input onClick=\"showhide('bwstemp')\" name='addbwstemp' value='true' type='checkbox'> Add Template {{Bilderwerkstatt}} to the description
+<input onClick=\"showhide('bwstemp')\" name='addbwstemp' value='true' type='checkbox'>".sprintf($lng['x']['addtem'],"{{Bilderwerkstatt}}")."
 <br/><span id='bwstemp'style='display:none'>
-  Changes: <input size='50' name='changesbws'><br />
+  ".$lng['x']['change'].": <input size='50' name='changesbws'><br />
   </span>
 </div><br />
 <div class='tempinc'>
-<input name='addfrbws' value='true' type='checkbox'> Add Template {{Atelier graphique}} to the description
+<input name='addfrbws' value='true' type='checkbox'>".sprintf($lng['x']['addtem'],"{{Atelier graphique}}")."
 </div>
 <br />
 <div class='tempinc'>
-<input name='addfrkws' value='true' type='checkbox'> Add Template {{Atelier graphique carte}} to the description
+<input name='addfrkws' value='true' type='checkbox'>".sprintf($lng['x']['addtem'],"{{Atelier graphique carte}}")."
 </div></span>
   <br />
 <hr
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
-Categories:<br />
+".$lng['x']['categs'].":<br />
 <small><small>powered by <a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a></small></small><br />
 
 <ul>";
@@ -455,12 +453,12 @@ foreach($categorys as $cat)
     $n = $n +1;
   }
 }
-if(count($categorys) == 0)
-{  echo"<li><i>No categories found...</i></li>\n"; }
+if($n > 1)
+{  echo"<li><i>".$lng['x']['nocats']."...</i></li>\n"; }
 echo"</ul>
 <hr
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
-License:".helpcontent("license")."<br />
+".$lng['x']['licens'].":".helpcontent("license")."<br />
 
   <select name='license'>
   $licenseausw
@@ -470,9 +468,9 @@ License:".helpcontent("license")."<br />
   <br />
   <hr
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
-You can change the whole summary on the next page.<br />
+".$lng['x']['hincan'] .".<br />
   <br />
-  <input value='OK - Next' type='submit'><br />
+  <input value='".$lng['x']['next']."' type='submit'><br />
   <br />
 
   <br />
