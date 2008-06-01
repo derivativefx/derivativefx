@@ -40,8 +40,8 @@ while ($a_row2 = mysql_fetch_row($resu1))
   $time       = $a_row2["3"]; 
   $donetime   = $a_row2["4"]; 
   
-  $file = str_replace("_"," ",$file);
-  $derivative = str_replace("_"," ",$derivative);
+  //$file = str_replace("_"," ",$file);
+  //$derivative = str_replace("_"," ",$derivative);
   
   $images[$file]["derivativesTC"][$derivative] = $derivative;
   $images[$file]["time"] = $time;
@@ -111,15 +111,17 @@ foreach($images as $name => $array)
   {
     foreach($array["derivatives"] as $derivativfile)
     {
-      $resu1 = mysql_query( "UPDATE derivativefx SET status='done', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string(str_replace(" ", "_",$name))."' AND derivative='".mysql_real_escape_string(str_replace(" ","_",$derivativfile))."'", $dblink) or die(mysql_error());
-      echo"UPDATE derivativefx SET status='done', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string($name)."' AND derivative='".mysql_real_escape_string($derivativfile)."'";
+      $resu1 = mysql_query( "UPDATE `u_luxo`.`derivativefx` SET `status`='done', `donetime`='".mysql_real_escape_string($array["donetime"])."' WHERE CONVERT(`derivativefx`.`status` USING utf8) = 'open' AND CONVERT(`derivativefx`.`file` USING utf8) ='".mysql_real_escape_string($name)."' AND CONVERT(`derivativefx`.`derivative` USING utf8)='".mysql_real_escape_string($derivativfile)."'", $dblink) or die(mysql_error());
+      echo"UPDATE `u_luxo`.`derivativefx` SET `status`='done', `donetime`='".mysql_real_escape_string($array["donetime"])."' WHERE CONVERT(`derivativefx`.`status` USING utf8) = 'open' AND CONVERT(`derivativefx`.`file` USING utf8) ='".mysql_real_escape_string($name)."' AND CONVERT(`derivativefx`.`derivative` USING utf8)='".mysql_real_escape_string($derivativfile)."'\n";
     }
   }
   if($array["error"])
   {
     foreach($array["error"] as $derivativfile)
     {
-      $resu1 = mysql_query( "UPDATE derivativefx SET status='noexist', donetime='".mysql_real_escape_string($array["donetime"])."' WHERE status='open' AND file='".mysql_real_escape_string(str_replace(" ","_",$name))."' AND derivative='".mysql_real_escape_string(str_replace(" ","_",$derivativfile))."'", $dblink) or die(mysql_error());
+      $resu1 = mysql_query( "UPDATE `u_luxo`.`derivativefx` SET `status`='noexist', `donetime`='".mysql_real_escape_string($array["donetime"])."' WHERE CONVERT(`derivativefx`.`status` USING utf8) = 'open' AND CONVERT(`derivativefx`.`file` USING utf8) ='".mysql_real_escape_string($name)."' AND CONVERT(`derivativefx`.`derivative` USING utf8)='".mysql_real_escape_string($derivativfile)."'", $dblink) or die(mysql_error());
+      echo"UPDATE `u_luxo`.`derivativefx` SET `status`='noexist', `donetime`='".mysql_real_escape_string($array["donetime"])."' WHERE CONVERT(`derivativefx`.`status` USING utf8) = 'open' AND CONVERT(`derivativefx`.`file` USING utf8) ='".mysql_real_escape_string($name)."' AND CONVERT(`derivativefx`.`derivative` USING utf8)='".mysql_real_escape_string($derivativfile)."'\n";
+
     }
   }
 }
