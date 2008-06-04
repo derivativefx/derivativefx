@@ -103,13 +103,15 @@ else
 $status = "nobot";
 }
 
-if($origfile == $file)//Bei gleichnamigen Dateien name nicht eintragen
+
+
+$origfile = str_replace("_"," ",$origfile);
+$file = str_replace("_"," ",$file);
+
+if($origfile == "Image:".$file)//Bei gleichnamigen Dateien name nicht eintragen
 {
 $status = "done";
 }
-
-  $origfile = str_replace("_"," ",$origfile);
-  $file = str_replace("_"," ",$file);
 
 
 $time = time();

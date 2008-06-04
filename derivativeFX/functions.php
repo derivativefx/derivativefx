@@ -25,7 +25,11 @@ This file is part of derivativeFX.
 
 function helpcontent($theme,$text = "?")
 {
-$url = "help/helpdesk.php?theme=".$theme;
+global $language;
+
+
+
+$url = "help/helpdesk.php?theme=".$theme."&lang=".$language;
 
 $html = "<sup><a href='$url' title='help' onclick=\"helpwindow(this.href); return false\">$text</a></sup>";
 return $html;

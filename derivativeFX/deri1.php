@@ -71,14 +71,14 @@ include("language.php");
     </script>
     <div id="firstform" style="display:none">
     <br /> <?php echo $lng['x']['welc']; ?>
-    <br /> <?php echo helpcontent('whatisthat',"What's derivativeFX?"); ?><br />
+    <br /> <?php echo helpcontent('whatisthat',$lng['x']['what']); ?><br />
     
     <br /> <?php echo $lng['x']['conf']; ?> 
     <br />
     <iframe src="http://commons.wikimedia.org/wiki/Special:Mypage" OnLoad="$('onlyfornext').enable('loggedinnext')" name="checkuser" width="700" height="200" align="left"
         scrolling="no" marginheight="0" marginwidth="0" frameborder="1">
   </iframe>
-      <br style="clear:both"><?php echo $lng['x']['look']; ?><a href="http://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br />
+      <br style="clear:both"><?php echo $lng['x']['look']; ?> <a href="http://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br />
       <input id="checkskip" name="checkskip" value="true" type="checkbox"> <?php echo $lng['x']['skip']; ?><br />
       <br />
       <form id="onlyfornext">

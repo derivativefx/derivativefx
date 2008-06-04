@@ -38,6 +38,28 @@ function upchecker()
     setBox("used","atfile");
   }
   
+  
+  var Ergebnis1 = window.document.lastform.wpUploadDescription.value.search(/PLEASE/);
+    var Ergebnis2 = window.document.lastform.wpUploadDescription.value.search(/COMPLETE/);
+      var Ergebnis3 = window.document.lastform.wpUploadDescription.value.search(/AUTHOR/);
+        var Ergebnis4 = window.document.lastform.wpUploadDescription.value.search(/INFORMATION/);
+        
+  if (Ergebnis1 != -1 )
+  {
+      if (Ergebnis2 != -1 )
+      {
+           if (Ergebnis3 != -1 )
+           {
+             if (Ergebnis4 != -1 )
+              {     
+                 ret = false;
+                 Begruendung[n] = "<?php echo $lng['x']['wrncom']; ?>";
+                 n++;
+              }
+          }
+     }
+ }
+  
   var wpDestFile = window.document.lastform.wpDestFile.value;
   
   if(!wpDestFile.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi))

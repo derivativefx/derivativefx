@@ -23,6 +23,7 @@ This file is part of derivativeFX.
 //############################# ENGLISH ########################
 $lng['en']['name'] = "English";
 $lng['en']['welc'] = "Welcome to derivativeFX!";
+$lng['en']['what'] = "What's derivativeFX?";
 $lng['en']['conf'] = "Please confirm that you are logged in to Wikimedia:Commons.";
 $lng['en']['look'] = "If you see your userpage in this frame, you are logged in. If not, please";
 $lng['en']['loin'] = "log in";
@@ -77,11 +78,14 @@ $lng['en']['attac'] = "Please attach a file.";
 $lng['en']['corfi'] = "No correct file extension found in destination file. (%s)";
 $lng['en']['notsa'] = "Your selected file has not the same file extension (%s) like the destination name (%s)! Change dest. name to '%s'?";
 $lng['en']['imgu'] = "%s images uploaded!";
+$lng['en']['plscom'] = "Please complete author information for the following images:";
+$lng['en']['wrncom'] = "Please complete author information";
 
 
 //############################# DEUTSCH ########################
 $lng['de']['name'] = "Deutsch";
 $lng['de']['welc'] = "Willkommen!";
+$lng['de']['what'] = "Was ist derivativeFX?";
 $lng['de']['conf'] = "Bitte überprüfe ob du in Wikimedia:Commons angemeldet bist.";
 $lng['de']['look'] = "Wenn du deine Benutzerseite in diesem Frame siehst, bist du angemeldet. Wenn nicht, bitte";
 $lng['de']['loin'] = "Anmelden";
@@ -132,8 +136,8 @@ $lng['de']['attac'] = "Bitte gib eine Datei an.";
 $lng['de']['corfi'] = "Keine korrekte Dateiendung gefunden im Dateiname. (%s)";
 $lng['de']['notsa'] = "Deine ausgewählte Datei hat nicht die selbe Dateiendung (%s) wie der Zielname (%s)! Zielname ändern zu '%s'?";
 $lng['de']['imgu'] = "%s Dateien hochgeladen!";
-
-
+$lng['de']['plscom'] = "Bitte ergänze die Autoren der folgenden Bilder:";
+$lng['de']['wrncom'] = "Bitte vervollständige die Autoren";
 
 
 
