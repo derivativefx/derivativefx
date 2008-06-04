@@ -20,6 +20,7 @@ This file is part of derivativeFX.
     */
 $theme = htmlspecialchars($_GET['theme']);
 $lang = htmlspecialchars($_GET['lang']);
+$output = "";
 
 $add = "";
 
@@ -29,27 +30,44 @@ $add = "-".$lang;
 }
 $url = $theme.$add.".txt";
 
-
-$file = @file_get_contents($url);
-
-if($file)
+if( is_file($url) )
 {
-$output = $file;
+$url = $url;
 
-$output = "<h2>".str_replace("\$\$\$", "</h2>", $output);
+$sprachhinw = "";
 }
 else
 {
-$output = "<h2>Sorry,</h2>\nCan't find help to this point.<br>";
+  $url = $theme.".txt";
+ if( is_file($url) )
+ {
+ //Hilfe nur auf Englisch
+ $output .= "<span style='color:red;font-weight: bold;'>Text only available in English.</span><br />";
+ $lang = "en";
+ 
+ }
+ else
+ {
+ //Hilfe nicht vorhanden
+  $url = false;
+  $output .= "<h2>Sorry,</h2>\ncan't find help to this point.<br>";
+  $lang = "en";
+ }
 }
 
-$output .= "<!-- $url -->";
-/*<h2>title</h2>
 
-Text<br>*/
+if($url != false)
+{
+$file = file_get_contents($url);
+
+$file = "<h2>".str_replace("\$\$\$", "</h2>", $file);
+
+$output .= $file;
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html style="direction: ltr;" lang="en">
+<html style="direction: ltr;" lang="<?php echo $lang; ?>">
 <head>
 
   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
@@ -58,13 +76,13 @@ Text<br>*/
 
   <meta content="Luxo" name="author">
 
-  <link rel="stylesheet" href="http://tools.wikimedia.de/%7Eluxo/derivativeFX/style/style.css" type="text/css">
+  <link rel="stylesheet" href="/~luxo/derivativeFX/style/style.css" type="text/css">
 
   <meta content="Helpdesk" name="description">
 </head>
 <body style="direction: ltr;" class="bodynorm">
 
-<img style="width: 279px; height: 134px;" alt="derivativeFX" src="http://tools.wikimedia.de/%7Eluxo/derivativeFX/derivativeFX_small.png"><br>
+<img style="width: 279px; height: 134px;" alt="derivativeFX" src="/~luxo/derivativeFX/derivativeFX_small.png"><br>
 
 <div style="margin-left: 80px;"><img style="width: 150px; height: 34px;" alt="helpdesk" src="help_small.png"></div><br>
 <?php echo nl2br($output); ?>
@@ -73,7 +91,7 @@ Text<br>*/
 <br>
 <input name="close" value="Close" type="button" OnClick="self.close();">
 <hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">by <a href="/%7Eluxo/">Luxo</a>
+<div style="text-align: center;">by <a href="/~luxo/">Luxo</a>
 | <a href="http://commons.wikimedia.org/wiki/User_talk:Luxo">contact</a>
 
 | <a
