@@ -1,0 +1,4 @@
+Was ist derivativeFX?$$$derivativeFX ist ein Tool um abgeleitete Werke von Dateien aus <a href="http://commons.wikimedia.org" target="_blank">Wikimedia:Commons</a> hochzuladen.
+Du kannst eine oder mehr* Originaldateien angeben und derivativeFX prüft ob die Lizenzen vereinbar sind und generiert eine neue Beschreibungsseite. 
+
+*Funktioniert momentan nicht mit Internet Explorer

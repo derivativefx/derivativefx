@@ -40,7 +40,7 @@ $imagesdata = unserialize(base64_decode($_POST['data']));
 
 //array für next aufbauen
 $originals = array();
-
+$noauthor = array();//bilder, deren author nicht gefunden werden kann
 foreach($imagesdata as $imagename => $imagedata)
 {
 $originals[] = $imagename;
@@ -94,6 +94,12 @@ $originals[] = $imagename;
           $author = "[[User:".$imagedata["imageinfo"][$authorkey]["user"]."|".$imagedata["imageinfo"][$authorkey]["user"]."]]";
         }
       }
+    }
+    
+    if(!$author)
+    {
+    $author = "'''PLEASE COMPLETE AUTHOR INFORMATION'''";
+    $noauthor[] = $imagename;
     }
     
     if($author)
@@ -192,7 +198,21 @@ $newnames[] =  substr($onlyname,6)."-".date("Y-d-m",time()).".".$extension;
 $newnames[] =  substr($onlyname,6)."_new.".$extension;
 }
 
+//Warnung für nicht gefundene Authoren
+$authorwarn = "";
+if(count($noauthor) > 0)
+{
+  $authorwarn = "<div><img src='warn.png' /> <b>".$lng['x']['plscom']."</b><br />";
+}
+foreach($noauthor as $tempimg)
+{
+  $authorwarn .= '- <a target="_blank" href="http://commons.wikimedia.org/w/index.php?title='.urlencode($tempimg).'">'.$tempimg.'</a><br />';
+}
 
+if(count($noauthor) > 0)
+{
+  $authorwarn .= "</div><br /><br />";
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
@@ -270,6 +290,7 @@ $newnames[] =  substr($onlyname,6)."_new.".$extension;
 <?php echo $lng['x']['summar']; ?>:<br>
 
   <textarea rows='25' cols='90' name="wpUploadDescription"><?php echo htmlspecialchars($formular); ?></textarea><br>
+  <?php echo $authorwarn; ?>
   <input type='hidden' name='wpLicense' value='' />
 <input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
   <br>

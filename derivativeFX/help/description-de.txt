@@ -1,0 +1,2 @@
+Beschreibung$$$Schreibe hier eine Beschreibung der Datei.
+derivativeFX macht einen Vorschlag auf Basis der Originaldateien, bitte kontrolliere und verbessere sie. 

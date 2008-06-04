@@ -1,0 +1,2 @@
+Vorlage {{RetouchedPicture}}$$$Du kannst die Vorlage <a href="http://commons.wikimedia.org/wiki/Template:RetouchedPicture" target="_blank">RetouchedPicture</a> einbinden.
+Wenn du dies möchtest, füge die gemachten Änderungen und dein Benutzername ein, z. B. "Test" für User:Test.

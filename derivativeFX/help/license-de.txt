@@ -1,0 +1,3 @@
+Lizenz$$$Wähle die Lizenz deines abgeleiteten Werks.
+In diesem Feld sind nur Lizenzen gelistet, die kompatibel mit den Lizenzen der Originaldatei(en) sind.
+Bei "creative commons"-Lizenzen wählt es immer automatisch die neuste Version der Lizenz, wenn du eine ältere Version möchtest kannst du diese später in der Zusammenfassung ändern.

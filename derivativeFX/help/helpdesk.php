@@ -18,9 +18,19 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-$theme = urlencode($_GET['theme']);
+$theme = htmlspecialchars($_GET['theme']);
+$lang = htmlspecialchars($_GET['lang']);
 
-$file = @file_get_contents($theme.".txt");
+$add = "";
+
+if($lang != "en")
+{
+$add = "-".$lang;
+}
+$url = $theme.$add.".txt";
+
+
+$file = @file_get_contents($url);
 
 if($file)
 {
@@ -32,6 +42,8 @@ else
 {
 $output = "<h2>Sorry,</h2>\nCan't find help to this point.<br>";
 }
+
+$output .= "<!-- $url -->";
 /*<h2>title</h2>
 
 Text<br>*/
