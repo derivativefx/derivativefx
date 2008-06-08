@@ -453,8 +453,10 @@ foreach($categorys as $cat)
     $n = $n +1;
   }
 }
-if($n > 1)
-{  echo"<li><i>".$lng['x']['nocats']."...</i></li>\n"; }
+if($n == 1)
+{
+echo"<li><i>".$lng['x']['nocats']."...</i></li>\n";
+}
 echo"</ul>
 <hr
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
