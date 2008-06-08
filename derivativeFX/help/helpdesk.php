@@ -22,7 +22,7 @@ $theme = htmlspecialchars($_GET['theme']);
 $lang = htmlspecialchars($_GET['lang']);
 $output = "";
 
-$add = "";
+$add = "-en";
 
 if($lang != "en")
 {
@@ -32,13 +32,12 @@ $url = $theme.$add.".txt";
 
 if( is_file($url) )
 {
-$url = $url;
 
 $sprachhinw = "";
 }
 else
 {
-  $url = $theme.".txt";
+  $url = $theme."-en.txt";
  if( is_file($url) )
  {
  //Hilfe nur auf Englisch

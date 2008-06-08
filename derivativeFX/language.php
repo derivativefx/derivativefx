@@ -65,11 +65,11 @@ $lng['en']['desoke'] = "Destination filename doesn't exist.";
 $lng['en']['summar'] = "Summary";
 $lng['en']['watcht'] = "Watch this page";
 $lng['en']['addnot'] = "Add a notice to the original file(s) about this derivative work. (by 'User:Bilderbot', at 02:00 UTC)";
-$lng['en']['accept'] = "You confirm that all details in&nbsp;the file description above are
+$lng['en']['accept'] = "You confirm that all details in the file description above are
   <span style=\"font-weight: bold;\">correct and conformable
 with the license(s) of the original-file(s). Images could contain copyrighted paintings and the original-license does not extend to derivatives that isolate them.</span> This tool is not able to check for such copyrighted things. derivativeFX and
-his developer&nbsp;assume no accountability about the correctness
-of the generated content. &nbsp;It has been created in the hope
+his developer assume no accountability about the correctness
+of the generated content. It has been created in the hope
 that it will be useful, but <span style=\"font-weight: bold;\">WITHOUT
 ANY WARRANTY. You are accountable for
 the correctness! </span>Image name, original files and time is logged.";
