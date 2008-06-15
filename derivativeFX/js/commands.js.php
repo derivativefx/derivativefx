@@ -384,7 +384,7 @@ else
 
 function licprevi(temlate)
 {
-var tmpurl = "http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]="+temlate;
+var tmpurl = "http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]="+temlate+"|????";
 
 $("licenceframe").src = tmpurl;
   $("licinprev").firstChild.data = temlate;
