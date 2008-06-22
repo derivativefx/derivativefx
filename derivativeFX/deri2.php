@@ -302,16 +302,25 @@ foreach($images as $imagename => $licarray)
     {
     //offenbar kein Information verwenet
     $desc = trim(substr($imagedatas[$imagename]["content"]["*"],0,stripos($imagedatas[$imagename]["content"]["*"],"{")));
+    $desc = preg_replace("/\={2,}.*.\={2,}/", "", $desc);//Titel entfernen
+    $desc = preg_replace("/\{{2,}.*.\}{2,}/", "", $desc);//Templates entfernen
+    $desc = preg_replace("/\[{2,}Category.*.\]{2,}/", "", $desc);//Categorys entfernen
+    $desc = trim($desc);
+    
     }
     
     $order   = array("\r\n", "\n", "\r");
     $replace = ' ';
     $desc = str_replace($order, $replace, $desc);
     
-    $outputdescription .= " ".$desc;
-    //Kategorien hinzufügen
+    $outputdescription .= $desc;
     
-  
+
+    
+    
+    
+    //Kategorien hinzufügen
+      
   echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
   $tempcatar = catscan(substr($imagename,6));
   echo count($tempcatar)." categories found for ".substr($imagename,6)."...";
@@ -449,7 +458,7 @@ foreach($categorys as $cat)
 {
   if(trim($cat) != "")
   {
-    echo "<li><input type='checkbox' name='Category$n' value='$cat' /> ".$cat."</li>\n";
+    echo "<li><input type='checkbox' name='Category$n' value=\"".htmlspecialchars($cat)."\" /> ".$cat."</li>\n";
     $n = $n +1;
   }
 }
