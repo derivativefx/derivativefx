@@ -126,6 +126,9 @@ $categorys = array(
 "Attribution" => array()
 );
 
+
+
+
 //Lizenzen in Kats aufteilen
 foreach($images as $imagename => $licarray)
 {
@@ -248,8 +251,24 @@ $imagelizok[$imagename] = false;
 }
 //Fertig in Kats eingeteilt
 
-//print_r($categorys);
 
+//wenn nur 1. Originalbild vorhanden ist, dessen originallizenz auch noch übernehmen
+if(count($images) == 1)
+{
+  foreach($images as $imagename => $licarray)
+  {
+    foreach($licarray as $licence)
+    {
+      $tempxorig .= trim($licence)."|";  
+    }
+  }
+  $allorigliz = "self|".substr($tempxorig,0,-1); 
+  
+  $categorys[$allorigliz][$imagename] = $allorigliz;
+}
+
+
+//passende Lizenzen herausfinden
 $lizenzauswahl = array();
 
 $isaccord = false;
@@ -370,9 +389,21 @@ $licensesar = array(
 "LGPL" => "LGPL",
 "CeCILL" => "CeCILL" );
 
-foreach($liclic as $licgroup)
+
+foreach($liclic as $licgroup) //für Doppellizenz des originals
 {
-  $licenseausw .= "<option>".$licensesar[$licgroup]."</option>\n";
+  if(substr($licgroup,0,5) == "self|")
+  {
+     $licenseausw .= "<option>".$licgroup."</option>\n";
+  }
+}
+
+foreach($liclic as $licgroup) //für kombilizenzen
+{
+  if(substr($licgroup,0,5) != "self|")
+  {
+     $licenseausw .= "<option>".$licensesar[$licgroup]."</option>\n";
+  }
 }
 
 
@@ -471,9 +502,9 @@ echo"</ul>
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
 ".$lng['x']['licens'].":".helpcontent("license")."<br />
 
-  <select name='license'>
+  {{<select name='license'>
   $licenseausw
-  </select>
+  </select>}}
 
   <br />
   <br />
