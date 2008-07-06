@@ -243,17 +243,19 @@ $imagelizok[$imagename] = false;
   if($imagelizok[$imagename] == false)
   {
     echo"<span class='delete'>No known licence found in $imagename!</span><br />";
+    $selfblock = true;
   }
   else
   {
     echo"<b>$imagename</b> is ok...<br />";
+    $selfblock = false;
   }
 }
 //Fertig in Kats eingeteilt
 
 
 //wenn nur 1. Originalbild vorhanden ist, dessen originallizenz auch noch übernehmen
-if(count($images) == 1)
+if(count($images) == 1 AND $selfblock == false)
 {
   foreach($images as $imagename => $licarray)
   {
