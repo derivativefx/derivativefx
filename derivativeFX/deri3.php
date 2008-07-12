@@ -88,7 +88,7 @@ $originals[] = $imagename;
       if(!$author)
       {
       //nach schlagwörter suchen
-        if(stristr($imagedata["content"]["*"], "myself") OR stristr($imagedata["content"]["*"], "own work") OR stristr($imagedata["content"]["*"], "selfmade") or stristr($imagedata["content"]["*"], "self made"))
+        if(stristr($imagedata["content"]["*"], "myself") OR stristr($imagedata["content"]["*"], "own work") OR stristr($imagedata["content"]["*"], "selfmade") or stristr($imagedata["content"]["*"], "self made") or stristr($imagedata["content"]["*"], "self-made"))
         {
           $authorkey = count($imagedata["imageinfo"]) - 1;
           $author = "[[User:".$imagedata["imageinfo"][$authorkey]["user"]."|".$imagedata["imageinfo"][$authorkey]["user"]."]]";

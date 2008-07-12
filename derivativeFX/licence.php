@@ -57,6 +57,7 @@ $whitelist = array(
 "Template:Edit",
 "Template:GFDL/lang",
 "Template:GFDL-self", //>>Included {{GFDL}}
+"Template:GFDL-user", //>>Included {{GFDL}}
 "Template:GNU-Layout",
 "Template:Information",
 "Template:Lang",
