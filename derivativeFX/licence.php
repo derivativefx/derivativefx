@@ -78,7 +78,8 @@ $whitelist = array(
 "Template:Personality rights/lang",
 "Template:Zh-hans",
 "Template:Zh-hant",
-"Template:Zh-min-nan");
+"Template:Zh-min-nan",
+"Template:Flickrreview");
 
 
 if(!in_array($template,$whitelist))
