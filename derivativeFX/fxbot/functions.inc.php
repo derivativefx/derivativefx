@@ -25,17 +25,11 @@ This file is part of derivativeFX.
    //Funktion um Quelltext zu laden 
 function wikitextload($page)
 {
-
-$page = urlencode($page);
-
-$project = "commons.wikimedia.org";
-
-
-$url = "http://".$project."/w/index.php?title=".$page."&action=raw";
-
-$wikitext = @file_get_contents($url);
-
-return($wikitext);
+  $project = "commons.wikimedia.org";
+  $page = str_replace(" ","_",$page);
+  $url = "http://".$project."/w/index.php?title=".urlencode($page)."&action=raw";
+  $wikitext = file_get_contents($url);
+  return($wikitext);
 }
 //#############################################################
 function firstbig($username)
@@ -99,7 +93,7 @@ function addnote($derivatives,$origtitle)
   
   $rawdesc = wikitextload($origtitle);
   
-  if(!$rawdesc){ die("leer"); }
+  if(!$rawdesc){ die("beschreibung leer"); }
   
   if(stristr($rawdesc, "{{DerivativeVersions"))
   {
