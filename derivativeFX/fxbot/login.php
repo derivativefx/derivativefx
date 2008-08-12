@@ -23,43 +23,29 @@ This file is part of derivativeFX.
 // ############### EDIT WIKIPEDIA - FUNCTION ###############
 function wikiedit($project,$page,$newtext,$description,$minor,$username,$password)
 {
-
-$page = urlencode($page);
-
-logfile($page,"Schreibe Text am ".date("r",time())." in die Seite '$page'.\n");
-
-$getrequest = "/w/api.php?action=login";
-$postrequest = "lgname=$username&lgpassword=$password";
-$useragent = "Luxobot/1.0 (toolserver; php) luxo@ts.wikimedia.org";
-$accept = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
-
-$fp = fsockopen ($project, 80, $errno, $errstr, 30);
-
-//Request Senden
-fputs($fp, "POST $getrequest HTTP/1.1\n");
-fputs($fp, "Host: $project\n");
-fputs($fp, "User-Agent: $useragent\n");
-fputs($fp, "Connection: close\n");
-fputs($fp, "Content-Type: application/x-www-form-urlencoded\n");
-fputs($fp, "Content-Length: ".strlen($postrequest)."\n");
-fputs($fp, "\n");
-fputs($fp, $postrequest);
-
-//Response Header auslesen
-do {
-$line=fgets($fp,255);
-$header.=$line;
-
-//auf cookie prüfen
-if(substr($line,0,11) == "Set-Cookie:")
+global $cookies;
+  logfile("Funktion gestartet...");
+  logfile("Schreibe Text am ".date("r",time())." in die Seite '$page'.");
+  
+  $useragent = "Luxobot/1.1 (toolserver; php) luxo@ts.wikimedia.org";
+  
+//$cookies
+if(!$cookies["commonswikiUserName"] OR !$cookies["commonswikiUserID"])
 {
-$cookies[] = substr($line,11,strpos($line,";")-11);
+
+  logfile("Login to $project!\n");
+  wikilogin($username,$password,$project,$useragent);
+  logfile("logged in to $project!\n");
+  print_r($cookies);
+}
+else
+{
+  logfile("already logged in to $project!\n");
 }
 
 
-} while (trim($line)!="");
-fclose($fp);
-logfile($page,"Angemeldet in $project!\n");
+  
+
 //echo $header."\n\n";
 
 // Response Body auslesen
@@ -75,27 +61,22 @@ $header = "";
 $fpb = fsockopen ($project, 80, $errno, $errstr, 30);
 
 //Bearbeiten-Seite aufrufen, um wpEditToken & cookie zu erhalten ***************
-$getrequest = "/w/index.php?title=$page&action=edit";
+$getrequest = "/w/index.php?title=".urlencode($page)."&action=edit";
 fputs($fpb, "GET $getrequest HTTP/1.1\n");
 fputs($fpb, "Host: $project\n");
 fputs($fpb, "User-Agent: $useragent\n");
 fputs($fpb, "Accept: $accept\n");
 fputs($fpb, "Accept-Language: de\n");
 
-foreach ($cookies as $key=>$value) {
-	
-	if($key == "0")
-	{
-  $cookie.= trim($value);
-  }
-  else
-	{
-  $cookie.= ";".trim($value);
-  }
-	
+foreach ($cookies as $key=>$value) 
+{
+  $cookie .= trim($value).";";
 }
+$cookie = substr($cookie,0,-1);
+	
 
-logfile($page,"Lade Seite; Cookies: $cookie\n");
+
+logfile("Lade Seite; Cookies: $cookie\n");
 
 fputs($fpb, "Cookie: ".$cookie."\n");
 
@@ -111,26 +92,23 @@ $headerrx.=$linex;
 //auf cookie prüfen
 if(substr($linex,0,11) == "Set-Cookie:")
 {
-$cookies[] = substr($linex,11,strpos($linex,";")-11);
+$rawcookie = substr($line,11,strpos($line,";")-11); //Format: session=DFJ3ASD2S
+  $cookiename = trim(substr($rawcookie,0,strpos($rawcookie,"=")));
+$cookies[$cookiename] = $rawcookie;
 }
 
 } while (trim($linex)!="");
 
 //cookie-header erneut generieren
 $cookie = "";
-foreach ($cookies as $key=>$value) {
-	
-	if($key == "0")
-	{
-  $cookie.= trim($value);
-  }
-  else
-	{
-  $cookie.= ";".trim($value);
-  }
-	
+foreach ($cookies as $key=>$value) 
+{
+  $cookie .= trim($value).";";
 }
-logfile($page,"Neue Cookies: $cookie\n");
+$cookie = substr($cookie,0,-1);
+
+
+logfile("Neue Cookies: $cookie\n");
 
 //echo $headerrx."\n\n";
 // Response Body auslesen**********************
@@ -162,16 +140,12 @@ if(strstr($line, "wpSave"))
 {
 $formdata['wpSave'] = $line;
 }
-if(strstr($line, "baseRevId"))
-{
-$formdata['baseRevId'] = $line;
 }
-}
-logfile($page,"Seite geladen, Anmeldung prüfen.\n");
+logfile("Seite geladen, Anmeldung prüfen.");
 
 if(strstr($bodyy,'var wgUserName = "Bilderbot";'))
 {
-logfile($page,"Anmeldung erfolgreich!\n");
+logfile("Anmeldung erfolgreich!");
 
 //ende auslesen, verbindung schliessen
 fclose($fpb);
@@ -192,17 +166,11 @@ $formdata["$type"] = $t1;
 // ########################### POST-CONTENT VORBEREITEN #####################
 
 //content vorbereiten
-$addtocont = "";
-if($formdata['baseRevId'])
-{
-$addtocont = "&baseRevId=".urlencode($formdata['baseRevId']);
-}
-
-$content = "wpSection=".$addtocont."&wpStarttime=".urlencode($formdata['wpStarttime'])."&wpEdittime=".urlencode($formdata['wpEdittime'])."&wpScrolltop=".urlencode($formdata['wpScrolltop'])."&wpTextbox1=".urlencode($newtext)."&wpSummary=".urlencode($description)."&wpMinoredit=".urlencode($minor)."&wpWatchthis=1&wpSave=".$formdata['wpSave']."&wpEditToken=".urlencode($formdata['wpEditToken'])."&wpAutoSummary=".urlencode($formdata['wpAutoSummary']);
+$content = "wpSection=&wpStarttime=".urlencode($formdata['wpStarttime'])."&wpEdittime=".urlencode($formdata['wpEdittime'])."&wpScrolltop=".urlencode($formdata['wpScrolltop'])."&wpTextbox1=".urlencode($newtext)."&wpSummary=".urlencode($description)."&wpMinoredit=".urlencode($minor)."&wpWatchthis=1&wpSave=".$formdata['wpSave']."&wpEditToken=".urlencode($formdata['wpEditToken'])."&wpAutoSummary=".urlencode($formdata['wpAutoSummary']);
 
 
 
-logfile($page,"Content (".strlen($content)." Zeichen) vorbereitet, verbinde zum Speichern!\n");
+logfile("Content (".strlen($content)." Zeichen) vorbereitet, verbinde zum Speichern!");
 
 //######## POST-Content vorbereitet, verbinden & POST-header senden #########
 
@@ -210,9 +178,9 @@ logfile($page,"Content (".strlen($content)." Zeichen) vorbereitet, verbinde zum 
 $fpc = fsockopen ($project, 80, $errno, $errstr, 30);
 //Speichern per Post.. ***************
 
-$referer = "http://$project/w/index.php?title=".$page."&action=edit";
+$referer = "http://$project/w/index.php?title=".urlencode($page)."&action=edit";
 
-fputs($fpc, "POST /w/index.php?title=".$page."&action=submit HTTP/1.1\n");
+fputs($fpc, "POST /w/index.php?title=".urlencode($page)."&action=submit HTTP/1.1\n");
 fputs($fpc, "Host: $project\n");
 fputs($fpc, "User-Agent: $useragent\n");
 fputs($fpc, "Accept: $accept\n");
@@ -227,18 +195,42 @@ fputs($fpc, "Content-Type: application/x-www-form-urlencoded\n");
 fputs($fpc, "Content-Length: ".strlen($content)."\n");
 fputs($fpc, "\n");
 fputs($fpc, $content);
-logfile($page,"Header gesendet.\n");
+logfile("Header gesendet.");
 
-
-$line=fgets($fpc,255);
-
-if(strstr($line,"Moved Temporarily"))
+//Response Header auslesen vorallem cooke********************
+$xxx = 0;
+do {
+$linex=fgets($fpc,255);
+if($xxx == 0)
 {
-logfile($page,"Bearbeitung Erfolgreich.\n");
+  $linexx = $linex;
+}
+$xxx += 1;
+
+$headerrx.=$linex;
+
+//auf cookie prüfen
+if(substr($linex,0,11) == "Set-Cookie:")
+{
+$rawcookie = substr($line,11,strpos($line,";")-11); //Format: session=DFJ3ASD2S
+  $cookiename = trim(substr($rawcookie,0,strpos($rawcookie,"=")));
+$cookies[$cookiename] = $rawcookie;
+}
+
+} while (trim($linex)!="");
+
+
+
+
+if(strstr($linexx,"Moved Temporarily"))
+{
+logfile("Bearbeitung Erfolgreich.");
+return true;
 }
 else
 {
-logfile($page,"BEARBEITUNG FEHLGESCHLAGEN!.\nFehler-Header: $line\n");
+logfile("BEARBEITUNG FEHLGESCHLAGEN!.\nFehler-Header: $line");
+return false;
 }
 
 
@@ -249,30 +241,64 @@ while (!feof($fpc)) {
 $linew=fgets($fpc,255);
 $bodyw.=$linew;
 }
-logfile($page,"-------\n".$bodyw."----------\n"); */
+logfile("-------\n".$bodyw."----------\n"); */
 fclose($fpc);
 
 echo"ende.";
 }
 else
 {
-logfile($page,"ANMELDUNG FEHLGESCHLAGEN, KONNTE NICHT ANMELDEN!\n$bodyy");
+logfile("ANMELDUNG FEHLGESCHLAGEN, KONNTE NICHT ANMELDEN!\n");
 die();
 }
 
 }
 
-function logfile($artikelname,$text)
+function wikilogin($username,$password,$project,$useragent)
 {
+  global $cookies;
+  logfile("Login via API...");
 
-$artikelname = str_replace(array("."," ",":","&","/"), array("-", "_", "-","-","-"), $artikelname);
+  
+  $getrequest = "/w/api.php?action=login";
+  $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."";
+  $accept = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+  
+  $fp = fsockopen ($project, 80, $errno, $errstr, 30);
+  
+  //Request Senden
+  fputs($fp, "POST $getrequest HTTP/1.1\n");
+  fputs($fp, "Host: $project\n");
+  fputs($fp, "User-Agent: $useragent\n");
+  fputs($fp, "Connection: close\n");
+  fputs($fp, "Content-Type: application/x-www-form-urlencoded\n");
+  fputs($fp, "Content-Length: ".strlen($postlogin)."\n");
+  fputs($fp, "\n");
+  fputs($fp, $postlogin);
+  
+  //Response Header auslesen
+  do {
+  $line=fgets($fp,255);
+  $header.=$line;
+  
+  //auf cookie prüfen
+  if(substr($line,0,11) == "Set-Cookie:")
+  {
+  $rawcookie = substr($line,11,strpos($line,";")-11); //Format: session=DFJ3ASD2S
+  $cookiename = trim(substr($rawcookie,0,strpos($rawcookie,"=")));
+  $cookies[$cookiename] = $rawcookie;
+  }
+  
+  
+  } while (trim($line)!="");
+  fclose($fp);
+}
 
-/*$dateiname = "/home/luxo/Bilderbot/logfile/schreiben/".$artikelname."-".date("dmy",time()).".txt";
-$fp = fopen($dateiname, "a");
-fputs($fp,$text);
-fclose($fp);*/
-echo $text;
+function logfile($text)
+{
+  echo $text."\n";
 }
 
 
 ?>
+

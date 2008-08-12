@@ -50,7 +50,7 @@ while ($a_row2 = mysql_fetch_row($resu1))
 
 //Inexistente Bilder ausmisten
 $stopbot = true;
-
+$image2 = array();
 
 foreach($images as $name => $array)
 {
@@ -66,7 +66,7 @@ foreach($images as $name => $array)
     }
     else
     {
-      $images[$name]["error"][$derivativfile] = $derivativfile;
+      $image2[$name]["error"][$derivativfile] = $derivativfile;
       addlog("Image:$derivativfile existiert nicht!");
       $stopbot = false;
     }
@@ -86,14 +86,26 @@ foreach($images as $name => $array)
 {
   if($array["derivatives"])
   {
-    $newqtext = addnote($array["derivatives"],$name);
-    $images[$name]["newdesc"] = $newqtext;
-    addlog("Generiere neue Bildbeschreibung für $name.");
+    if(checkderivative($name) == true)
+    {
+      $newqtext = addnote($array["derivatives"],$name);
+      addlog("Generiere neue Bildbeschreibung für $name.");
+      $image2[$name] = $array;
+      $image2[$name]["newdesc"] = $newqtext;
+    }
+    else
+    {
+      foreach($array["derivatives"] as $cx)
+      {
+        $image2[$name]["error"][$cx] = $cx;
+        addlog("Original existiert nicht.");
+      }
+    }
   }
 }
 
 //Nun noch datei abspeichern
-foreach($images as $name => $array)
+foreach($image2 as $name => $array)
 {
   if($array["newdesc"])
   {
@@ -101,11 +113,11 @@ foreach($images as $name => $array)
     wikiedit("commons.wikimedia.org",$name,$array["newdesc"],"Bot: notice of a derivative work added","true",$username,$password);
     sleep(15);
   }
-  $images[$name]["donetime"] = time();
+  $image2[$name]["donetime"] = time();
 }
 
 addlog("Update Datenbank");
-foreach($images as $name => $array)
+foreach($image2 as $name => $array)
 {
   if($array["derivatives"])
   {
