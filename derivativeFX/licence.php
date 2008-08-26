@@ -28,20 +28,20 @@ $image = str_replace(" ", "_",$image);
 if($image)
 {
 
-$url = "http://commons.wikimedia.org/w/query.php?what=templates&format=php&titles=".urlencode($image);
+$url = "http://commons.wikimedia.org/w/api.php?action=query&prop=templates&format=php&titles=".urlencode($image);
 
 $raw = file_get_contents($url);
 
 $unserialized = unserialize($raw);
 //Array key (pageid) herausfinden
-$pageid = array_keys($unserialized['pages']);
+$pageid = array_keys($unserialized['query']['pages']);
 
-if($unserialized['pages'][$pageid['0']]['templates'])
+if($unserialized['query']['pages'][$pageid['0']]['templates'])
 {
-foreach($unserialized['pages'][$pageid['0']]['templates'] as $tmpl)
+foreach($unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl)
 {
 
-  $template = $tmpl['*']; //easyer
+  $template = $tmpl['title']; //easyer
   $arraytemplates[] = $template;
 //Einige Templates von Vornherein ausschliessen, um Ladezeit zu verkürzen
 $whitelist = array(
@@ -97,16 +97,16 @@ echo $template."<br>";
   //Kategorien prüfen, dann noch Subkategorien auf "License tags" prüfen.
   
   //Kats der Vorlage laden.
-  $url = "http://commons.wikimedia.org/w/query.php?what=categories&format=php&titles=".urlencode($template);
+  $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&titles=".urlencode($template);
   $raw = file_get_contents($url);
   $catunserialized = unserialize($raw);
-  $catid = array_keys($catunserialized['pages']);
+  $catid = array_keys($catunserialized['query']['pages']);
   //Vorlagen durchgehen
-  if($catunserialized['pages'][$catid['0']]['categories'])
+  if($catunserialized['query']['pages'][$catid['0']]['categories'])
   {
-    foreach($catunserialized['pages'][$catid['0']]['categories'] as $katofTemp)
+    foreach($catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp)
     {
-      if($katofTemp['*'] == "Category:License tags")
+      if($katofTemp['title'] == "Category:License tags")
       {
         $islicense[$template] = true;
       }
@@ -114,20 +114,20 @@ echo $template."<br>";
   }
   
   //Noch nicht als Lizenz identifiziert. Nun Kategorien der Kategorie durchsuchen.
-  if($islicense[$template] == false && $catunserialized['pages'][$catid['0']]['categories'])
+  if($islicense[$template] == false && $catunserialized['query']['pages'][$catid['0']]['categories'])
   {
-  foreach($catunserialized['pages'][$catid['0']]['categories'] as $katofTemp)
+  foreach($catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp)
   {
-    $url = "http://commons.wikimedia.org/w/query.php?what=categories&format=php&titles=".urlencode($katofTemp['*']);
+    $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&titles=".urlencode($katofTemp['title']);
     $raw = file_get_contents($url);
     $catunserialized2 = unserialize($raw);
-    $catid = array_keys($catunserialized2['pages']);
+    $catid = array_keys($catunserialized2['query']['pages']);
     
-    if($catunserialized2['pages'][$catid['0']]['categories'])
+    if($catunserialized2['query']['pages'][$catid['0']]['categories'])
     {
-      foreach($catunserialized2['pages'][$catid['0']]['categories'] as $KatOfKat)
+      foreach($catunserialized2['query']['pages'][$catid['0']]['categories'] as $KatOfKat)
       {
-      if($KatOfKat['*'] == "Category:License tags")
+      if($KatOfKat['title'] == "Category:License tags")
       {
        $islicense[$template] = true;
       }
