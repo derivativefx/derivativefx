@@ -96,13 +96,17 @@ if(origvalues[name] != image)
   $('sendform').disable();
     $('bodyid').className = "bodyload";
   
-  var url = 'licence.php?image=' + image;
+  var url = 'licence.php?format=JSON&image=' + image;
   
   new Ajax.Request(url, {
   method: 'get',
   onSuccess: function(transport) {
     
    licence = transport.responseText;
+   
+   var pob = eval( "(" + transport.responseText + ")" );
+    
+   licence = pob.licenses;
    
    //Falls kindknoten vorhanden, diese löschen
         if($("lic"+name).hasChildNodes() == true)
@@ -169,7 +173,7 @@ if(origvalues[name] != image)
            $("lic"+name).className = "license";
     
     var titlewo = image.substr(6);
-    $('img'+name).src = "http://commons.wikimedia.org/w/thumb.php?w=120&f="+titlewo
+    $('img'+name).src = pob.tumburl;
     $('img'+name).show()
     
 
@@ -182,7 +186,7 @@ if(origvalues[name] != image)
           $("lic"+name).appendChild(document.createTextNode("<?php echo $lng['x']['reqdel']; ?>"));
           $("lic"+name).className = "delete";
                   var titlewo = image.substr(6);
-          $('img'+name).src = "http://commons.wikimedia.org/w/thumb.php?w=120&f="+titlewo
+          $('img'+name).src = pob.tumburl;
           $('img'+name).show()
           
           if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
