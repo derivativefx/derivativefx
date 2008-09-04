@@ -23,6 +23,7 @@ This file is part of derivativeFX.
 //Benutze Kategorien, in dem das Bild ist (nicht in dem die vorlagen sind)
 //Vorlagen zurückverfolgen bis zur [[Category:Copyright statuses]]
 
+$output = ""; 
 $image = $_GET['image'];
 $image = str_replace(" ", "_",$image);
 if($image)
@@ -89,7 +90,7 @@ if(strlen($template) > 11 AND $template != "Template:PD" AND substr($template,0,
 
 if($_GET['echo'] == true)
 {
-echo $template."<br>";
+$output .=  $template."<br>";
 }
   //Jede Vorlage prüfen: ist es eine Lizenz?
 
@@ -145,7 +146,7 @@ echo $template."<br>";
 else
 {
 //Bild existiert nicht
-echo"NOTEXIST";
+$output .= "NOTEXIST";
 }
 
 if($islicense)
@@ -173,12 +174,39 @@ $save = false;
   {
   if($isit == true){ 
   
-  echo substr($lizenz,9)."|"; }
+  $output .=  substr($lizenz,9)."|"; }
   }
 }
 else
 { 
-echo"DELETE"; }
+$output .= "DELETE"; }
+
+}
+
+
+if($_GET['format'] != "JSON")
+{
+  echo $output;
+} 
+else
+{
+  //JSON format
+  
+  //thumurl auslesen
+  //http://commons.wikimedia.org/w/api.php?action=query&titles=".urlencode($image)."&prop=imageinfo&iiprop=url&iiurlwidth=120&format=txtfm
+  $url = "http://commons.wikimedia.org/w/api.php?action=query&titles=".urlencode($image)."&prop=imageinfo&iiprop=url&iiurlwidth=120&format=php";
+  $query = unserialize(file_get_contents($url));
+  
+  foreach($query['query']['pages'] as $detquery)
+  {
+    $thumburl = $detquery['imageinfo']['0']['thumburl'];
+  }
+header('Content-type: application/json');
+
+echo'{
+  "licenses": "'.htmlspecialchars($output).'",
+  "tumburl": "'.htmlspecialchars($thumburl).'", 
+}';
 
 }
 
