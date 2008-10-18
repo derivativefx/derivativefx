@@ -140,7 +140,59 @@ $lng['de']['plscom'] = "Bitte ergänze die Autoren der folgenden Bilder:";
 $lng['de']['wrncom'] = "Bitte vervollständige die Autoren";
 
 
-
+//############################# FRANCAIS ########################
+$lng['fr']['name'] = "Français";
+$lng['fr']['welc'] = "Bienvenue sur DerivativeFX !";
+$lng['fr']['what'] = "Qu'est-ce que DerivativeFX ?";
+$lng['fr']['conf'] = "Veuillez confirmer que vous êtes connecté sur Wikimedia Commons.";
+$lng['fr']['look'] = "Si vous voyez votre page utilisateur dans ce cadre, vous êtes connecté. Sinon, veuillez";
+$lng['fr']['loin'] = "vous connecter";
+$lng['fr']['skip'] = "Sauter cette étape la prochaine fois";
+$lng['fr']['okin'] = "Ok - je suis connecté.";
+$lng['fr']['load'] = "Chargement";
+$lng['fr']['wait'] = "Veuillez patienter";
+$lng['fr']['prof'] = "prévisualisation de";
+$lng['fr']['orwo'] = "Oeuvre originale";
+$lng['fr']['lotf'] = "Licence de ce fichier";
+$lng['fr']['pan']  = "Veuillez entrer le nom";
+$lng['fr']['admo'] = "ajoutez d'autres fichiers originaux";
+$lng['fr']['next'] = "OK - Suivant";
+$lng['fr']['skco'] = "Activez les cookies pour sauter la vérification de la connection la prochaine fois.";
+$lng['fr']['reqdel'] = "Cette image a été proposée à la suppression !";
+$lng['fr']['notex'] = "L'image n'existe pas !";
+$lng['fr']['orig'] = "Original";
+//***** Form1 fertig, Form2
+$lng['fr']['nomerg'] = "<h1>Désolé,</h1> vos images ne peuvent être fusionnées !<br /><br />Les <b>licences sont incompatibles</b> ou les <b>licences ne peuvent être détectées</b>.<br /> Voir plus haut l'ensemble des licences que l'outil a détecté pour ces images :";
+$lng['fr']['unktem'] = "Modèles inconnus";
+$lng['fr']['unlimg'] = "pas de licence connue trouvée pour cette image !";
+$lng['fr']['descri'] = "Description";
+$lng['fr']['forpar'] = "pour le paramètre <code>|description=</code> dans {{Information}}";
+$lng['fr']['addtem'] = "Ajouter le modèle %s à la description";
+$lng['fr']['change'] = "Retouches";
+$lng['fr']['editor'] = "Auteur";
+$lng['fr']['edihin'] = 'Sans syntaxe wiki, par exemple "Test" pour User:Test';
+$lng['fr']['others'] = "Autres modèles";
+$lng['fr']['categs'] = "Catégories";
+$lng['fr']['nocats'] = "Aucune catégorie trouvée";
+$lng['fr']['licens'] = "Licence";
+$lng['fr']['hincan'] = "Vous pouvez changer tout le résumé sur la page suivante";
+//**********Form2 fertig, Form3
+$lng['fr']['selfil'] = "Choisir l'image dérivée sur votre disque";
+$lng['fr']['destin'] = "Nom final";
+$lng['fr']['propos'] = "propositions";
+$lng['fr']['desexi'] = "Ce nom de destination existedéjà. VOulez-vous écraser le fichier de existant ?";
+$lng['fr']['desoke'] = "Le nom choisi n'existe pas.";
+$lng['fr']['summar'] = "Résumé";
+$lng['fr']['watcht'] = "Suivre cette page";
+$lng['fr']['addnot'] = "Ajouter un lien sur les fichiers originaux à propos de cette image dérivée. (par 'User:Bilderbot', à 02:00 UTC)";
+$lng['fr']['accept'] = "Vous confirmez que tous les détails de la description de l'image ci-dessus sont <span style=\"font-weight: bold;\">corrects et conformes aux licences des fichiers originaux. Les images peuvent contenir des peintures sous copyright sans que la licence d'origine s'étende à une oeuvre dérivée qui les isolerait.</span> Cet outil ne peut pas vérifier ce genre de problème. derivativeFX et son développeur ne portent aucune responsabilité quant à la véracité du résumé. Cet outil a été créé pour être utile mais n'offre <span style=\"font-weight: bold;\">AUCUNE GARANTIE. VOUS êtes responsable du contenu ! </span>Le nom de l'image et des fichiers originaux et l'heure sont enregistrés.";
+$lng['fr']['start'] = "Importer le fichier";
+$lng['fr']['attac'] = "Veuillez sélectionner un fichier.";
+$lng['fr']['corfi'] = "L'extension n'est pas correcte (%s)";
+$lng['fr']['notsa'] = "Votre image choisie n'a pas la même extension (%s) que le nom de destination (%s) ! Changer le nom de destination en '%s'?";
+$lng['fr']['imgu'] = "%s images importées!";
+$lng['fr']['plscom'] = "Veuillez indiquer l'auteur de ces images :";
+$lng['fr']['wrncom'] = "Veuillez indiquez les auteurs.";
 
 
 
