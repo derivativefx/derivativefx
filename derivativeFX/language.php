@@ -141,6 +141,9 @@ $lng['de']['wrncom'] = "Bitte vervollständige die Autoren";
 
 
 //############################# FRANCAIS ########################
+
+/*Translation and Copyright FRANCAIS by User:Korrigan */
+
 $lng['fr']['name'] = "Français";
 $lng['fr']['welc'] = "Bienvenue sur DerivativeFX !";
 $lng['fr']['what'] = "Qu'est-ce que DerivativeFX ?";
@@ -190,11 +193,63 @@ $lng['fr']['start'] = "Importer le fichier";
 $lng['fr']['attac'] = "Veuillez sélectionner un fichier.";
 $lng['fr']['corfi'] = "L'extension n'est pas correcte (%s)";
 $lng['fr']['notsa'] = "Votre image choisie n'a pas la même extension (%s) que le nom de destination (%s) ! Changer le nom de destination en '%s'?";
-$lng['fr']['imgu'] = "%s images importées!";
+$lng['fr']['imgu'] = "%s images importees!";
 $lng['fr']['plscom'] = "Veuillez indiquer l'auteur de ces images :";
 $lng['fr']['wrncom'] = "Veuillez indiquez les auteurs.";
 
 
+//####################################### Alemannisch #######################################
+/*Translation and Copyright Alemannisch by Luxo*/
+$lng['als']['name'] = 'Alemannisch';
+$lng['als']['welc'] = 'Wiukomme zu derivativeFX!';
+$lng['als']['what'] = 'Was isch derivativeFX?';
+$lng['als']['conf'] = 'Bitte due bestätige dass du uf Wikimedia:Commons aagmäudet bisch.';
+$lng['als']['look'] = 'Wenn du dini Benutzersyte i däm Fänschter gsesch, bisch aagmäudet. Wenn nid, bitte';
+$lng['als']['loin'] = 'due di Aamäude';
+$lng['als']['skip'] = 'Die Überprüefig bim nächschte mau nid aazeige';
+$lng['als']['okin'] = 'Guet - I bi aagmäudet';
+$lng['als']['load'] = 'Due lade...';
+$lng['als']['wait'] = 'Bitte warte';
+$lng['als']['prof'] = 'Vorschou vo';
+$lng['als']['orwo'] = 'Originaudatei';
+$lng['als']['lotf'] = 'Lizänz vo dere Datei';
+$lng['als']['pan'] = 'Bitte schrib e Dateiname';
+$lng['als']['admo'] = 'Meh Originaudateie';
+$lng['als']['next'] = 'Ok - Wyter';
+$lng['als']['skco'] = 'Bitte due Cookies aaschaute dass die Überprüefig z nächschte mau chasch überspringe.';
+$lng['als']['reqdel'] = 'Die Datei isch zum Lösche vorgschlage worde!';
+$lng['als']['notex'] = 'Die Datei exischtiert nid!';
+$lng['als']['orig'] = 'Original';
+$lng['als']['nomerg'] = '<h1>Tschudigung,</h1> dini Biuder chöi nid zämegfüert wärde!<br /><br />D <b>Lizänze si nid kompatibu</b> oder d <b>Lizänze chöi nid gfunde wärde</b>.<br /> Ungedraa gseesch weli Lizänze das Tool zu dine Biuder gfunde het:';
+$lng['als']['unktem'] = 'Unbekannti Vorlag';
+$lng['als']['unlimg'] = 'keni bekannti Lizänz gfunde für das Biud';
+$lng['als']['descri'] = 'Beschribig';
+$lng['als']['forpar'] = 'füre <code>|description=</code> -parameter ir {{Information}} - vorlag';
+$lng['als']['addtem'] = 'D Vorlag %s zur Beschribig tue';
+$lng['als']['change'] = 'Änderige';
+$lng['als']['editor'] = 'Bearbeiter';
+$lng['als']['edihin'] = 'Ohni wikisyntax,  z. B. "Test" für User:Test';
+$lng['als']['others'] = 'Angeri Vorlage';
+$lng['als']['categs'] = 'Kategorie';
+$lng['als']['nocats'] = 'Keni Kategorie gfunde';
+$lng['als']['licens'] = 'Lizänz';
+$lng['als']['hincan'] = 'Du chasch di gsammti Zämefassig uf dr nächschte Syte bearbeite';
+$lng['als']['selfil'] = 'Di bearbeiteti Datei uf dim Computer';
+$lng['als']['destin'] = 'Ziuname';
+$lng['als']['propos'] = 'Vorschleg';
+$lng['als']['desexi'] = 'Ziuname exischtiert scho. Wosch die exischtierendi Datei überschribe?';
+$lng['als']['desoke'] = 'Ziuname exischtiert no nid.';
+$lng['als']['summar'] = 'Zämmefassig';
+$lng['als']['watcht'] = 'Die Syte beobachte';
+$lng['als']['addnot'] = 'A de Originaldateie e Hiiwys zu dere bearbeitete Datei aahänke. (düre "User:Bilderbot", am 02:00 UTC)';
+$lng['als']['accept'] = 'Du duesch bestätige das aui detais i dr Dateibeschribig <b>korrekt und kompatibu mit dr Lizänz vo de Originaudatei(e) si. Biuder chöi gschützti inhaute beinhaute, d originaulizänz giutet nid für Biuder wo die freisteue.</b>. Das Tool isch nid i dr laag settigi gschützti sache z finde. derivativeFX und sini Entwickler übernäme ke Verantwortig über dr erzügt inhaut. Es isch entwicklet worde i dr Hoffnig dasses hiufrich isch, aber <b>OHNI JEDI GARANTIE. DU bisch verantwortlech für d richtigkeit!</b> Dateiname, Originaudateiname und Zyt wird gspicheret.';
+$lng['als']['start'] = 'Ufelade';
+$lng['als']['attac'] = 'Bitte due e Datei aahänke';
+$lng['als']['corfi'] = 'Keni korrekti Dateiändig gfunde (%s).';
+$lng['als']['notsa'] = "Dini usgwäuti Datei het nid di gliichi dateiändig (%s) wie dr zieuname (%s)! Dr ziuname uf '%s' ändere?";
+$lng['als']['imgu'] = '%s Dateie ufeglade!';
+$lng['als']['plscom'] = 'Bitte due d Autorinformatione für die fougende Biuder ergänze:';
+$lng['als']['wrncom'] = 'Bitte due d Autorinformatione ergänze';
 
 
 //##############################################################################
