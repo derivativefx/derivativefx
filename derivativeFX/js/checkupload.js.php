@@ -104,7 +104,7 @@ function upchecker()
     if(ret == true)
     {
       var inam = wpDestFile.substr(6);
-      var chk = window.confirm("Your destination filename is 'Image:Image_"+inam+"'. Do you mean 'Image:"+inam+"'?");
+      var chk = window.confirm("Your destination filename is 'File:Image_"+inam+"'. Do you mean 'File:"+inam+"'?");
       if(chk == true)
       {
       window.document.lastform.wpDestFile.value = inam;
@@ -168,6 +168,13 @@ function checkimg(image)
       //diffzeit = 4000;
       if(diffzeit > 1000) //1sekunden
       {
+        var checkerc = image.substr(0,5);
+        if(checkerc.toLowerCase() == "file:")
+        {
+          var inam = image.substr(5);
+          image = inam;
+          $("newfilename").value = inam;
+        }
         var checkerc = image.substr(0,6);
         if(checkerc.toLowerCase() == "image:")
         {
@@ -194,7 +201,7 @@ function checkimg(image)
     if(originalRequest.responseText == "FALSE")
     {
       $("falseimg").src = "http://toolserver.org/tsthumb/tsthumb?domain=commons.wikimedia.org&w=120&f="+$("newfilename").value;
-      window.alert("Image name already exist. Please choose a different name.");
+      window.alert("File name already exist. Please choose a different name.");
       $("imgtitle").firstChild.data = $("newfilename").value;
       $("existwarn").show();
       $("dontexist").hide();
