@@ -57,7 +57,7 @@ foreach($images as $name => $array)
 
   foreach($array["derivativesTC"] as $derivativfile)
   {
-    $deristatus = checkderivative("Image:".$derivativfile);
+    $deristatus = checkderivative("File:".$derivativfile);
     if($deristatus == true)
     {
       $images[$name]["derivatives"][$derivativfile] = $derivativfile;
