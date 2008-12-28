@@ -1,4 +1,6 @@
 <?php
+   ini_set('display_errors', 1);
+   error_reporting(E_ALL & ~E_NOTICE);
 /*
 Copyright Luxo 2008
 
@@ -81,7 +83,7 @@ $data = trim($data);
   //Bildnamen
   if(substr($key,0,9) == "original_")
   {
-    if($data != "Image:" AND $data != "")
+    if($data != "File:" AND $data != "")
     {
       $data = bigfirst($data);
       $imagenr = substr($key,9);
@@ -100,9 +102,9 @@ $data = trim($data);
 function bigfirst($name)
 {
  $name = str_replace(" ","_",$name);
-  $a1 = substr($name,6,1);
-  $a2 = substr($name,7);
-  return "Image:".ucwords($a1).$a2;
+  $a1 = substr($name,5,1);
+  $a2 = substr($name,6);
+  return "File:".ucwords($a1).$a2;
 }
 
 
@@ -302,6 +304,7 @@ foreach($images as $imagename => $licarray)
     $arkey = array_keys($tempcache["query"]["pages"]);
     if($tempcache["query"]["pages"][$arkey[0]] == "-1") { die("<div class='notexist'>ERROR - $imagename not found!</div>"); }
     
+    $thispageid = $arkey[0];
     $tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = file_get_contents("http://commons.wikimedia.org/w/index.php?action=raw&title=".$imagename);
     $imagedatas[$imagename] = $tempcache["query"]["pages"][$arkey[0]];
     //Array mit Bildinfos erstellt, nun Beschreibung daraus parsen
@@ -341,12 +344,29 @@ foreach($images as $imagename => $licarray)
     
     
     //Kategorien hinzufügen
-      
-  echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
-  $tempcatar = catscan(substr($imagename,6));
-  echo count($tempcatar)." categories found for ".substr($imagename,6)."...";
+  /*
+  Zuerst vorhandene Kategorien prüfen, wenn zuwenige auf commonSense zurückgreiffen.
+  http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=Image:Pferd.jpg&clshow=!hidden&format=txtfm
+  */
+  echo"get categorys...<br /> \n";
+  $querycat = file_get_contents("http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=".$imagename."&clshow=!hidden&format=php");
+  $querycat = unserialize($querycat);
+  $tempcatar = array();
+  foreach($querycat["query"]["pages"][$thispageid]["categories"] as $contxic)
+  {
+    $cat = substr($contxic["title"],9);
+    $tempcatar[$cat] = $cat;
+  }
+  
+  if(count($tempcatar) < 3) //catscan hinzufügen
+  {
+    echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
+    $tempcatscan = catscan(substr($imagename,5),$desc);
+    $tempcatar = array_merge($tempcatar, $tempcatscan);
+  }
+  echo count($tempcatar)." categories found for ".substr($imagename,5)."...";
   $categorys = array_merge($categorys, $tempcatar);
-    
+  
 
 }//Beschreibung fertig
 
