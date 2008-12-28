@@ -67,7 +67,7 @@ function loadlic(name,image)
 
 if(!origvalues[name])
 {
-origvalues[name] = "Image:";
+origvalues[name] = "File:";
 }
 
 if(origvalues[name] != image)
@@ -76,19 +76,10 @@ if(origvalues[name] != image)
  //png, gif, jpg, jpeg, xcf, pdf, mid, sxw, sxi, sxc, sxd, ogg, svg, djvu.
   if(image.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi)){
   
-      //name überprüfen 
-    var checkerc = image.substr(0,6);
-    if(checkerc.toLowerCase() != "image:")
-    {
-      //var confirm = window.confirm("You wrote '"+image+"'.\n Did you mean 'Image:"+image+"'?");
-      var confirm = true;
-      
-      if(confirm == true)
-      {
-        image = "Image:"+image;
-        document.getElementsByName("original_"+name)[0].value = image;
-      }
-    }
+  image = supname(image);
+  
+  document.getElementsByName("original_"+name)[0].value = image;
+
   
   origvalues[name] = image;
   //Laden anzeigen
@@ -281,7 +272,7 @@ var myinput = document.createElement("input");
   
   //value = Image:
   var myvalue = document.createAttribute("value");
-  myvalue.nodeValue = "Image:";
+  myvalue.nodeValue = "File:";
   myinput.setAttributeNode(myvalue);
   
   if (navigator.appName.indexOf("Explorer") == -1 ) //DOM
@@ -394,7 +385,29 @@ $("licenceframe").src = tmpurl;
   $("licinprev").firstChild.data = temlate;
    $('licprev').show();
 
+}
 
+function supname(image)
+{
+      
+  //name überprüfen 
+  var checkerc = image.substr(0,6);
+  if(checkerc.toLowerCase() == "image:")
+  {
+    image = image.substr(6);
+  }
+    
+  //file: vorsetzen falls nicht vorhanden  
+  var checkerc = image.substr(0,5);
+  if(checkerc.toLowerCase() != "file:")
+  {
+    //var confirm = window.confirm("You wrote '"+image+"'.\n Did you mean 'File:"+image+"'?");
+    var confirm = true;
+    image = "File:"+image;
+  }
+  
+  return image;
+  
 }
 
 
