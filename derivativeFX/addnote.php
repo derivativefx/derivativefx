@@ -108,7 +108,7 @@ $status = "nobot";
 $origfile = str_replace("_"," ",$origfile);
 $file = str_replace("_"," ",$file);
 
-if($origfile == "Image:".$file)//Bei gleichnamigen Dateien name nicht eintragen
+if($origfile == "File:".$file)//Bei gleichnamigen Dateien name nicht eintragen
 {
 $status = "done";
 }

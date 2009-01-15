@@ -32,6 +32,7 @@ $v = $b - 30;
 ?>
 <html>
 <head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
 <title>derivativeFX - Logfile</title>
 </head>
 <body style="direction: ltr;">
@@ -96,7 +97,7 @@ Legend:<br>
   if(strlen($derivative) > 40){$dotts2 = "..."; }
   
   echo"<td><a href=\"http://commons.wikimedia.org/wiki/".htmlspecialchars($file)."\" title=\"".htmlspecialchars($file)."\">".substr(htmlspecialchars($file),0,40)."</a>$dotts1</td>";
-  echo"<td><a href=\"http://commons.wikimedia.org/wiki/Image:".htmlspecialchars($derivative)."\" title=\"".htmlspecialchars($derivative)."\">Image:".substr(htmlspecialchars($derivative),0,40)."</a>$dotts2</td>";
+  echo"<td><a href=\"http://commons.wikimedia.org/wiki/Image:".htmlspecialchars($derivative)."\" title=\"".htmlspecialchars($derivative)."\">File:".substr(htmlspecialchars($derivative),0,40)."</a>$dotts2</td>";
   echo"<td>".htmlspecialchars($status)."</td>";
   echo"<td>".htmlspecialchars(date("H:i, d. F Y",$time))."</td>";
   if(preg_match("=^[0-9]+$=i",$donetime))

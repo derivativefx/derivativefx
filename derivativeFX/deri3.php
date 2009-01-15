@@ -125,13 +125,13 @@ $formular .= "|other_versions=\n}}\n\n";
 //Vorlage RetouchedPicture
 if($_POST["addtempret"] == "true")
 {
-  $formular .= "{{RetouchedPicture|".$_POST["changestemp"]."|editor=".$_POST['editor']."|orig=".substr($tmpimg,6)."}}\n\n";
+  $formular .= "{{RetouchedPicture|".$_POST["changestemp"]."|editor=".$_POST['editor']."|orig=".substr($tmpimg,5)."}}\n\n";
 }
 
 //Template:BWS
 if($_POST["addbwstemp"] == "true")
 {
-  $formular .= "{{Bilderwerkstatt|changes=".$_POST["changesbws"]."|editor=~~~|orig=".substr($tmpimg,6)."}}\n\n";
+  $formular .= "{{Bilderwerkstatt|changes=".$_POST["changesbws"]."|editor=~~~|orig=".substr($tmpimg,5)."}}\n\n";
 }
 
 //Template {{Atelier graphique}}
@@ -193,9 +193,9 @@ foreach($imagesdata as $imagename => $imagedata)
 {
 $onlyname = substr($imagename,0,strrpos($imagename,"."));
 $extension = substr($imagename,strrpos($imagename,".")+1);
-$newnames[] =  substr($onlyname,6)."-2.".$extension;
-$newnames[] =  substr($onlyname,6)."-".date("Y-d-m",time()).".".$extension;
-$newnames[] =  substr($onlyname,6)."_new.".$extension;
+$newnames[] =  substr($onlyname,5)."-2.".$extension;
+$newnames[] =  substr($onlyname,5)."-".date("Y-d-m",time()).".".$extension;
+$newnames[] =  substr($onlyname,5)."_new.".$extension;
 }
 
 //Warnung für nicht gefundene Authoren
