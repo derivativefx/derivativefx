@@ -125,7 +125,8 @@ $categorys = array(
 "GPL" => array(),
 "LGPL" => array(),
 "CeCILL" => array(),
-"Attribution" => array()
+"Attribution" => array(),
+"CopyrightByWikimedia" => array()
 );
 
 
@@ -151,6 +152,13 @@ $imagelizok[$imagename] = false;
       $categorys['Attribution'][$imagename] = $licence;
       $categorys['CC-by'][$imagename] = $licence;
       $categorys['CC-by-sa'][$imagename] = $licence;
+      $vergeben = true;
+    }
+    
+    //Attribution
+    if(strtolower($licence) == "copyrightbywikimedia" or strtolower($licence) == "copyright by wikimedia")
+    {
+      $categorys['CopyrightByWikimedia'][$imagename] = $licence;
       $vergeben = true;
     }
     
@@ -409,7 +417,8 @@ $licensesar = array(
 "FAL" =>"FAL",
 "GPL" => "GPL",
 "LGPL" => "LGPL",
-"CeCILL" => "CeCILL" );
+"CeCILL" => "CeCILL",
+"CopyrightByWikimedia" => "CopyrightByWikimedia" );
 
 
 foreach($liclic as $licgroup) //für Doppellizenz des originals
