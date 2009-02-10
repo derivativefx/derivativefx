@@ -29,7 +29,7 @@ $image = str_replace(" ", "_",$image);
 if($image)
 {
 
-$url = "http://commons.wikimedia.org/w/api.php?action=query&prop=templates&format=php&titles=".urlencode($image);
+$url = "http://commons.wikimedia.org/w/api.php?action=query&prop=templates&format=php&tllimit=500&titles=".urlencode($image);
 
 $raw = file_get_contents($url);
 
@@ -98,7 +98,7 @@ $output .=  $template."<br>";
   //Kategorien prüfen, dann noch Subkategorien auf "License tags" prüfen.
   
   //Kats der Vorlage laden.
-  $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&titles=".urlencode($template);
+  $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&cllimit=500&titles=".urlencode($template);
   $raw = file_get_contents($url);
   $catunserialized = unserialize($raw);
   $catid = array_keys($catunserialized['query']['pages']);
@@ -119,7 +119,7 @@ $output .=  $template."<br>";
   {
   foreach($catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp)
   {
-    $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&titles=".urlencode($katofTemp['title']);
+    $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&cllimit=500&titles=".urlencode($katofTemp['title']);
     $raw = file_get_contents($url);
     $catunserialized2 = unserialize($raw);
     $catid = array_keys($catunserialized2['query']['pages']);
@@ -202,6 +202,12 @@ else
     $thumburl = $detquery['imageinfo']['0']['thumburl'];
   }
 header('Content-type: application/json');
+
+
+if(trim($output) == "")
+{
+  $output = "NOLIC";
+}
 
 echo'{
   "licenses": "'.htmlspecialchars($output).'",

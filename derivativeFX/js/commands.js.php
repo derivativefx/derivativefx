@@ -114,6 +114,8 @@ if(origvalues[name] != image)
    {
     if(licence != "DELETE")
     {
+      if(licence != "NOLIC")
+      {
     //Lizenzen in array aufsplitten
     var rawlicenses = licence.split("|");
     
@@ -169,7 +171,25 @@ if(origvalues[name] != image)
     
 
     //$('sendform').enable('sendtonext');//weiter erlauben
-    
+    }
+    else
+    {
+      //No license found!
+          $("lic"+name).appendChild(document.createTextNode("No valid license found!"));
+          $("lic"+name).className = "delete";
+                  var titlewo = image.substr(6);
+          $('img'+name).src = pob.tumburl;
+          $('img'+name).show()
+          
+          if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
+          {
+            $("origlizid_"+name).defaultValue = "unknown";
+          }
+          else
+          {
+              document.imageselect.origliz_1.value = "unknown";  
+          }
+    }
     
     }
        else
