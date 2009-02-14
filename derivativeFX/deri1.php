@@ -59,7 +59,7 @@ include("language.php");
         <div id="JavascriptWarn">
       <br /><h1>Sorry,</h1> You must have a browser which support the JavaScript-standards of the <a href="http://www.w3.org/">World Wide Web Consortium</a> (W3C) to use this tool. <br />
       
-      Please download a current browser like
+      Please <b>turn on your Javascript</b> or, if your browser don't support this, download a current browser like
       <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.opera.com">Opera</a> or <a href="http://www.apple.com/de/safari/">Safari</a>.
       <br />
       <br />
@@ -149,7 +149,7 @@ include("language.php");
 | <a
  href="http://meta.wikimedia.org/wiki/User:Luxo/Licenses#derivativeFX">license</a><br />
 <br />
-<a href="http://wiki.ts.wikimedia.org/view/Main_Page"><img
+<a href="https://wiki.toolserver.org/view/Main_Page"><img
  style="border: 0px solid ; width: 88px; height: 31px;"
  alt="powered by Wikimedia Toolserver"
  title="powered by Wikimedia Toolserver"
