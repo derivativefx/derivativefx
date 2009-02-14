@@ -252,7 +252,7 @@ $imagelizok[$imagename] = false;
 
   if($imagelizok[$imagename] == false)
   {
-    echo"<span class='delete'>No known licence found in $imagename!</span><br />";
+    echo"<span class='delete'>No known license found in $imagename!</span><br />";
     $selfblock = true;
   }
   else

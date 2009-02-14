@@ -212,6 +212,7 @@ if(trim($output) == "")
 echo'{
   "licenses": "'.htmlspecialchars($output).'",
   "tumburl": "'.htmlspecialchars($thumburl).'", 
+  "url": "'.$url.'",
 }';
 
 }
