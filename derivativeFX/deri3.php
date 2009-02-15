@@ -48,12 +48,22 @@ $originals[] = $imagename;
     $author = "";
     //|Author= auslesen
     $start = stripos($imagedata["content"]["*"], "|Author");
-    $end   = stripos($imagedata["content"]["*"], "|Permission");
+    $end1   = stripos($imagedata["content"]["*"], "|Permission");
+    $end2   = stripos($imagedata["content"]["*"], "|Date");
+
+    if(($end2 - $start) < ($end1 - $start))
+    {
+      $end = $end2;
+    }
+    else
+    {
+      $end = $end1;
+    }
+    
     if($start AND $end)
     {
       $author = substr($imagedata["content"]["*"],$start,$end-$start );
       $author = trim(substr(strstr($author,"="),1));
-      
     }
     else
     {
@@ -108,7 +118,6 @@ $originals[] = $imagename;
     }
     
 }
-
 //Beginne Formular aufzubauen
 $formular  = "{{Information\n|Description=".trim(stripslashes($_POST['description']))."\n";
 $formular .= "|Source=";
