@@ -39,12 +39,33 @@ $pageid = array_keys($unserialized['query']['pages']);
 
 if($unserialized['query']['pages'][$pageid['0']]['templates'])
 {
+
+//whitelist erstellen (Templates, die sicher keine Lizenz sind)
+$whitelist = array();
+$addtowhitelist = array();
+
+//whitelist aus datei laden
+$rawwhitelist = file("whitelist.txt");
+foreach($rawwhitelist as $whitelistentry)
+{
+  if(trim($whitelistentry) != "")
+  {
+    $whitelist[] = trim($whitelistentry);
+  } 
+}
+
+if($_GET['format'] == "whitelist")
+{
+  echo"The following templates are on the whitelist:<br>\n";
+  htmltemplatelist($whitelist);
+} 
+
 foreach($unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl)
 {
 
   $template = $tmpl['title']; //easyer
   $arraytemplates[] = $template;
-//Einige Templates von Vornherein ausschliessen, um Ladezeit zu verkürzen
+/*//Einige Templates von Vornherein ausschliessen, um Ladezeit zu verkürzen
 $whitelist = array(
 "Template:CC-Layout",
 "Template:Cc-by-sa-2.5,2.0,1.0/lang",
@@ -80,11 +101,13 @@ $whitelist = array(
 "Template:Zh-hans",
 "Template:Zh-hant",
 "Template:Zh-min-nan",
-"Template:Flickrreview");
+"Template:Flickrreview");*/
 
 
-if(!in_array($template,$whitelist))
+
+if(!in_array($template,$whitelist) AND substr($template,-3) != "/en")
 {
+
 if(strlen($template) > 11 AND $template != "Template:PD" AND substr($template,0,14) != "Template:Potd/")
 {
 
@@ -140,6 +163,12 @@ $output .=  $template."<br>";
   
   }
   }
+  
+  if($islicense[$template] == false AND !in_array($template,$whitelist))
+  {
+    $addtowhitelist[] = $template;
+  }
+ 
  
 }
 }
@@ -186,7 +215,7 @@ $output .= "DELETE"; }
 
 if($_GET['format'] != "JSON")
 {
-  echo $output;
+  echo "\n\n\n<br><br><b>Output:</b><pre>".$output."</pre><br><br>\n\n";
 } 
 else
 {
@@ -201,7 +230,9 @@ else
   {
     $thumburl = $detquery['imageinfo']['0']['thumburl'];
   }
-header('Content-type: application/json');
+  
+
+  header('Content-type: application/json');
 
 
 if(trim($output) == "")
@@ -218,9 +249,39 @@ echo'{
 }
 
 
+//Whitelist updaten
+foreach($addtowhitelist as $temptowhite)
+{
+  $addit .= $temptowhite."\n";
+}
+if(trim($addit) != "")
+{
+  //schreiben
+  file_put_contents("whitelist.txt", $addit, FILE_APPEND | LOCK_EX);
+}
+
+if($_GET['format'] == "whitelist")
+{
+  echo"put the following templates to the whitelist:<br>\n";
+  htmltemplatelist($addtowhitelist);
+} 
+
+
 }
  
-
+function htmltemplatelist($templates)
+{
+  echo"<ol>\n";
+  foreach($templates as $template)
+  {
+    echo"<li><a href=\"http://commons.wikimedia.org/w/index.php?title=".urlencode($template)."\">".htmlspecialchars($template)."</a></li>\n";
+  }
+  if(count($templates) == 0)
+  {
+     echo"<li><i>nothing...</i></li>\n"; 
+  }
+  echo"</ol><br><br>\n\n";
+}
 
 
 

@@ -228,7 +228,7 @@ $imagelizok[$imagename] = false;
     }
     
     
-    if(strtolower(substr($licence,0,3)) == "pd-" or strtolower($licence) == "copyrighted free use")
+    if(strtolower(substr($licence,0,3)) == "pd-" or strtolower($licence) == "copyrighted free use" or strtolower($licence) == "cc-pd")
     {
     $vergeben = true;
           $categorys['PD'][$imagename] = $licence;
@@ -306,14 +306,14 @@ foreach($images as $imagename => $licarray)
     echo $imagename."...<br />";
     //query laden
     //http://commons.wikimedia.org/w/query.php?what=content|imageinfo&iihistory&format=txt&titles=Image:Beispiel.jpg|Image:Hund.jpg
-    $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=php&titles=".$imagename;
+    $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=php&titles=".urlencode($imagename);
     $tempcache = file_get_contents($url) or die("<div class='notexist'>ERROR - connection to wikimedia server lost!</div><br />");
     $tempcache = unserialize($tempcache);
     $arkey = array_keys($tempcache["query"]["pages"]);
     if($tempcache["query"]["pages"][$arkey[0]] == "-1") { die("<div class='notexist'>ERROR - $imagename not found!</div>"); }
     
     $thispageid = $arkey[0];
-    $tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = file_get_contents("http://commons.wikimedia.org/w/index.php?action=raw&title=".$imagename);
+    $tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = file_get_contents("http://commons.wikimedia.org/w/index.php?action=raw&title=".urlencode($imagename));
     $imagedatas[$imagename] = $tempcache["query"]["pages"][$arkey[0]];
     //Array mit Bildinfos erstellt, nun Beschreibung daraus parsen
     
@@ -357,7 +357,7 @@ foreach($images as $imagename => $licarray)
   http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=Image:Pferd.jpg&clshow=!hidden&format=txtfm
   */
   echo"get categorys...<br /> \n";
-  $querycat = file_get_contents("http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=".$imagename."&clshow=!hidden&format=php");
+  $querycat = file_get_contents("http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=".urlencode($imagename)."&clshow=!hidden&format=php");
   $querycat = unserialize($querycat);
   $tempcatar = array();
   foreach($querycat["query"]["pages"][$thispageid]["categories"] as $contxic)
