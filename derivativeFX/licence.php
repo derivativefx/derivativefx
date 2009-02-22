@@ -24,14 +24,20 @@ This file is part of derivativeFX.
 //Vorlagen zurückverfolgen bis zur [[Category:Copyright statuses]]
 
 $output = ""; 
-$image = $_GET['image'];
+$image = trim($_GET['image']);
 $image = str_replace(" ", "_",$image);
+
 if($image)
 {
 
 $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=templates&format=php&tllimit=500&titles=".urlencode($image);
 
 $raw = file_get_contents($url);
+
+if($_GET['format'] == "whitelist")
+{
+  echo"Query URL: ".htmlspecialchars($url)." ($image)<br>\n";
+} 
 
 $unserialized = unserialize($raw);
 //Array key (pageid) herausfinden
@@ -56,6 +62,7 @@ foreach($rawwhitelist as $whitelistentry)
 
 if($_GET['format'] == "whitelist")
 {
+  echo"Query URL: ".htmlspecialchars($url)."<br>\n";
   echo"The following templates are on the whitelist:<br>\n";
   htmltemplatelist($whitelist);
 } 

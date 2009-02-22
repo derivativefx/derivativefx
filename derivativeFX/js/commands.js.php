@@ -87,8 +87,8 @@ if(origvalues[name] != image)
   $('sendform').disable();
     $('bodyid').className = "bodyload";
   
-  var url = 'licence.php?format=JSON&image=' + escape(image);
-  
+  var url = 'licence.php?format=JSON&image=' + encodeURIComponent(image);
+    
   new Ajax.Request(url, {
   method: 'get',
   onSuccess: function(transport) {
@@ -429,5 +429,4 @@ function supname(image)
   return image;
   
 }
-
 
