@@ -190,6 +190,8 @@ $imagelizok[$imagename] = false;
       if(stristr($licence,"-by") AND !stristr($licence,"-sa"))
       {
         $categorys['CC-by'][$imagename] = $licence;
+        $categorys['CC-by-sa'][$imagename] = $licence;
+        $categorys['GFDL'][$imagename] = $licence;
         $vergeben = true;
       }
       
