@@ -51,7 +51,7 @@ $originals[] = $imagename;
     $end1   = stripos($imagedata["content"]["*"], "|Permission");
     $end2   = stripos($imagedata["content"]["*"], "|Date");
 
-    if(($end2 - $start) < ($end1 - $start))
+    if(($end2 - $start) < ($end1 - $start) AND $end2 > $start)
     {
       $end = $end2;
     }
@@ -63,7 +63,7 @@ $originals[] = $imagename;
     if($start AND $end)
     {
       $author = substr($imagedata["content"]["*"],$start,$end-$start );
-      $author = trim(substr(strstr($author,"="),1));
+      $author = stripslashes(trim(substr(strstr($author,"="),1)));
     }
     else
     {
