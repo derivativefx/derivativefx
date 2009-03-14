@@ -301,6 +301,11 @@ var myinput = document.createElement("input");
   var myonmouse = document.createAttribute("onkeyup");
   myonmouse.nodeValue = "loadlic('"+originals+"',this.value)";
   myinput.setAttributeNode(myonmouse);
+  
+  //onmouseover = loadlic()
+  var myonchange = document.createAttribute("onchange");
+  myonchange.nodeValue = "loadlic('"+originals+"',this.value)";
+  myinput.setAttributeNode(myonchange);
   }
   else//IE - buggy
   {
