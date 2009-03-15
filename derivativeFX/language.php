@@ -251,6 +251,60 @@ $lng['als']['imgu'] = '%s Dateie ufeglade!';
 $lng['als']['plscom'] = 'Bitte due d Autorinformatione für die fougende Biuder ergänze:';
 $lng['als']['wrncom'] = 'Bitte due d Autorinformatione ergänze';
 
+//############################# HUNGARIAN ########################
+$lng['hu']['name'] = "Magyar";
+$lng['hu']['welc'] = "Üdv a derivativeFX-ben!";
+$lng['hu']['what'] = "Mi a derivativeFX?";
+$lng['hu']['conf'] = "Ellenőrizd, hogy be vagy-e jelentkezve a Wikimedia Commonsba.";
+$lng['hu']['look'] = "Ha a saját felhasználói lapodat látod ebben a keretben, be vagy jelentkezve. Máskülönben";
+$lng['hu']['loin'] = "jelentkezz be";
+$lng['hu']['skip'] = "Ne ellenőrizze többet";
+$lng['hu']['okin'] = "OK - be vagyok jelentkezve";
+$lng['hu']['load'] = "Betöltés";
+$lng['hu']['wait'] = "Egy kis türelmet";
+$lng['hu']['prof'] = "előnézet:";
+$lng['hu']['orwo'] = "Eredeti mű";
+$lng['hu']['lotf'] = "A fájl licence";
+$lng['hu']['pan']  = "add meg a fájl nevét";
+$lng['hu']['admo'] = "további eredeti művek hozzáadása";
+$lng['hu']['next'] = "OK - következő";
+$lng['hu']['skco'] = "A bejelentkezettség-ellenőrzés kihagyásához engedélyezned kell a sütik használatát a böngésződben.";
+$lng['hu']['reqdel'] = "Ez a kép törlésre lett jelölve!";
+$lng['hu']['notex'] = "A fájl nem létezik!";
+$lng['hu']['orig'] = "Eredeti";
+//***** Form1 fertig, Form2
+$lng['hu']['nomerg'] = "<h1>Sajnos</h1> az általad megadott képek nem használhatóak fel együtt egy új mű készítéséhez!<br /><br />A licenceik vagy <b>nem kompatibilisek egymással</b>, vagy <b>nem sikerült beazonosítani őket</b>.<br /> A derivativeFX által beazonosított licenceket lásd fentebb.";
+$lng['hu']['unktem'] = "Ismeretlen sablonok";
+$lng['hu']['unlimg'] = "ehhez a képhez nincs ismert licenc!";
+$lng['hu']['descri'] = "Leírás";
+$lng['hu']['forpar'] = "az {{Information}} sablon <code>|description=</code> paraméteréhez";
+$lng['hu']['addtem'] = "A(z) %s sablon hozzáadása a leíráshoz";
+$lng['hu']['change'] = "Változások";
+$lng['hu']['editor'] = "Szerkesztő";
+$lng['hu']['edihin'] = 'Névtér nélkül, pl. "Szerkesztő:Próba" helyett "Próba"';
+$lng['hu']['others'] = "Más sablonok";
+$lng['hu']['categs'] = "Kategóriák";
+$lng['hu']['nocats'] = "Nincsenek kategóriák";
+$lng['hu']['licens'] = "Licenc";
+$lng['hu']['hincan'] = "A következő oldalon módosíthatod az összefoglalót";
+//**********Form2 fertig, Form3
+$lng['hu']['selfil'] = "Válaszd ki az általad készített fájlt";
+$lng['hu']['destin'] = "Leendő fájlnév";
+$lng['hu']['propos'] = "javaslatok";
+$lng['hu']['desexi'] = "Ezen a néven már létezik fájl. Felül akarod írni?";
+$lng['hu']['desoke'] = "Ezen a néven még nem létezik fájl.";
+$lng['hu']['summar'] = "Összefoglaló";
+$lng['hu']['watcht'] = "Figyeld ezt a lapot";
+$lng['hu']['addnot'] = "Tegyen egy értesítést az eredeti fájl(ok) leírásába az új fájlról ('User:Bilderbot' néven, UTC idő szerint 02:00-kor)";
+$lng['hu']['accept'] = "Tanúsítod, hogy a fenti leírás <span style=\"font-weight: bold;\">helyes és összefér az eredeti fájl(ok) licencével. Egyes képek mellékes részletként jogvédett műveket tartalmazhatnak; az eredeti licenc nem jogosít fel az ilyen részletek kinagyítására és önálló képként való kiemelésére.</span> A derivativeFX nem képes az ilyen jellegű jogsértések felismerésére, és a fejlesztője nem vállal felelősséget az általa generált összefoglaló helyességéért; reméli, hogy az segítségedre lesz, de nem garantál semmit. <span style=\"font-weight: bold;\">A leírás helyességének ellenőrzése a te felelősséged!</span> A kép neve, feltöltésének ideje és az eredeti fájlok neve naplózva lesz.";
+$lng['hu']['start'] = "Fájl feltöltése";
+$lng['hu']['attac'] = "Csatolj egy fájlt.";
+$lng['hu']['corfi'] = "A leendő fájlnév kiterjesztése nem megfelelő. (%s)";
+$lng['hu']['notsa'] = "A kiválasztott fájl kiterjesztése (%s) nem ugyanaz, mint a leendő fájlnév kiterjesztése (%s)! Megváltoztatod '%s' névre?";
+//$lng['hu']['imgu'] = "%s kép feltöltve!"; //logo font don't support this letter! 
+$lng['hu']['imgu'] = "%s kep feltoltve!";
+$lng['hu']['plscom'] = "Töltsd ki a szerző adatait a következő képeknél:";
+$lng['hu']['wrncom'] = "Töltsd ki a szerző adatait";
 
 //##############################################################################
 
