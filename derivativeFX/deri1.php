@@ -120,10 +120,10 @@ include("language.php");
 </table>
 </span>
     <!--http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL-self-->
-    <p align="right" id="licprev" style="display:none"><?php echo $lng['x']['prov']; ?> <span id="licinprev" class="license">the GFDL</span>:
+    <!--<p align="right" id="licprev" style="display:none"><?php echo $lng['x']['prov']; ?> <span id="licinprev" class="license">the GFDL</span>:
     <iframe src="http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL" id="licenceframe" width="50%" height="310" align="right"
         scrolling="auto" marginheight="0" marginwidth="0" frameborder="0">
-</iframe></p>
+</iframe></p>-->
      <?php echo $lng['x']['orwo']; ?>:
       <br />
       <input id="firstfield" size="50" name="original_1" value="File:" onkeyup="loadlic('1',this.value)" onchange="loadlic('1',this.value)" autocomplete="off">
