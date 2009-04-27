@@ -127,39 +127,43 @@ function addnote($derivatives,$origtitle)
   
     //neues Template erstellen
     $newtemp = "{{DerivativeVersions";
-    
+    $x = 0;
     foreach($derivatives as $image)
     {
-      $newtemp .= "|".$image;
-    }
-    
-    $newtemp .= "}}";
-    
-    
-    
-    $otherversion = array(
-    "|other_versions=",
-    "|other_versions =",
-    "| other_versions =",
-    "| other_versions=",
-    "|other_versions	=");
-    
-    $count = "";
-    $ersetzt = false;
-    foreach($otherversion as $andereversion)
-    {
-      if(strstr($rawdesc,$andereversion))
+      if(!stristr($rawdesc,$image) AND !stristr($rawdesc,str_replace(" ","_",$image)))
       {
-        $rawdesc = str_ireplace($andereversion,"|other_versions=".$newtemp,$rawdesc,$count);
-        $ersetzt = true;
+        $newtemp .= "|".$image;
+        $x++;
       }
     }
     
-    if($ersetzt == false)
+    $newtemp .= "}}\n";
+    
+    if($x > 0)
     {
-      $rawdesc = str_ireplace("{{Information","{{Information\n|other_versions=".$newtemp,$rawdesc);
+      $otherversion = array(
+      "|other_versions=",
+      "|other_versions =",
+      "| other_versions =",
+      "| other_versions=",
+      "|other_versions	=");
+      
+      $count = "";
+      $ersetzt = false;
+      foreach($otherversion as $andereversion)
+      {
+        if(stristr($rawdesc,$andereversion))
+        {
+          $rawdesc = str_ireplace($andereversion,"|other_versions=".$newtemp,$rawdesc,$count);
+          $ersetzt = true;
+        }
+      }
+      
+      if($ersetzt == false)
+      {
+        $rawdesc = str_ireplace("{{Information","{{Information\n|other_versions=".$newtemp,$rawdesc);
+      }
     }
-  
     $newraw = $rawdesc;
   
   }
