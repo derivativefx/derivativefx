@@ -72,45 +72,6 @@ foreach($unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl)
 
   $template = $tmpl['title']; //easyer
   $arraytemplates[] = $template;
-/*//Einige Templates von Vornherein ausschliessen, um Ladezeit zu verkürzen
-$whitelist = array(
-"Template:CC-Layout",
-"Template:Cc-by-sa-2.5,2.0,1.0/lang",
-"Template:Tlp",
-"Template:Als",
-"Template:Ast",
-"Template:Rtl-lang",
-"Template:Description",
-"Template:Description missing",
-"Template:Description missing/lang",
-"Template:Edit",
-"Template:GFDL/lang",
-"Template:GFDL-self", //>>Included {{GFDL}}
-"Template:GFDL-user", //>>Included {{GFDL}}
-"Template:GNU-Layout",
-"Template:Information",
-"Template:Lang",
-"Template:Self",
-"Template:Self2",
-"Template:PD/lang",
-"Template:PD-Layout",
-"Template:PD-self/lang",
-"Template:Public domain",
-"Template:Template link",
-"Template:Template link with parameter",
-"Template:Picture of the day",
-"Template:Information Picswiss",
-"Template:Cc-by-sa",
-"Template:Flickrreview",
-"Template:Featured picture",
-"Template:Personality rights",
-"Template:Personality rights/lang",
-"Template:Zh-hans",
-"Template:Zh-hant",
-"Template:Zh-min-nan",
-"Template:Flickrreview");*/
-
-
 
 if(!in_array($template,$whitelist) AND substr($template,-3) != "/en")
 {
@@ -166,7 +127,32 @@ $output .=  $template."<br>";
     }
   }
   }
-
+  
+//**
+  //Noch nicht als Lizenz identifiziert. Nun Kategorien der Unterkategorie durchsuchen.
+  if($islicense[$template] == false && $catunserialized2['query']['pages'][$catid['0']]['categories'])
+  {
+  if($_GET['format'] == "whitelist"){ echo "Prüfe $template 3. mal!"; }
+    foreach($catunserialized2['query']['pages'][$catid['0']]['categories'] as $katofTemp)
+    {
+      $url = "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&format=php&cllimit=500&titles=".urlencode($katofTemp['title']);
+      $raw = file_get_contents($url);
+      $catunserialized3 = unserialize($raw);
+      $catid = array_keys($catunserialized3['query']['pages']);
+      
+      if($catunserialized3['query']['pages'][$catid['0']]['categories'])
+      {
+        foreach($catunserialized3['query']['pages'][$catid['0']]['categories'] as $KatOfKat)
+        {
+          if($KatOfKat['title'] == "Category:License tags")
+          {
+           $islicense[$template] = true;
+          }
+        }
+      }
+    }
+  }
+//**
   
   }
   }
