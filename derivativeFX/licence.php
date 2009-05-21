@@ -176,7 +176,7 @@ $output .=  $template."<br>";
   }
   }
   
-  if($islicense[$template] == false AND !in_array($template,$whitelist) AND !in_array($template,$blacklist))
+  if($islicense[$template] == false AND !in_array($template,$whitelist) AND !in_array($template,$suretemplatelist))
   {
     if(!stristr($template, "Template:Potd/"))
     {
