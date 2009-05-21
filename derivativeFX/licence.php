@@ -46,7 +46,7 @@ $pageid = array_keys($unserialized['query']['pages']);
 if($unserialized['query']['pages'][$pageid['0']]['templates'])
 {
 
-//whitelist erstellen (Templates, die sicher keine Lizenz sind)
+//whitelist erstellen (Templates, die sicher keine Lizenzen sind)
 $whitelist = array();
 $addtowhitelist = array();
 
@@ -60,11 +60,30 @@ foreach($rawwhitelist as $whitelistentry)
   } 
 }
 
+
+//blacklist erstellen (Templates, die sicher Lizenzen sind)
+$suretemplatelist = array();
+$addtoblacklist = array();
+
+//whitelist aus datei laden
+$rawblacklist = file("blacklist.txt");
+foreach($rawblacklist as $blacklistentry)
+{
+  if(trim($blacklistentry) != "")
+  {
+    $suretemplatelist[] = trim($blacklistentry);
+  } 
+}
+
+
 if($_GET['format'] == "whitelist")
 {
   echo"Query URL: ".htmlspecialchars($url)."<br>\n";
   echo"The following templates are on the whitelist:<br>\n";
   htmltemplatelist($whitelist);
+  
+    echo"The following templates are on the license template list:<br>\n";
+  htmltemplatelist($suretemplatelist);
 } 
 
 foreach($unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl)
@@ -157,9 +176,16 @@ $output .=  $template."<br>";
   }
   }
   
-  if($islicense[$template] == false AND !in_array($template,$whitelist))
+  if($islicense[$template] == false AND !in_array($template,$whitelist) AND !in_array($template,$blacklist))
   {
-    $addtowhitelist[] = $template;
+    if(!stristr($template, "Template:Potd/"))
+    {
+      $addtowhitelist[] = $template;
+    }
+  }
+  else if($islicense[$template] == true AND !in_array($template,$suretemplatelist) AND !in_array($template,$whitelist))
+  {
+    $addtosuretemplatelist[] = $template;
   }
  
  
@@ -253,10 +279,26 @@ if(trim($addit) != "")
   file_put_contents("whitelist.txt", $addit, FILE_APPEND | LOCK_EX);
 }
 
+
+//**
+//$addtosuretemplatelist updaten
+foreach($addtosuretemplatelist as $temptosure)
+{
+  $addit .= $temptosure."\n";
+}
+if(trim($addit) != "")
+{
+  //schreiben
+  file_put_contents("blacklist.txt", $addit, FILE_APPEND | LOCK_EX);
+}
+
 if($_GET['format'] == "whitelist")
 {
   echo"put the following templates to the whitelist:<br>\n";
   htmltemplatelist($addtowhitelist);
+  
+    echo"put the following templates to the license template list:<br>\n";
+  htmltemplatelist($addtosuretemplatelist);
 } 
 
 
