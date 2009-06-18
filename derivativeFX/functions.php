@@ -47,7 +47,6 @@ function catscan($image,$kw="")
   if($start AND $end)
   {
     $return = substr($return,$start,$end - $start);
-    
     $firstabsatz = strpos($return, "\n");
     
     $return = trim(substr($return,$firstabsatz));
@@ -73,7 +72,7 @@ function catscan($image,$kw="")
   }
   else
   {
-  return array();
+  return false;
   }
 }
 
