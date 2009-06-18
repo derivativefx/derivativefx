@@ -271,8 +271,25 @@ if(count($noauthor) > 0)
       }   
     }
     
+    function hideprevx()
+    {
+      document.getElementById('prevframe').style.display = 'none';
+      document.getElementById('hideprev').style.display = 'none';
+      document.getElementById('prev').value = 'Preview';
+    }
+    
+    function preview()
+    {
+      var text = document.getElementById('desctext').value;
+      var url = "preview.php?text=" + encodeURIComponent(text);
+      document.getElementById('prevframe').src = url;
+      document.getElementById('prevframe').style.display = 'block';
+      document.getElementById('hideprev').style.display = 'block';
+      document.getElementById('prev').value = 'Refresh preview';
+      
+    }
 
-    </script>
+</script>
 
 </head>
 <body style="direction: ltr;" class="bodynorm">
@@ -298,8 +315,13 @@ if(count($noauthor) > 0)
 <br>
 <?php echo $lng['x']['summar']; ?>:<br>
 
-  <textarea rows='25' cols='90' name="wpUploadDescription"><?php echo htmlspecialchars($formular); ?></textarea><br>
+  <textarea rows='25' cols='100' name="wpUploadDescription" id="desctext"><?php echo htmlspecialchars($formular); ?></textarea><br>
   <?php echo $authorwarn; ?>
+  <input id="prev" name="previewbutton" value="Preview" onclick="preview()" type="button">
+  <input id="hideprev" name="hidepreviewbutton" value="Hide preview" onclick="hideprevx()" type="button" style="display:none;">
+  <iframe id="prevframe" src="preview.php?text=please wait..." OnLoad="" name="prev" width="100%" height="500" align="center"
+        scrolling="yes" marginheight="0" marginwidth="0" frameborder="2" style="display:none;">
+  </iframe><br>
   <input type='hidden' name='wpLicense' value='' />
 <input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
   <br>

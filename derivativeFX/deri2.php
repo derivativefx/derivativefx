@@ -123,6 +123,7 @@ $categorys = array(
 "MPL" => array(),
 "FAL" => array(),
 "GPL" => array(),
+"GPLV2ONLY" => array(),
 "LGPL" => array(),
 "CeCILL" => array(),
 "Attribution" => array(),
@@ -166,6 +167,13 @@ $imagelizok[$imagename] = false;
     if($licence == "GPL" or strtolower($licence) == "attribution")
     {
       $categorys['GPL'][$imagename] = $licence;
+      $vergeben = true;
+    }
+    
+    //GPL v2 only
+    if($licence == "GPLv2 only" or $licence == "GPL" or strtolower($licence) == "attribution")
+    {
+      $categorys['GPLV2ONLY'][$imagename] = $licence;
       $vergeben = true;
     }
     
@@ -303,6 +311,7 @@ if($isaccord == true)
   //Bildbeschreibung vorbereiten
   echo"loading description pages...<br />";
   $categorys = array();//vorbereiten
+  $checkitit = array();//vorbereiten
 foreach($images as $imagename => $licarray)
 {
     echo $imagename."...<br />";
@@ -366,12 +375,15 @@ foreach($images as $imagename => $licarray)
   {
     $cat = substr($contxic["title"],9);
     $tempcatar[$cat] = $cat;
+    $checkitit[$cat] = true;
   }
   
   if(count($tempcatar) < 3) //catscan hinzufügen
   {
     echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
     $tempcatscan = catscan(substr($imagename,5),$desc);
+    $functioncatscan = true;
+    if($tempcatscan == false) { $tempcatscan = array(); $functioncatscan = false; }
     $tempcatar = array_merge($tempcatar, $tempcatscan);
   }
   echo count($tempcatar)." categories found for ".substr($imagename,5)."...";
@@ -418,6 +430,7 @@ $licensesar = array(
 "MPL" => "MPL",
 "FAL" =>"FAL",
 "GPL" => "GPL",
+"GPLV2ONLY" => "GPLv2 only",
 "LGPL" => "LGPL",
 "CeCILL" => "CeCILL",
 "CopyrightByWikimedia" => "CopyrightByWikimedia" );
@@ -427,7 +440,7 @@ foreach($liclic as $licgroup) //für Doppellizenz des originals
 {
   if(substr($licgroup,0,5) == "self|")
   {
-     $licenseausw .= "<option>".$licgroup."</option>\n";
+     $licenseausw .= "<option value=\"".$licgroup."\">{{".$licgroup."}}</option>\n";
   }
 }
 
@@ -435,7 +448,7 @@ foreach($liclic as $licgroup) //für kombilizenzen
 {
   if(substr($licgroup,0,5) != "self|")
   {
-     $licenseausw .= "<option>".$licensesar[$licgroup]."</option>\n";
+     $licenseausw .= "<option value=\"".$licensesar[$licgroup]."\">{{".$licensesar[$licgroup]."}}</option>\n";
   }
 }
 
@@ -513,16 +526,25 @@ echo"<form enctype='multipart/form-data' method='post' action='deri3.php?lang=$l
   <br />
 <hr
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
-".$lng['x']['categs'].":<br />
-<small><small>powered by <a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a></small></small><br />
+".$lng['x']['categs'].":<br />";
+if($functioncatscan == true)
+{
+  echo "<small><small>powered by <a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a></small></small><br />";
+}
+else
+{
+  echo "<small><small><a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a> not available (technical problem).</small></small><br />";
+}
 
-<ul>";
+echo"<ul>";
 $n = 1;
 foreach($categorys as $cat)
 {
   if(trim($cat) != "")
   {
-    echo "<li><input type='checkbox' name='Category$n' value=\"".htmlspecialchars($cat)."\" /> ".$cat."</li>\n";
+    $ckd = "";
+    if($checkitit[$cat] == true) {$ckd = "checked='checked'"; }
+    echo "<li><input type='checkbox' $ckd name='Category$n' value=\"".htmlspecialchars($cat)."\" /> ".$cat."</li>\n";
     $n = $n +1;
   }
 }
@@ -535,9 +557,9 @@ echo"</ul>
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
 ".$lng['x']['licens'].":".helpcontent("license")."<br />
 
-  {{<select name='license'>
+  <select name='license'>
   $licenseausw
-  </select>}}
+  </select>
 
   <br />
   <br />

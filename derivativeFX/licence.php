@@ -63,7 +63,7 @@ foreach($rawwhitelist as $whitelistentry)
 
 //blacklist erstellen (Templates, die sicher Lizenzen sind)
 $suretemplatelist = array();
-$addtoblacklist = array();
+$addtosuretemplatelist = array();
 
 //whitelist aus datei laden
 $rawblacklist = file("blacklist.txt");
@@ -183,7 +183,7 @@ $output .=  $template."<br>";
       $addtowhitelist[] = $template;
     }
   }
-  else if($islicense[$template] == true AND !in_array($template,$suretemplatelist) AND !in_array($template,$whitelist))
+  else if($islicense[$template] == true AND !in_array($template,$suretemplatelist) AND !in_array($template,$whitelist) AND !in_array($template,$addtowhitelist))
   {
     $addtosuretemplatelist[] = $template;
   }
