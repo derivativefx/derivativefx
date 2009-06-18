@@ -68,6 +68,7 @@ This image is a derivative work of the following images:
 if($_GET['text']) //get default text
 {
   $prev = $_GET['text'];
+  $prev = str_replace("~~~", "''<your username>''", $prev);
 }
 
 $url = "http://commons.wikimedia.org/w/api.php?action=parse&format=php&pst&text=".urlencode($prev);
@@ -75,7 +76,14 @@ $url = "http://commons.wikimedia.org/w/api.php?action=parse&format=php&pst&text=
 $data = array();
 $data = unserialize(file_get_contents($url));
 
-echo $data['parse']['text']['*'];//return data
+if($_GET['dontrender'] == "true")
+{
+  echo"<pre>".$prev."</pre>";
+}
+else
+{
+  echo $data['parse']['text']['*'];//return data
+}
 
 
 ?>
