@@ -143,7 +143,7 @@ $formdata['wpSave'] = $line;
 }
 logfile("Seite geladen, Anmeldung prüfen.");
 
-if(strstr($bodyy,'var wgUserName = "Bilderbot";'))
+if(strstr($bodyy,'wgUserName="Bilderbot",'))
 {
 logfile("Anmeldung erfolgreich!");
 
