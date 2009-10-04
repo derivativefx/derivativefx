@@ -232,11 +232,7 @@ $output .= "DELETE"; }
 }
 
 
-if($_GET['format'] != "JSON")
-{
-  echo "\n\n\n<br><br><b>Output:</b><pre>".$output."</pre><br><br>\n\n";
-} 
-else
+if($_GET['format'] == "JSON")
 {
   //JSON format
   
@@ -266,6 +262,16 @@ echo'{
 }';
 
 }
+else if($_GET['format'] == "IEEX")
+{
+  header('Content-type: application/json');
+  echo $output;
+}
+else 
+{
+  echo "\n\n\n<br><br><b>Output:</b><pre>".$output."</pre><br><br>\n\n";
+} 
+
 
 
 //Whitelist updaten

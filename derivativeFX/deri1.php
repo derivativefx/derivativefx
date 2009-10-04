@@ -114,6 +114,7 @@ include("language.php");
  src="loader.gif"><br />
 <?php echo $lng['x']['load']; ?>...<br />
 <?php echo $lng['x']['wait']; ?><br />
+<span style="font-size:x-small;" id="loadtext">GET...</span><br />
       </td>
     </tr>
   </tbody>
