@@ -86,18 +86,36 @@ if(origvalues[name] != image)
   $('loading').show();
   $('sendform').disable();
     $('bodyid').className = "bodyload";
-  
-  var url = 'licence.php?format=JSON&image=' + encodeURIComponent(image);
+     if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
+     {
+       var url = 'licence.php?format=JSON&image=' + encodeURIComponent(image);
+     }
+     else
+     {
+       var url = 'licence.php?format=IEEX&image=' + encodeURIComponent(image);     //Internet Explorer Fix
+     }
     
   new Ajax.Request(url, {
   method: 'get',
   onSuccess: function(transport) {
-    
+  
+   $("loadtext").firstChild.data = "process data..."; 
    licence = transport.responseText;
+
    
-   var pob = eval( "(" + transport.responseText + ")" );
-    
-   licence = pob.licenses;
+   if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
+   {
+      var pob = eval( "(" + transport.responseText + ")" );
+      licence = pob.licenses;
+      var thumburl = pob.tumburl;
+   }
+   else
+   {
+      var thumburl = "/tsthumb/tsthumb?f="+encodeURIComponent($("original_"+name).value.substr(5))+"&w=120&domain=commons.wikimedia.org";
+      $("loadtext").firstChild.data = "(IE Fix..)";
+   }
+   
+      
    
    //Falls kindknoten vorhanden, diese löschen
         if($("lic"+name).hasChildNodes() == true)
@@ -166,7 +184,7 @@ if(origvalues[name] != image)
            $("lic"+name).className = "license";
     
     var titlewo = image.substr(6);
-    $('img'+name).src = pob.tumburl;
+    $('img'+name).src = thumburl;
     $('img'+name).show()
     
 
@@ -178,7 +196,7 @@ if(origvalues[name] != image)
           $("lic"+name).appendChild(document.createTextNode("No valid license found!"));
           $("lic"+name).className = "delete";
                   var titlewo = image.substr(6);
-          $('img'+name).src = pob.tumburl;
+          $('img'+name).src = thumburl;
           $('img'+name).show()
           
           if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
@@ -197,7 +215,7 @@ if(origvalues[name] != image)
           $("lic"+name).appendChild(document.createTextNode("<?php echo $lng['x']['reqdel']; ?>"));
           $("lic"+name).className = "delete";
                   var titlewo = image.substr(6);
-          $('img'+name).src = pob.tumburl;
+          $('img'+name).src = thumburl;
           $('img'+name).show()
           
           if (navigator.appName.indexOf("Explorer") == -1 ) //für nicht-IE-Browser
