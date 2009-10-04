@@ -378,6 +378,7 @@ foreach($images as $imagename => $licarray)
     $checkitit[$cat] = true;
   }
   
+  $functioncatscan = NULL;
   if(count($tempcatar) < 3) //catscan hinzufügen
   {
     echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
@@ -527,11 +528,11 @@ echo"<form enctype='multipart/form-data' method='post' action='deri3.php?lang=$l
 <hr
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
 ".$lng['x']['categs'].":<br />";
-if($functioncatscan == true)
+if($functioncatscan === true)
 {
   echo "<small><small>powered by <a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a></small></small><br />";
 }
-else
+else if($functioncatscan === false)
 {
   echo "<small><small><a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a> not available (technical problem).</small></small><br />";
 }
