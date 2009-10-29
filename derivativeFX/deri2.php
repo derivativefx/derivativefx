@@ -356,8 +356,9 @@ foreach($images as $imagename => $licarray)
     $replace = ' ';
     $desc = str_replace($order, $replace, $desc);
     
-    $outputdescription .= $desc;
-    
+    if($outputdescription != $desc."\n") {
+      $outputdescription .= $desc."\n";
+    }
 
     
     
@@ -379,13 +380,15 @@ foreach($images as $imagename => $licarray)
   }
   
   $functioncatscan = NULL;
-  if(count($tempcatar) < 3) //catscan hinzufügen
+  if(!$totcatscans) { $totcatscans = 0; }
+  if(count($tempcatar) < 3 AND $totcatscans < 4) //catscan hinzufügen
   {
     echo"Search categories with CommonSense...<small style='color:red'>slow</small><br />";
     $tempcatscan = catscan(substr($imagename,5),$desc);
     $functioncatscan = true;
     if($tempcatscan == false) { $tempcatscan = array(); $functioncatscan = false; }
     $tempcatar = array_merge($tempcatar, $tempcatscan);
+    $totcatscans++;
   }
   echo count($tempcatar)." categories found for ".substr($imagename,5)."...";
   $categorys = array_merge($categorys, $tempcatar);
@@ -539,14 +542,16 @@ else if($functioncatscan === false)
 
 echo"<ul>";
 $n = 1;
+$donecats = array();
 foreach($categorys as $cat)
 {
-  if(trim($cat) != "")
+  if(trim($cat) != "" AND !in_array($cat, $donecats))
   {
     $ckd = "";
     if($checkitit[$cat] == true) {$ckd = "checked='checked'"; }
     echo "<li><input type='checkbox' $ckd name='Category$n' value=\"".htmlspecialchars($cat)."\" /> ".$cat."</li>\n";
     $n = $n +1;
+    $donecats[] = $cat;
   }
 }
 if($n == 1)
