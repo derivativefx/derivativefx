@@ -74,7 +74,7 @@ if(origvalues[name] != image)
 {
 
  //png, gif, jpg, jpeg, xcf, pdf, mid, sxw, sxi, sxc, sxd, ogg, svg, djvu.
-  if(image.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi)){
+  if(image.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|ogg|ogv|svg|djvu|tif|tiff)/gi)){
   
   image = supname(image);
   

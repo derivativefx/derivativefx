@@ -61,8 +61,8 @@ function upchecker()
  }
   
   var wpDestFile = window.document.lastform.wpDestFile.value;
-  
-  if(!wpDestFile.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi))
+  //png, gif, jpg, jpeg, xcf, mid, ogg, ogv, svg, djvu, tif, tiff, oga. 
+  if(!wpDestFile.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|ogg|ogv|svg|djvu|tif|tiff)/gi))
   {
     ret = false;
     //Begruendung[n] = "No correct file extension found in destination file. ("+wpDestFile+")";
@@ -154,7 +154,7 @@ var imgcache = "";
 var aktiv = "";
 function checkimg(image)
 {
-  if(image.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|sxw|sxi|sxc|sxd|ogg|svg|djvu)/gi))
+  if(image.match(/(.*)\.(png|gif|jpg|jpeg|xcf|pdf|mid|ogg|ogv|svg|djvu|tif|tiff)/gi))
   {
     if(imgcache != image)
     {
