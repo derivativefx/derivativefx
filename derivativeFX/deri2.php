@@ -238,7 +238,7 @@ $imagelizok[$imagename] = false;
     }
     
     
-    if(strtolower(substr($licence,0,3)) == "pd-" or strtolower($licence) == "copyrighted free use" or strtolower($licence) == "cc-pd")
+    if(strtolower(substr($licence,0,3)) == "pd-" or strtolower($licence) == "copyrighted free use" or strtolower($licence) == "cc-pd" or strtolower($licence) == "cc-zero")
     {
     $vergeben = true;
           $categorys['PD'][$imagename] = $licence;
