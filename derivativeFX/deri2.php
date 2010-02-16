@@ -1,5 +1,6 @@
 <?php
    ini_set('display_errors', 1);
+   ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
    error_reporting(E_ALL & ~E_NOTICE);
 /*
 Copyright Luxo 2008

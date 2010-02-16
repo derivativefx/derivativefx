@@ -23,6 +23,8 @@ This file is part of derivativeFX.
 //Benutze Kategorien, in dem das Bild ist (nicht in dem die vorlagen sind)
 //Vorlagen zurückverfolgen bis zur [[Category:Copyright statuses]]
 
+ini_set('user_agent', 'DerivativeFX by Luxo on Toolserver / PHP');
+
 $output = ""; 
 $image = trim($_GET['image']);
 $image = str_replace(" ", "_",$image);
@@ -42,6 +44,13 @@ if($_GET['format'] == "whitelist")
 $unserialized = unserialize($raw);
 //Array key (pageid) herausfinden
 $pageid = array_keys($unserialized['query']['pages']);
+
+if($_GET['format'] == "whitelist")
+{
+  echo"<pre> $raw >>>";
+  print_r($unserialized);
+  echo"<<< </pre>\n"; 
+} 
 
 if($unserialized['query']['pages'][$pageid['0']]['templates'])
 {
@@ -92,7 +101,7 @@ foreach($unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl)
   $template = $tmpl['title']; //easyer
   $arraytemplates[] = $template;
 
-if(!in_array($template,$whitelist) AND substr($template,-3) != "/en")
+if(!in_array($template,$whitelist) AND preg_match("/\/[a-z][a-z]$/",$template) === 0) //nicht in whitelist und keine sprachvariante "/en" , "/de", ... 
 {
 
 if(strlen($template) > 11 AND $template != "Template:PD" AND substr($template,0,14) != "Template:Potd/")
@@ -176,7 +185,7 @@ $output .=  $template."<br>";
   }
   }
   
-  if($islicense[$template] == false AND !in_array($template,$whitelist) AND !in_array($template,$suretemplatelist))
+  if($islicense[$template] == false AND !in_array($template,$whitelist) AND !in_array($template,$suretemplatelist) )
   {
     if(!stristr($template, "Template:Potd/"))
     {

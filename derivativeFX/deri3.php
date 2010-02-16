@@ -1,5 +1,5 @@
 <?php
-
+ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
 /*
 Copyright Luxo 2008
 

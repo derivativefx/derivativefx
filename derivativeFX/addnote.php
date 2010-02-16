@@ -19,6 +19,7 @@ This file is part of derivativeFX.
     
     */
 session_start();
+ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
 //empfangen
 $data = $_GET['data'];
 $token = $_GET['token'];
