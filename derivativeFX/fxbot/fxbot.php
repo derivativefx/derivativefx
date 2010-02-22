@@ -18,6 +18,7 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+ini_set('user_agent', 'User:Bilderbot (derivativeFX) by Luxo on the Toolserver / PHP');
 include("logindata.php");//Include PW & UN
 include("functions.inc.php");
 include("login.php");
