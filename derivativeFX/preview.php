@@ -18,6 +18,9 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+
+ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');    
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>

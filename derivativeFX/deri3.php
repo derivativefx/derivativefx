@@ -1,5 +1,5 @@
 <?php
-ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
+
 /*
 Copyright Luxo 2008
 
@@ -19,7 +19,7 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-    
+ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');  
     
 if($_SERVER["REQUEST_METHOD"] != "POST")
 {
@@ -204,7 +204,12 @@ $onlyname = substr($imagename,0,strrpos($imagename,"."));
 $extension = substr($imagename,strrpos($imagename,".")+1);
 $newnames[] =  substr($onlyname,5)."-2.".$extension;
 $newnames[] =  substr($onlyname,5)."-".date("Y-d-m",time()).".".$extension;
-$newnames[] =  substr($onlyname,5)."_new.".$extension;
+//$newnames[] =  substr($onlyname,5)."_new.".$extension;
+
+$newnames[] =  substr($onlyname,5)."_cropped .".$extension;
+$newnames[] =  substr($onlyname,5)."_flopped.".$extension;
+$newnames[] =  substr($onlyname,5)."_flipped.".$extension;
+$newnames[] =  substr($onlyname,5)."_mirrored.".$extension;
 }
 
 //Warnung für nicht gefundene Authoren
