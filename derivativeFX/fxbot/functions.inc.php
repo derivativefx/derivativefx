@@ -88,12 +88,18 @@ function checkderivative($imagename)
 }
 
 //########################################################
-function addnote($derivatives,$origtitle)
+
+function addnote($derivatives,$origtitle,$rawdesc=false)
 {
-  
-  $rawdesc = wikitextload($origtitle);
+  if($rawdesc === false)
+  {
+    $rawdesc = wikitextload($origtitle);
+  }
   
   if(!$rawdesc){ die("beschreibung leer"); }
+  
+  //text zwischen <nowiki> und </nowiki> ersetzen
+  $rawdesc = remove_nowiki($rawdesc);
   
   if(stristr($rawdesc, "{{DerivativeVersions"))
   {
@@ -191,13 +197,56 @@ function addnote($derivatives,$origtitle)
       $pre = $rawdesc;
       $after = "";
     }
-    $rawdesc = $pre."\n== derivative works ==\n".$newtemp."\n".$after;
+    $newraw = $pre."\n== derivative works ==\n".$newtemp."\n".$after;
       
   }
+  
+  //nowiki wieder einfügen
+  $newraw = nowiki_replacer($newraw,1);
 
-  return $rawdesc;
+  return $newraw;
 }
 
+function remove_nowiki($msg) 
+{
+  $rgx_search  = "/<nowiki>(.*)<\/nowiki>/Uie";
+  $msg = str_replace("\n","¶",$msg);
+  do
+    $msg = preg_replace($rgx_search,'nowiki_replacer("\\1")',$msg,-1,$ct);
+  while($ct != 0);
+  $msg = str_replace("¶","\n",$msg);
+  return $msg;
+}
+
+function nowiki_replacer($msg,$x = 0)
+{
+  static $save = array();
+  
+  if($x == 0) {
+    $replacer = generatereplacer($msg);
+    $save[] = $msg;
+    return $replacer;
+  }
+  if($x == 1) {
+    foreach($save as $nowikiline) {
+      $replacer = generatereplacer($nowikiline);
+      $msg = str_replace($replacer,"<nowiki>".$nowikiline."</nowiki>",$msg);
+    }
+    $msg = str_replace("¶","\n",$msg);
+    return $msg;
+  }  
+}
+
+function generatereplacer($str)
+{
+  $lenght = strlen($str);
+  $y = 0;
+  while($y < $lenght) {
+    $replacer .= "•";
+    $y++;
+  }
+  return $replacer;
+}
 
     
 ?>
