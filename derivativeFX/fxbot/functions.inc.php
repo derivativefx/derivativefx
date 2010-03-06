@@ -218,18 +218,19 @@ function remove_nowiki($msg)
   return $msg;
 }
 
-function nowiki_replacer($msg,$x = 0)
+function nowiki_replacer($msg,$x = 0)  //replace <nowikied text at the beginn with a string generatet from generatereplace and set it back at the end
 {
   static $save = array();
   
   if($x == 0) {
-    $replacer = generatereplacer($msg);
-    $save[] = $msg;
+    $number = count($save);
+    $replacer = generatereplacer($msg,$number);
+    $save[$number] = $msg;
     return $replacer;
   }
   if($x == 1) {
-    foreach($save as $nowikiline) {
-      $replacer = generatereplacer($nowikiline);
+    foreach($save as $key => $nowikiline) {
+      $replacer = generatereplacer($nowikiline,$key);
       $msg = str_replace($replacer,"<nowiki>".$nowikiline."</nowiki>",$msg);
     }
     $msg = str_replace("¶","\n",$msg);
@@ -237,12 +238,12 @@ function nowiki_replacer($msg,$x = 0)
   }  
 }
 
-function generatereplacer($str)
+function generatereplacer($str,$key="") //generates a string same long as $str combined with $key (e.g. •1•1•1•1•1•1•1•1)
 {
   $lenght = strlen($str);
   $y = 0;
   while($y < $lenght) {
-    $replacer .= "•";
+    $replacer .= "•".$key;
     $y++;
   }
   return $replacer;
