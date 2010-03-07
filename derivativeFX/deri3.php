@@ -331,7 +331,7 @@ if(count($noauthor) > 0)
 <input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
   <br>
 
-  <input name="addorig" id="notibutton" value="true" type="checkbox"><label for="notibutton"><?php echo $lng['x']['addnot']; ?></label><br>
+  <input checked="checked" name="addorig" id="notibutton" value="true" type="checkbox"><label for="notibutton"><?php echo $lng['x']['addnot']; ?></label><br>
 
   <br>
 
