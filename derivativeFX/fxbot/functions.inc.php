@@ -20,10 +20,9 @@ This file is part of derivativeFX.
     */
     
 
-   
-   
-   //Funktion um Quelltext zu laden 
-function wikitextload($page)
+    
+ //Funktion um Quelltext zu laden 
+function wikitextload($page) 
 {
   $project = "commons.wikimedia.org";
   $page = str_replace(" ","_",$page);
@@ -99,7 +98,7 @@ function addnote($derivatives,$origtitle,$rawdesc=false)
   if(!$rawdesc){ die("beschreibung leer"); }
   
   //text zwischen <nowiki> und </nowiki> ersetzen
-  $rawdesc = remove_nowiki($rawdesc);
+  $rawdesc = remove_nowiki($rawdesc,$origtitle);
   
   if(stristr($rawdesc, "{{DerivativeVersions"))
   {
@@ -202,36 +201,38 @@ function addnote($derivatives,$origtitle,$rawdesc=false)
   }
   
   //nowiki wieder einfügen
-  $newraw = nowiki_replacer($newraw,1);
+  $newraw = nowiki_replacer($newraw,$origtitle,1);
 
   return $newraw;
 }
 
-function remove_nowiki($msg) 
+function remove_nowiki($msg,$origtitle) 
 {
   $rgx_search  = "/<nowiki>(.*)<\/nowiki>/Uie";
   $msg = str_replace("\n","¶",$msg);
   do
-    $msg = preg_replace($rgx_search,'nowiki_replacer("\\1")',$msg,-1,$ct);
+    $msg = preg_replace($rgx_search,'nowiki_replacer("\\1","'.$origtitle.'")',$msg,-1,$ct);
   while($ct != 0);
   $msg = str_replace("¶","\n",$msg);
   return $msg;
 }
 
-function nowiki_replacer($msg,$x = 0)  //replace <nowikied text at the beginn with a string generatet from generatereplace and set it back at the end
+function nowiki_replacer($msg,$origtitle,$x = 0)  //replace <nowikied text at the beginn with a string generatet from generatereplace and set it back at the end
 {
   static $save = array();
   
   if($x == 0) {
     $number = count($save);
     $replacer = generatereplacer($msg,$number);
-    $save[$number] = $msg;
+    $save[$origtitle][$number] = $msg;
     return $replacer;
   }
   if($x == 1) {
-    foreach($save as $key => $nowikiline) {
-      $replacer = generatereplacer($nowikiline,$key);
-      $msg = str_replace($replacer,"<nowiki>".$nowikiline."</nowiki>",$msg);
+    if(is_array($save[$origtitle])) {
+      foreach($save[$origtitle] as $key => $nowikiline) {
+        $replacer = generatereplacer($nowikiline,$key);
+        $msg = str_replace($replacer,"<nowiki>".$nowikiline."</nowiki>",$msg);
+      }
     }
     $msg = str_replace("¶","\n",$msg);
     return $msg;
