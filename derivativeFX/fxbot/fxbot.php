@@ -93,6 +93,7 @@ foreach($images as $name => $array)
       addlog("Generiere neue Bildbeschreibung für $name.");
       $image2[$name] = $array;
       $image2[$name]["newdesc"] = $newqtext;
+      $image2[$name]["number"] = count($array["derivatives"]);
     }
     else
     {
@@ -111,10 +112,11 @@ foreach($image2 as $name => $array)
   if($array["newdesc"])
   {
     addlog("Speichere neue Bildbeschreibung von $name.");
-    wikiedit("commons.wikimedia.org",$name,$array["newdesc"],"Bot: notice of a derivative work added","true",$username,$password);
+    if($array["number"] == 1) { $cmtz = "Bot: notice of a derivative work added"; } else { $cmtz = "Bot: notice of ".$array["number"]." derivative works added"; }
+    wikiedit("commons.wikimedia.org",$name,$array["newdesc"],$cmtz,"true",$username,$password);
     sleep(15);
   }
-  $image2[$name]["donetime"] = time();
+  $image2[$name]["donetime"] = time() - 15;
 }
 
 addlog("Update Datenbank");
