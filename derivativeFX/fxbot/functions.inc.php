@@ -18,9 +18,9 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-    
 
-    
+
+   
  //Funktion um Quelltext zu laden 
 function wikitextload($page) 
 {
@@ -97,11 +97,15 @@ function addnote($derivatives,$origtitle,$rawdesc=false)
   
   if(!$rawdesc){ die("beschreibung leer"); }
   
+  //sortieren
+  asort($derivatives);
+  
   //text zwischen <nowiki> und </nowiki> ersetzen
   $rawdesc = remove_nowiki($rawdesc,$origtitle);
   
   if(stristr($rawdesc, "{{DerivativeVersions"))
   {
+    //bereits eingetragene auslesen und in array schreiben
     $start = stristr($rawdesc, "{{DerivativeVersions");
     $end = strpos($start, "}}");
     $template = substr($start,2,$end-2);
@@ -116,7 +120,8 @@ function addnote($derivatives,$origtitle,$rawdesc=false)
         $derivatives[$eximagename] = $eximagename; 
       }
     }
-    
+    //sortieren
+    asort($derivatives);
     //neues Template erstellen
     $newtemp = "DerivativeVersions";
     foreach($derivatives as $image)
@@ -222,7 +227,11 @@ function nowiki_replacer($msg,$origtitle,$x = 0)  //replace <nowikied text at th
   static $save = array();
   
   if($x == 0) {
-    $number = count($save);
+    if(is_array($save[$origtitle])) {
+      $number = count($save[$origtitle]);
+    } else {
+      $numer = 0;
+    }
     $replacer = generatereplacer($msg,$number);
     $save[$origtitle][$number] = $msg;
     return $replacer;
