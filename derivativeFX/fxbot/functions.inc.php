@@ -225,6 +225,7 @@ function remove_nowiki($msg,$origtitle)
 function nowiki_replacer($msg,$origtitle,$x = 0)  //replace <nowikied text at the beginn with a string generatet from generatereplace and set it back at the end
 {
   static $save = array();
+  $msg = str_replace(array("\'",'\"'),array("'",'"'),$msg); //preg_replace()↑ masks " with \" and ' with \' → reset it here
   
   if($x == 0) {
     if(is_array($save[$origtitle])) {
