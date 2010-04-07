@@ -258,14 +258,14 @@ function wikilogin($username,$password,$project,$useragent)
 {
   global $cookies;
 
-  logfile("Login via API...");
-
   $getrequest = (substr($project,-1) == "/") ? "w/api.php?action=login" : "/w/api.php?action=login";
+  $project = (substr($project,0,7) == "http://") ? $project : "http://".$project;
   
+  logfile("Login via API to $project as $username...");  
 
   $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."&format=php";
  
-  
+  if(!$useragent) { $useragent = "Luxo (Toolserver; php) luxo@ts.wikimedia.org";  }
   $ch = curl_init($project.$getrequest);
   curl_setopt($ch, CURLOPT_POST, TRUE);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $postlogin);
@@ -274,13 +274,14 @@ function wikilogin($username,$password,$project,$useragent)
   curl_setopt($ch, CURLOPT_COOKIEJAR, "/home/luxo/cks");
   
   $rx = curl_exec($ch);
+
   $data = unserialize($rx);
   
   curl_close($ch);
   
   if($data['login']['result'] == "NeedToken")
   {
-    $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."&lgtoken=".$data['login']['token']."&format=php";
+    $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."&lgtoken=".urlencode($data['login']['token'])."&format=php";
     $ch = curl_init($project.$getrequest);
     curl_setopt($ch, CURLOPT_POST, TRUE);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postlogin);
@@ -290,6 +291,7 @@ function wikilogin($username,$password,$project,$useragent)
     curl_setopt($ch, CURLOPT_COOKIEJAR, "/home/luxo/cks");
     $ry = curl_exec($ch);  
     $data = unserialize($ry);
+    
   }
   
   if($data['login']['result'] == "Success")
