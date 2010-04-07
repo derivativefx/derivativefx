@@ -257,41 +257,56 @@ die();
 function wikilogin($username,$password,$project,$useragent)
 {
   global $cookies;
+
   logfile("Login via API...");
 
+  $getrequest = (substr($project,-1) == "/") ? "w/api.php?action=login" : "/w/api.php?action=login";
   
-  $getrequest = "/w/api.php?action=login";
-  $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."";
-  $accept = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+
+  $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."&format=php";
+ 
   
-  $fp = fsockopen ($project, 80, $errno, $errstr, 30);
+  $ch = curl_init($project.$getrequest);
+  curl_setopt($ch, CURLOPT_POST, TRUE);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $postlogin);
+  curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_COOKIEJAR, "/home/luxo/cks");
   
-  //Request Senden
-  fputs($fp, "POST $getrequest HTTP/1.1\n");
-  fputs($fp, "Host: $project\n");
-  fputs($fp, "User-Agent: $useragent\n");
-  fputs($fp, "Connection: close\n");
-  fputs($fp, "Content-Type: application/x-www-form-urlencoded\n");
-  fputs($fp, "Content-Length: ".strlen($postlogin)."\n");
-  fputs($fp, "\n");
-  fputs($fp, $postlogin);
+  $rx = curl_exec($ch);
+  $data = unserialize($rx);
   
-  //Response Header auslesen
-  do {
-  $line=fgets($fp,255);
-  $header.=$line;
+  curl_close($ch);
   
-  //auf cookie prüfen
-  if(substr($line,0,11) == "Set-Cookie:")
+  if($data['login']['result'] == "NeedToken")
   {
-  $rawcookie = substr($line,11,strpos($line,";")-11); //Format: session=DFJ3ASD2S
-  $cookiename = trim(substr($rawcookie,0,strpos($rawcookie,"=")));
-  $cookies[$cookiename] = $rawcookie;
+    $postlogin = "lgname=".urlencode($username)."&lgpassword=".urlencode($password)."&lgtoken=".$data['login']['token']."&format=php";
+    $ch = curl_init($project.$getrequest);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postlogin);
+    curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, "/home/luxo/cks");
+    curl_setopt($ch, CURLOPT_COOKIEJAR, "/home/luxo/cks");
+    $ry = curl_exec($ch);  
+    $data = unserialize($ry);
   }
   
-  
-  } while (trim($line)!="");
-  fclose($fp);
+  if($data['login']['result'] == "Success")
+  {
+    logfile("Login erfolgreich");
+    
+    //Cookie aufbauen 
+    $cookies = array($data['login']['cookieprefix']."_session" => $data['login']['cookieprefix']."_session=".$data['login']['sessionid'],
+                     $data['login']['cookieprefix']."UserID" => $data['login']['cookieprefix']."UserID=".$data['login']['lguserid'], //   [commonswikiUserID] =>  commonswikiUserID=205395
+                     $data['login']['cookieprefix']."UserName" => $data['login']['cookieprefix']."UserName=".$data['login']['lgusername'],
+                     $data['login']['cookieprefix']."Token" => $data['login']['cookieprefix']."Token=".$data['login']['lgtoken']);    
+  } else {
+    die("Login nicht erfolgreich!");
+  }
+    
+  curl_close($ch);
+  return $cookies;
 }
 
 function logfile($text)
