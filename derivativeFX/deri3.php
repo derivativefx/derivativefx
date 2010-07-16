@@ -128,7 +128,7 @@ $tmpimg = $imagename;
 }
 $formular .= "|Date=".date("Y-m-d H:i",time())." (UTC)\n";
 $formular .= "|Author=".$Authors."*derivative work: ~~~\n";
-$formular .= "|Permission=see below\n";
+$formular .= "|Permission=\n";
 $formular .= "|other_versions=\n}}\n\n";
 
 //Vorlage RetouchedPicture
@@ -159,7 +159,7 @@ if($_POST["addfrkws"] == "true")
 $formular .= "{{".$_POST["license"]."}}\n\n";
 
 //history
-$formular .= "== Original upload log ==\nThis image is a derivative work of the following images:\n";
+$formular .= "== {{Original upload log}} ==\nThis image is a derivative work of the following images:\n";
 
 foreach($imagesdata as $imagename => $imagedata)
 {
