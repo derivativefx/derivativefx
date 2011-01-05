@@ -216,7 +216,7 @@ function remove_nowiki($msg,$origtitle)
   $rgx_search  = "/<nowiki>(.*)<\/nowiki>/Uie";
   $msg = str_replace("\n","¶",$msg);
   do
-    $msg = preg_replace($rgx_search,'nowiki_replacer("\\1","'.$origtitle.'")',$msg,-1,$ct);
+    $msg = preg_replace($rgx_search,'nowiki_replacer("\\1","'.mysql_real_escape_string($origtitle).'")',$msg,-1,$ct);
   while($ct != 0);
   $msg = str_replace("¶","\n",$msg);
   return $msg;
