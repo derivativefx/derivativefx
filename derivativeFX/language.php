@@ -306,8 +306,65 @@ $lng['hu']['imgu'] = "%s kep feltoltve!";
 $lng['hu']['plscom'] = "Töltsd ki a szerző adatait a következő képeknél:";
 $lng['hu']['wrncom'] = "Töltsd ki a szerző adatait";
 
-//##############################################################################
+//############################# ESPAÑOL ########################
 
+//Translation © by Carlos (azcarlos2 in wiki commons)
+$lng['es']['name'] = "Español";
+$lng['es']['welc'] = "Bienvenido a derivativeFX!";
+$lng['es']['what'] = "¿Qué es derivativeFX?";
+$lng['es']['conf'] = "Por favor confirma que estás conectado a Wikimedia: Commons.";
+$lng['es']['look'] = "Si ves tu página de usuario en este marco, es que estás conectado. Si no, por favor";
+$lng['es']['loin'] = "Conectarse";
+$lng['es']['skip'] = "Omitir esta prueba la próxima vez";
+$lng['es']['okin'] = "Ok - Estoy conectado";
+$lng['es']['load'] = "Cargando";
+$lng['es']['wait'] = "Espere, por favor";
+$lng['es']['prof'] = "Vista previa de";
+$lng['es']['orwo'] = "Trabajo original";
+$lng['es']['lotf'] = "Licencia para este archivo";
+$lng['es']['pan']  = "Por favor añadir nombre";
+$lng['es']['admo'] = "añade más archivos originales";
+$lng['es']['next'] = "OK - Siguiente";
+$lng['es']['skco'] = "Por favor habilita las cookies para omitir la prueba de conexión la próxima vez";
+$lng['es']['reqdel'] = "¡Alguien ha pedido que esta imagen sea borrada!";
+$lng['es']['notex'] = "¡El archivo no existe!";
+$lng['es']['orig'] = "Original";
+//***** Form1 fertig, Form2
+$lng['es']['nomerg'] = "<h1>Lo siento,</h1> tus imágenes no pueden ser fusionadas!<br /><br />Las <b>licencias son incompatibles</b> o las licencias no pueden ser detectadas</b>.<br /> Mira arriba para ver todas las etiquetas de licencia que la herramienta ha encontrado para estas imágenes";
+$lng['es']['unktem'] = "Plantillas Desconocidas";
+$lng['es']['unlimg'] = "¡No se ha encontrado una licencia conocida para esta imagen!";
+$lng['es']['descri'] = "Descripción";
+$lng['es']['forpar'] = "para la <code>|description=</code> -parámetro en {{Information}}";
+$lng['es']['addtem'] = "Añadir Plantilla %s a la descripción";
+$lng['es']['change'] = "Cambios";
+$lng['es']['editor'] = "Editor";
+$lng['es']['edihin'] = 'Sin sintaxis wiki, p. ej. "Test" para User:Test';
+$lng['es']['others'] = "Otras plantillas";
+$lng['es']['categs'] = "Categorías";
+$lng['es']['nocats'] = "No se han encontrado categorías";
+$lng['es']['licens'] = "Licencia";
+$lng['es']['hincan'] = "Puedes cambiar el resumen completo en la página siguiente";
+//**********Form2 fertig, Form3
+$lng['es']['selfil'] = "Selecciona tu archivo derivado";
+$lng['es']['destin'] = "Nombre de archivo destino";
+$lng['es']['propos'] = "proposiciones";
+$lng['es']['desexi'] = "Nombre de archivo destino ya existe. ¿Quieres sobreescribir el archivo existente?";
+$lng['es']['desoke'] = "Nombre de archivo destino no existe";
+$lng['es']['summar'] = "Resumen";
+$lng['es']['watcht'] = "Ver esta página";
+$lng['es']['addnot'] = "Añadir una nota a el/los archivos original(es) acerca de este trabajo derivado. (por 'User:Bilderbot', a las 02:00 UTC)"; 
+$lng['es']['accept'] = "Confirmas que todos los detalles en la descripción del archivo arriba son <span style=\"font-weight: bold;\">correctos y están en conformidad con la(s) licencia(s) de los archivos originales. Las imágenes pueden contener material con copyright y la licencia original no se extiende a los derivados que los aíslan</span> Esta herramienta no es capaz de comprobar estas cosas. DerivativeFX y su desarrollador no asumen ninguna responsabilidad acerca de la corrección del contenido generado. Ha sido creado con la esperanza de que será útil, pero <span style=\"font-weight: bold;\">SIN NINGUNA GARANTÍA. ¡Eres responsable de la corrección del material! </span> EL nombre de la imagen, los archivos originales y la hora quedan registrados.";
+$lng['es']['start'] = "Subir archivo";
+$lng['es']['attac'] = "Por favor adjunta un archivo";
+$lng['es']['corfi'] = "No se ha encotrado una extensión correcta en el archivo de destino. (%s)";
+$lng['es']['notsa'] = "¡El archivo seleccionado no tiene la misma extensión (%s) que el nombre de destino (%s)! ¿Cambiar el nombre de destino a '%s'?";
+//$lng['es']['imgu'] = "¡ %s imágenes subidas!";
+$lng['es']['imgu'] = "%s imagenes subidas!"; //no support of special letters
+$lng['es']['plscom'] = "Por favor completa la información del autor para las siguientes imágenes:";
+$lng['es']['wrncom'] = "Por favor completa la información del autor";
+
+
+//##############################################################################
 if(array_key_exists($language,$lng))
 {
 $sxlang = $language;
