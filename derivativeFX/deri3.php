@@ -119,7 +119,7 @@ $originals[] = $imagename;
     
 }
 //Beginne Formular aufzubauen
-$formular  = "{{Information\n|Description=".trim(stripslashes($_POST['description']))."\n";
+$formular  = "== {{int:filedesc}} ==\n{{Information\n|Description=".trim(stripslashes($_POST['description']))."\n";
 $formular .= "|Source=";
 foreach($imagesdata as $imagename => $imagedata)
 {
@@ -155,7 +155,7 @@ if($_POST["addfrkws"] == "true")
   $formular .= "{{Atelier graphique carte}}\n\n";
 }
 //********* Lizenz
-
+$formular .= "== {{int:license}} ==\n";
 $formular .= "{{".$_POST["license"]."}}\n\n";
 
 //history
