@@ -363,6 +363,68 @@ $lng['es']['imgu'] = "%s imagenes subidas!"; //no support of special letters
 $lng['es']['plscom'] = "Por favor completa la información del autor para las siguientes imágenes:";
 $lng['es']['wrncom'] = "Por favor completa la información del autor";
 
+//############################# POLISH ########################
+
+//Translation by Masur (@commons; @wikipedia-pl)
+$lng['pl']['name'] = "Polski";
+$lng['pl']['welc'] = "Witamy w derivativeFX!";
+$lng['pl']['what'] = "Co to jest derivativeFX?";
+$lng['pl']['conf'] = "Proszę potwierdź, że jesteś zalogowany w Wikimedia:Commons.";
+$lng['pl']['look'] = "Jeśli widzisz swoją stronę użytkownika w tym oknie, jesteś zalogowany. Jeśli nie, proszę";
+$lng['pl']['loin'] = "zaloguj się.";
+$lng['pl']['skip'] = "Pomiń ten etap następnym razem";
+$lng['pl']['okin'] = "Ok - Jestem zalogowany.";
+$lng['pl']['load'] = "Ładuję";
+$lng['pl']['wait'] = "Proszę czekać";
+$lng['pl']['prof'] = "podgląd";
+$lng['pl']['orwo'] = "Plik źródłowy";
+$lng['pl']['lotf'] = "Licencja tego pliku";
+$lng['pl']['pan']  = "proszę podaj nazwę";
+$lng['pl']['admo'] = "dodaj więcej plików źródłowych";
+$lng['pl']['next'] = "OK - Dalej";
+$lng['pl']['skco'] = "Proszę włącz przyjmowanie plików cookie, by pominąć ten etap następnym razem.";
+$lng['pl']['reqdel'] = "Ten plik został zgłoszony do usunięcia!";
+$lng['pl']['notex'] = "Plik nie istnieje!";
+$lng['pl']['orig'] = "Źródło";
+//***** Form1 fertig, Form2
+$lng['pl']['nomerg'] = "<h1>Przepraszam,</h1> pliki nie mogą być połączone!<br /><br />The <b>licencje są niekompatybilne</b> lub <b>nie można wykryć licencji</b>.<br /> Powyżej znajduje się lista szablonów licencji, które można było wykryć w opisach tych plików:";
+$lng['pl']['unktem'] = "Nieznane szablony";
+$lng['pl']['unlimg'] = "W tym pliku znaleziono nieznaną licencję!";
+$lng['pl']['descri'] = "Opis";
+$lng['pl']['forpar'] = "dla parametru <code>|description=</code> w {{Information}}";
+$lng['pl']['addtem'] = "Dodaj szablon %s do opisu";
+$lng['pl']['change'] = "Zmiany";
+$lng['pl']['editor'] = "Edytujący";
+$lng['pl']['edihin'] = 'bez wikiskładni, czyli np. "Test" dla User:Test';
+$lng['pl']['others'] = "Inne szablony";
+$lng['pl']['categs'] = "Kategorie";
+$lng['pl']['nocats'] = "Nie znaleziono kategorii";
+$lng['pl']['licens'] = "Licencja";
+$lng['pl']['hincan'] = "Na następnej stronie możesz jeszcze zmienić cały opis";
+//**********Form2 fertig, Form3
+$lng['pl']['selfil'] = "Wybierz swój plik pochodny";
+$lng['pl']['destin'] = "Nazwa docelowa pliku";
+$lng['pl']['propos'] = "propozycje";
+$lng['pl']['desexi'] = "Nazwa docelowa pliku jest już wykorzystywana. Czy chcesz nadpisać istniejący plik?";
+$lng['pl']['desoke'] = "Docelowa nazwa pliku nie jest wykorzystywana.";
+$lng['pl']['summar'] = "Podsumowanie";
+$lng['pl']['watcht'] = "Obserwuj tę stronę";
+$lng['pl']['addnot'] = "Dodaj informację o tej pracy pochodnej do opisu pliku źródłowego. ('User:Bilderbot', o 02:00 UTC)";
+$lng['pl']['accept'] = "Czy potwierdzasz, że wszystkie dane w opisie pliku powyżej są
+  <span style=\"font-weight: bold;\">prawidłowe i zgodne
+z licencją(-ami) pliku(-ów) źródłowego. Pliki mogą zawierać fragmenty objęte prawami autorskimi, a wolna licencja może nie mieć zastosowania do takich fragmentów wyodrębnionych z całości.</span> To narzędzie nie jest w stanie sprawdzać takich przypadków. derivativeFX i
+jego twórca nie ponoszą odpowiedzialności za poprawność
+wygenerowanych treści. Narzędzie powstało w nadziei,
+że będzie przydatne, ale <span style=\"font-weight: bold;\">BEZ
+JAKICHKOLWIEK GWARANCJI. Ty jesteś odpowiedzialny za
+poprawność! </span>Nazwy plików, pliki źródłowe i czas są zapisywane.";
+$lng['pl']['start'] = "Prześlij plik";
+$lng['pl']['attac'] = "Proszę załącz plik.";
+$lng['pl']['corfi'] = "W pliku pochodnym nie znaleziono poprawnego rozszerzenia. (%s)";
+$lng['pl']['notsa'] = "Wybrany plik nie ma takiego samego rozszerzenia (%s) jak nazwa docelowa (%s)! Zmień nazwę docelową na '%s'?";
+$lng['pl']['imgu'] = "%s pliki załadowane!";
+$lng['pl']['plscom'] = "Proszę uzupełnij informację o autorze w następujących plikach:";
+$lng['pl']['wrncom'] = "Proszę uzupełnij informację o autorze";
 
 //##############################################################################
 if(array_key_exists($language,$lng))
