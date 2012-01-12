@@ -120,12 +120,13 @@ $originals[] = $imagename;
 }
 //Beginne Formular aufzubauen
 $formular  = "== {{int:filedesc}} ==\n{{Information\n|Description=".trim(stripslashes($_POST['description']))."\n";
-$formular .= "|Source=";
+$formular .= "|Source={{Derived from";
 foreach($imagesdata as $imagename => $imagedata)
 {
-$formular .= "*[[:$imagename|]]\n";
+$formular .= "|".substr($imagename,5);
 $tmpimg = $imagename;
 }
+$formular .= "|display=50}}\n";
 $formular .= "|Date=".date("Y-m-d H:i",time())." (UTC)\n";
 $formular .= "|Author=".$Authors."*derivative work: ~~~\n";
 $formular .= "|Permission=\n";
