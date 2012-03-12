@@ -128,7 +128,7 @@ $tmpimg = $imagename;
 }
 $formular .= "|display=50}}\n";
 $formular .= "|Date=".date("Y-m-d H:i",time())." (UTC)\n";
-$formular .= "|Author=".$Authors."*derivative work: ~~~\n";
+$formular .= "|Author=".$Authors."*derivative work: [[User:{{subst:REVISIONUSER}}|{{subst:REVISIONUSER}}]]\n";
 $formular .= "|Permission=\n";
 $formular .= "|other_versions=\n}}\n\n";
 

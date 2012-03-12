@@ -72,6 +72,8 @@ if($_GET['text']) //get default text
 {
   $prev = $_GET['text'];
   $prev = str_replace("~~~", "''<your username>''", $prev);
+  //replace {{subst:REVISIONUSER}}
+  $prev = str_replace("[[User:{{subst:REVISIONUSER}}|{{subst:REVISIONUSER}}]]", "''<your username>''", $prev);
 }
 
 $url = "http://commons.wikimedia.org/w/api.php?action=parse&format=php&pst&text=".urlencode($prev);
