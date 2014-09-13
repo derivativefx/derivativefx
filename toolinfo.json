@@ -1,7 +1,9 @@
 {
-	"name": "derivativeFX",
+	"name": "luxo-derivativefx",
+	"title": "derivativeFX",
 	"description": "A tool for generating descriptions for derivative works hosted on Wikimedia Commons.",
 	"url": "https://tools.wmflabs.org/derivative/",
 	"keywords": "commons, image, license, derivative",
-	"author": "Luxo"
+	"author": "Luxo",
+	"repository": "https://github.com/derivativefx/derivativefx"
 }
