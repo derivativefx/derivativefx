@@ -75,13 +75,12 @@ $output .= $file;
 
   <meta content="Luxo" name="author">
 
-  <link rel="stylesheet" href="/~luxo/derivativeFX/style/style.css" type="text/css">
+  <link rel="stylesheet" href="/derivative/style/style.css" type="text/css">
 
   <meta content="Helpdesk" name="description">
 </head>
 <body style="direction: ltr;" class="bodynorm">
 
-<img style="width: 279px; height: 134px;" alt="derivativeFX" src="/~luxo/derivativeFX/derivativeFX_small.png"><br>
 
 <div style="margin-left: 80px;"><img style="width: 150px; height: 34px;" alt="helpdesk" src="help_small.png"></div><br>
 <?php echo nl2br($output); ?>
@@ -96,10 +95,5 @@ $output .= $file;
 | <a
  href="http://meta.wikimedia.org/wiki/User:Luxo/Licenses#derivativeFX">license</a><br>
 <br>
-<a href="http://wiki.ts.wikimedia.org/view/Main_Page"><img
- style="border: 0px solid ; width: 88px; height: 31px;"
- alt="powered by Wikimedia Toolserver"
- title="powered by Wikimedia Toolserver"
- src="http://tools.wikimedia.de/images/wikimedia-toolserver-button.png"></a>&nbsp;</div>
 </body>
 </html>

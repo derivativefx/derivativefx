@@ -23,7 +23,7 @@ ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
     
 if($_SERVER["REQUEST_METHOD"] != "POST")
 {
-header('Location: http://'. $_SERVER['SERVER_NAME'] .'/~luxo/derivativeFX/deri1.php');
+header('Location: http://'. $_SERVER['SERVER_NAME'] .'/derivativeFX/deri1.php');
 die();
 }
 //error_reporting(E_ALL);
@@ -177,7 +177,7 @@ foreach($imagedata["imageinfo"] as $vkey => $cntns)
 
 }
 $formular .= "\n";
-$formular .= "''Uploaded with [[:tools:~luxo/derivativeFX/|derivativeFX]]''\n\n";
+$formular .= "{{Uploaded with derivativeFX}}\n\n";
 //Kategorien anhängen
 foreach($_POST as $Cname => $Cvalue)
 {

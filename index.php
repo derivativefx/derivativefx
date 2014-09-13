@@ -23,5 +23,5 @@ if($_GET['image'])
 {
 $zusatz = "?image=".urlencode(trim($_GET['image']));
 }
-header('Location: http://'. $_SERVER['SERVER_NAME'] .'/~luxo/derivativeFX/deri1.php'.$zusatz);
+header('Location: http://'. $_SERVER['SERVER_NAME'] .'/derivative/deri1.php'.$zusatz);
 ?>

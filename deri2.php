@@ -27,7 +27,7 @@ include("functions.php");
 
 if($_SERVER["REQUEST_METHOD"] != "POST")
 {
-header('Location: http://'. $_SERVER['SERVER_NAME'] .'/~luxo/derivativeFX/deri1.php');
+header('Location: http://'. $_SERVER['SERVER_NAME'] .'/derivative/deri1.php');
 die();
 }
 
