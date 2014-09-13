@@ -19,9 +19,10 @@ This file is part of derivativeFX.
     
     */
 $zusatz = "";
-if($_GET['image'])
-{
-$zusatz = "?image=".urlencode(trim($_GET['image']));
+if ( $_GET['image'] ) {
+	$zusatz = trim( $_GET['image'] );
+	$zusatz = strtr( $zusatz, array( "\n" => '', "\r" => '' ) ); // prevent header injection on old PHP
+	$zusatz = "?image=" . urlencode( $zusatz );
 }
-header('Location: http://'. $_SERVER['SERVER_NAME'] .'/derivative/deri1.php'.$zusatz);
+header( 'Location: http://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php' . $zusatz );
 ?>

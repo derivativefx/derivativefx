@@ -34,7 +34,7 @@ $lng['en']['wait'] = "Please wait";
 $lng['en']['prof'] = "preview of";
 $lng['en']['orwo'] = "Original Work";
 $lng['en']['lotf'] = "License of this file";
-$lng['en']['pan']  = "please add name";
+$lng['en']['pan'] = "please add name";
 $lng['en']['admo'] = "add more original files";
 $lng['en']['next'] = "OK - Next";
 $lng['en']['skco'] = "Please enable cookies to skip the login check in the next time.";
@@ -96,7 +96,7 @@ $lng['de']['wait'] = "Bitte warten";
 $lng['de']['prof'] = "Vorschau von";
 $lng['de']['orwo'] = "Originaldatei";
 $lng['de']['lotf'] = "Lizenz dieser Datei";
-$lng['de']['pan']  = "gib einen Namen an.";
+$lng['de']['pan'] = "gib einen Namen an.";
 $lng['de']['admo'] = "Mehr Originale angeben";
 $lng['de']['next'] = "Ok - Weiter";
 $lng['de']['skco'] = "Bitte aktiviere Cookies um die Überprüfung nicht mehr anzuzeigen.";
@@ -157,7 +157,7 @@ $lng['fr']['wait'] = "Veuillez patienter";
 $lng['fr']['prof'] = "prévisualisation de";
 $lng['fr']['orwo'] = "Oeuvre originale";
 $lng['fr']['lotf'] = "Licence de ce fichier";
-$lng['fr']['pan']  = "Veuillez entrer le nom";
+$lng['fr']['pan'] = "Veuillez entrer le nom";
 $lng['fr']['admo'] = "ajoutez d'autres fichiers originaux";
 $lng['fr']['next'] = "OK - Suivant";
 $lng['fr']['skco'] = "Activez les cookies pour sauter la vérification de la connection la prochaine fois.";
@@ -265,7 +265,7 @@ $lng['hu']['wait'] = "Egy kis türelmet";
 $lng['hu']['prof'] = "előnézet:";
 $lng['hu']['orwo'] = "Eredeti mű";
 $lng['hu']['lotf'] = "A fájl licence";
-$lng['hu']['pan']  = "add meg a fájl nevét";
+$lng['hu']['pan'] = "add meg a fájl nevét";
 $lng['hu']['admo'] = "további eredeti művek hozzáadása";
 $lng['hu']['next'] = "OK - következő";
 $lng['hu']['skco'] = "A bejelentkezettség-ellenőrzés kihagyásához engedélyezned kell a sütik használatát a böngésződben.";
@@ -322,7 +322,7 @@ $lng['es']['wait'] = "Espere, por favor";
 $lng['es']['prof'] = "Vista previa de";
 $lng['es']['orwo'] = "Trabajo original";
 $lng['es']['lotf'] = "Licencia para este archivo";
-$lng['es']['pan']  = "Por favor añadir nombre";
+$lng['es']['pan'] = "Por favor añadir nombre";
 $lng['es']['admo'] = "añade más archivos originales";
 $lng['es']['next'] = "OK - Siguiente";
 $lng['es']['skco'] = "Por favor habilita las cookies para omitir la prueba de conexión la próxima vez";
@@ -352,7 +352,7 @@ $lng['es']['desexi'] = "Nombre de archivo destino ya existe. ¿Quieres sobreescr
 $lng['es']['desoke'] = "Nombre de archivo destino no existe";
 $lng['es']['summar'] = "Resumen";
 $lng['es']['watcht'] = "Ver esta página";
-$lng['es']['addnot'] = "Añadir una nota a el/los archivos original(es) acerca de este trabajo derivado. (por 'User:Bilderbot', a las 02:00 UTC)"; 
+$lng['es']['addnot'] = "Añadir una nota a el/los archivos original(es) acerca de este trabajo derivado. (por 'User:Bilderbot', a las 02:00 UTC)";
 $lng['es']['accept'] = "Confirmas que todos los detalles en la descripción del archivo arriba son <span style=\"font-weight: bold;\">correctos y están en conformidad con la(s) licencia(s) de los archivos originales. Las imágenes pueden contener material con copyright y la licencia original no se extiende a los derivados que los aíslan</span> Esta herramienta no es capaz de comprobar estas cosas. DerivativeFX y su desarrollador no asumen ninguna responsabilidad acerca de la corrección del contenido generado. Ha sido creado con la esperanza de que será útil, pero <span style=\"font-weight: bold;\">SIN NINGUNA GARANTÍA. ¡Eres responsable de la corrección del material! </span> EL nombre de la imagen, los archivos originales y la hora quedan registrados.";
 $lng['es']['start'] = "Subir archivo";
 $lng['es']['attac'] = "Por favor adjunta un archivo";
@@ -379,7 +379,7 @@ $lng['pl']['wait'] = "Proszę czekać";
 $lng['pl']['prof'] = "podgląd";
 $lng['pl']['orwo'] = "Plik źródłowy";
 $lng['pl']['lotf'] = "Licencja tego pliku";
-$lng['pl']['pan']  = "proszę podaj nazwę";
+$lng['pl']['pan'] = "proszę podaj nazwę";
 $lng['pl']['admo'] = "dodaj więcej plików źródłowych";
 $lng['pl']['next'] = "OK - Dalej";
 $lng['pl']['skco'] = "Proszę włącz przyjmowanie plików cookie, by pominąć ten etap następnym razem.";
@@ -427,14 +427,11 @@ $lng['pl']['plscom'] = "Proszę uzupełnij informację o autorze w następujący
 $lng['pl']['wrncom'] = "Proszę uzupełnij informację o autorze";
 
 //##############################################################################
-if(array_key_exists($language,$lng))
-{
-$sxlang = $language;
-}
-else
-{
-$sxlang = "en";
-$language = "en";
+if ( array_key_exists( $language, $lng ) ) {
+	$sxlang = $language;
+} else {
+	$sxlang = "en";
+	$language = "en";
 }
 
 $lng['x'] = $lng[$sxlang];

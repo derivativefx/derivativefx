@@ -23,57 +23,49 @@ This file is part of derivativeFX.
   INCLUDED IN EVERY PAGE
 */
 
-function helpcontent($theme,$text = "?")
-{
-global $language;
+function helpcontent( $theme, $text = "?" ) {
+	global $language;
 
 
+	$url = "help/helpdesk.php?theme=" . $theme . "&lang=" . $language;
 
-$url = "help/helpdesk.php?theme=".$theme."&lang=".$language;
-
-$html = "<sup><a href='$url' title='help' onclick=\"helpwindow(this.href); return false\">$text</a></sup>";
-return $html;
+	$html = "<sup><a href='$url' title='help' onclick=\"helpwindow(this.href); return false\">$text</a></sup>";
+	return $html;
 
 }
 
 
-function catscan($image,$kw="")
-{
-  $url = "http://toolserver.org/~daniel/WikiSense/CommonSense.php?u=en&i=".urlencode($image)."&r=on&kw=".urlencode($kw)."&p=_20&go-clean=Kategorien+finden&cl=&w=en&v=0";
-  $return = file_get_contents($url) or print("<span style='color:red'>CommonSense not accessible!</span><br/>");
-  $start = strpos($return,"#CATEGORIES") or print("<span style='color:red'>CommonSense not accessible!</span><br/>");
-  $end = strpos($return,"#GALLERIES");
-  
-  if($start AND $end)
-  {
-    $return = substr($return,$start,$end - $start);
-    $firstabsatz = strpos($return, "\n");
-    
-    $return = trim(substr($return,$firstabsatz));
-    $category = array();
-    $category = explode("\n", $return);
-    
-    if($category == false)
-    {
-    $category = array();
-    }
-    
-    //print_r($category);
-    
-    $categorys = array();
-    
-    foreach($category as $cat)
-    {
-      $cat = str_replace("_", " ",$cat);
-      $categorys[$cat] = $cat;
-    }
-    return $categorys;
-    
-  }
-  else
-  {
-  return false;
-  }
+function catscan( $image, $kw = "" ) {
+	$url = "http://toolserver.org/~daniel/WikiSense/CommonSense.php?u=en&i=" . urlencode( $image ) . "&r=on&kw=" . urlencode( $kw ) . "&p=_20&go-clean=Kategorien+finden&cl=&w=en&v=0";
+	$return = file_get_contents( $url ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
+	$start = strpos( $return, "#CATEGORIES" ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
+	$end = strpos( $return, "#GALLERIES" );
+
+	if ( $start AND $end ) {
+		$return = substr( $return, $start, $end - $start );
+		$firstabsatz = strpos( $return, "\n" );
+
+		$return = trim( substr( $return, $firstabsatz ) );
+		$category = array();
+		$category = explode( "\n", $return );
+
+		if ( $category == false ) {
+			$category = array();
+		}
+
+		//print_r($category);
+
+		$categorys = array();
+
+		foreach ( $category as $cat ) {
+			$cat = str_replace( "_", " ", $cat );
+			$categorys[$cat] = $cat;
+		}
+		return $categorys;
+
+	} else {
+		return false;
+	}
 }
 
 

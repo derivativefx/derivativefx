@@ -18,72 +18,72 @@ This file is part of derivativeFX.
     
     */
 
+a:link {
+    color: #000099;
+    text-decoration: none;
+}
 
-a:link{
-color:#000099;
-text-decoration: none;
+a:visited {
+    color: #000099;
+    text-decoration: none;
+}
 
+a:hover {
+    color: #000099;
+    text-decoration: underline;
 }
-a:visited{
-color:#000099;
-text-decoration: none;
-}
-a:hover{
-color:#000099;
-text-decoration: underline;
-}
-a:active{
-color:#000099;
-text-decoration: none;
+
+a:active {
+    color: #000099;
+    text-decoration: none;
 }
 
 .bodynorm {
-color: black;
-background: #f9f9f9 url(http://tools.wikimedia.de/~chm/style/backdrop.png) 0 0 no-repeat;
-font-family: x-small Arial, sans-serif;
+    color: black;
+    background: #f9f9f9 url(http://tools.wikimedia.de/~chm/style/backdrop.png) 0 0 no-repeat;
+    font-family: x-small Arial, sans-serif;
 }
 
 .bodyload {
-color: black;
-background: #EEEEEE url(http://tools.wikimedia.de/~chm/style/backdrop.png) 0 0 no-repeat;
-font-family: x-small Arial, sans-serif;
+    color: black;
+    background: #EEEEEE url(http://tools.wikimedia.de/~chm/style/backdrop.png) 0 0 no-repeat;
+    font-family: x-small Arial, sans-serif;
 }
 
 .license {
-color: black;
-font-weight: bold;
+    color: black;
+    font-weight: bold;
 }
 
 .notexist {
-color: red;
-font-weight: bold;
-/*background-color: yellow;*/
+    color: red;
+    font-weight: bold;
+    /*background-color: yellow;*/
 }
 
 .delete {
-color: red;
-font-weight: bold;
-background-color: yellow;
+    color: red;
+    font-weight: bold;
+    background-color: yellow;
 }
 
 .marker {
-color: red;
+    color: red;
 }
 
 .tempinc {
-  border-width:1px;
-  border-style:none double;
-  border-color:darkgrey;
-  padding-left:2.5em;
-  text-align:justify;
+    border-width: 1px;
+    border-style: none double;
+    border-color: darkgrey;
+    padding-left: 2.5em;
+    text-align: justify;
 }
 
 .acceptterm {
-  color: red;
+    color: red;
 
 }
 
 .helpcont {
-vertical-align:top;
+    vertical-align: top;
 }
-

@@ -19,24 +19,21 @@ This file is part of derivativeFX.
     
     */
 session_start();
-ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
+ini_set( 'user_agent', ' derivativeFX by Luxo on the Toolserver / PHP' );
 //empfangen
 $data = $_GET['data'];
 $token = $_GET['token'];
 $file = $_GET['file'];
 $adanote = $_GET['adanote'];
 
-$dataarray = unserialize(base64_decode($data));
+$dataarray = unserialize( base64_decode( $data ) );
 
 //Session managen
 
-if($_SESSION[md5($file)] == md5($data))
-{
-$die = true;
-}
-else
-{
-$_SESSION[md5($file)] = md5($data);
+if ( $_SESSION[md5( $file )] == md5( $data ) ) {
+	$die = true;
+} else {
+	$_SESSION[md5( $file )] = md5( $data );
 }
 
 
@@ -46,99 +43,93 @@ $_SESSION[md5($file)] = md5($data);
 <html lang="en">
 <head>
 
-  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-  <title>derivativeFX</title>
-  <meta content="Luxo" name="author">
-  <link rel="stylesheet" type="text/css" href="style/style.css">
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+	<title>derivativeFX</title>
+	<meta content="Luxo" name="author">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 <body style="direction: ltr;" class="bodynorm">
-<img src="derivativeFX_small.png" /><br>
+<img src="derivativeFX_small.png"/><br>
 <?php
 
-if($die == true)
+if ($die == true)
 {
-?>
-<img src="dontreload.png" />
-Please don't send the content again, it's already sended. Thanks!<br />
+	?>
+	<img src="dontreload.png"/>
+	Please don't send the content again, it's already sended. Thanks!<br/>
 <?php
 }
-else if(md5($dataarray['token'] / 3) == $token AND $dataarray['time'] + 3600 > time() AND $file )
+else if (md5( $dataarray['token'] / 3 ) == $token AND $dataarray['time'] + 3600 > time() AND $file)
 {
-echo"<h1>Thank you</h1>Your file <b>$file</b> is going to Wikimedia:Commons.<br /><br />";
-if($adanote == "true") {
-echo"User:Bilderbot will add at 02:00 a notice about this new derivative file to the original file(s).\n"; }
+	echo "<h1>Thank you</h1>Your file <b>$file</b> is going to Wikimedia:Commons.<br /><br />";
+	if ( $adanote == "true" ) {
+		echo "User:Bilderbot will add at 02:00 a notice about this new derivative file to the original file(s).\n";
+	}
 //print_r($dataarray);
 
 
+	/*Das ganze in die Tabelle eintragen
+	*Name: derivativefx
 
-/*Das ganze in die Tabelle eintragen
-*Name: derivativefx
+	*file
+	*derivative
+	*status
+	*time
+	*donetime
+	*/
 
-*file
-*derivative
-*status
-*time
-*donetime
-*/
+	include( "/home/luxo/public_html/contributions/logindata.php" ); //pw & bn einbinden
+	$dblink = @mysql_connect( $databankname, $userloginname, $databasepw ); //Allgemein (TS-Database)
 
-include("/home/luxo/public_html/contributions/logindata.php");//pw & bn einbinden
-$dblink = @mysql_connect($databankname, $userloginname, $databasepw);//Allgemein (TS-Database)
+	mysql_select_db( "u_luxo", $dblink ); //Zurückstellen
 
-mysql_select_db("u_luxo", $dblink);//Zurückstellen
-
-if(!$dblink)
-{
-die( "DATABASE ERROR.");
-}
+	if ( ! $dblink ) {
+		die( "DATABASE ERROR." );
+	}
 
 
-foreach($dataarray['originals'] as $origfile)
-{
+	foreach ( $dataarray['originals'] as $origfile ) {
 
-if($adanote == "true")
-{
-$status = "open";
-}
-else
-{
-$status = "nobot";
-}
+		if ( $adanote == "true" ) {
+			$status = "open";
+		} else {
+			$status = "nobot";
+		}
 
 
+		$origfile = str_replace( "_", " ", $origfile );
+		$file = str_replace( "_", " ", $file );
 
-$origfile = str_replace("_"," ",$origfile);
-$file = str_replace("_"," ",$file);
-
-if($origfile == "File:".$file)//Bei gleichnamigen Dateien name nicht eintragen
-{
-$status = "done";
-}
+		if ( $origfile == "File:" . $file ) //Bei gleichnamigen Dateien name nicht eintragen
+		{
+			$status = "done";
+		}
 
 
-$time = time();
-$donetime = "-";
+		$time = time();
+		$donetime = "-";
 
-mysql_query( "INSERT INTO derivativefx SET file='".mysql_real_escape_string($origfile)."', derivative='".mysql_real_escape_string($file)."', status='".mysql_real_escape_string($status)."', time='".mysql_real_escape_string($time)."', donetime='".mysql_real_escape_string($donetime)."'", $dblink) or die("Error");
+		mysql_query( "INSERT INTO derivativefx SET file='" . mysql_real_escape_string( $origfile ) . "', derivative='" . mysql_real_escape_string( $file ) . "', status='" . mysql_real_escape_string( $status ) . "', time='" . mysql_real_escape_string( $time ) . "', donetime='" . mysql_real_escape_string( $donetime ) . "'", $dblink ) or die( "Error" );
 
-}
-
+	}
 
 
 }
 else
 {
 ?>
-<h1 color="red">Whooops, error!<h1>
-<br />
-<?php
-}
+<h1 color="red">Whooops, error!
+	<h1>
+		<br/>
+		<?php
+		}
 
 
 
-?>
- <input type="button" value="Close"
-onclick="window.close()">
-<hr />
-<center>by Luxo</center>
+		?>
+		<input type="button" value="Close"
+			   onclick="window.close()">
+		<hr/>
+		<center>by Luxo</center>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');
+ini_set( 'user_agent', ' derivativeFX by Luxo on the Toolserver / PHP' );
 /*
 Copyright Luxo 2008
 
@@ -20,16 +20,13 @@ This file is part of derivativeFX.
     
     */
 $image = $_GET['image'];
-$image = str_replace(" ", "_", $image);
-$return = @file_get_contents("http://commons.wikimedia.org/w/index.php?title=Image:".urlencode($image)."&action=raw");
+$image = str_replace( " ", "_", $image );
+$return = @file_get_contents( "http://commons.wikimedia.org/w/index.php?title=Image:" . urlencode( $image ) . "&action=raw" );
 
-if(!$return)
-{
-echo"OK";
-}
-else
-{
-echo"FALSE";
+if ( ! $return ) {
+	echo "OK";
+} else {
+	echo "FALSE";
 }
 
 ?>

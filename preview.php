@@ -19,31 +19,34 @@ This file is part of derivativeFX.
     
     */
 
-ini_set('user_agent', ' derivativeFX by Luxo on the Toolserver / PHP');    
+ini_set( 'user_agent', ' derivativeFX by Luxo on the Toolserver / PHP' );
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="author" content="Luxo">
-  <title>Preview of Upload</title>
-    <style type="text/css" media="screen,projection">
-    /*
-    <![CDATA[*/ @import "/~luxo/skins/toolserver/main.css?67"; /*]]>
-    */
-  </style> 
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="author" content="Luxo">
+	<title>Preview of Upload</title>
+	<style type="text/css" media="screen,projection">
+		/*
+		<![CDATA[*/
+		@import "/~luxo/skins/toolserver/main.css?67";
 
-  </head>
-  <body class="mediawiki ns--1 ltr page-Spezial_Beiträge" style="direction: ltr;">
-  <div id="globalWrapper" style="position:absolute;top:5px;bottom:5px;right:5px;left:5px;">
-<?php
+		/*]]>
+			*/
+	</style>
 
-//EXAMPLE TEXT
-$prev = "{{Information
+</head>
+<body class="mediawiki ns--1 ltr page-Spezial_Beiträge" style="direction: ltr;">
+<div id="globalWrapper" style="position:absolute;top:5px;bottom:5px;right:5px;left:5px;">
+	<?php
+
+	//EXAMPLE TEXT
+	$prev = "{{Information
 |Description=Example image, used for tracking test edits
 |Source=*[[:File:Example.jpg|]]
-|Date=".date("r")." (UTC)
+|Date=" . date( "r" ) . " (UTC)
 |Author=*[[:File:Example.jpg|]]: [[User:Bdk|<font color=#116611>:Bdk:</font>]]
 *derivative work: ~~~
 |Permission=see below
@@ -68,32 +71,31 @@ This image is a derivative work of the following images:
 
 [[Category:Example images]]";
 
-if($_GET['text']) //get default text
-{
-  $prev = $_GET['text'];
-  $prev = str_replace("~~~", "''<your username>''", $prev);
-  //replace {{subst:REVISIONUSER}}
-  $prev = str_replace("[[User:{{subst:REVISIONUSER}}|{{subst:REVISIONUSER}}]]", "''<your username>''", $prev);
-}
+	if ( $_GET['text'] ) //get default text
+	{
+		$prev = $_GET['text'];
+		$prev = str_replace( "~~~", "''<your username>''", $prev );
+		//replace {{subst:REVISIONUSER}}
+		$prev = str_replace( "[[User:{{subst:REVISIONUSER}}|{{subst:REVISIONUSER}}]]", "''<your username>''", $prev );
+	}
 
-$url = "http://commons.wikimedia.org/w/api.php?action=parse&format=php&pst&text=".urlencode($prev);
+	$url = "http://commons.wikimedia.org/w/api.php?action=parse&format=php&pst&text=" . urlencode( $prev );
 
-$data = array();
-$data = unserialize(file_get_contents($url));
+	$data = array();
+	$data = unserialize( file_get_contents( $url ) );
 
-if($_GET['dontrender'] == "true")
-{
-  echo"<pre>".$prev."</pre>";
-}
-else
-{
-  echo $data['parse']['text']['*'];//return data
-}
+	if ( $_GET['dontrender'] == "true" ) {
+		echo "<pre>" . $prev . "</pre>";
+	} else {
+		echo $data['parse']['text']['*']; //return data
+	}
 
 
-?>
+	?>
 
-    </div><!-- don't allow to click the links -->
-        <img src="transparent.gif" style="position:fixed;width:100%;height:100%;left:0px;top:0px;bottom:0px;" /> 
-  </body>
+</div>
+<!-- don't allow to click the links -->
+<img src="transparent.gif"
+	 style="position:fixed;width:100%;height:100%;left:0px;top:0px;bottom:0px;"/>
+</body>
 </html>
