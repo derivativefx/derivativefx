@@ -169,16 +169,9 @@ foreach ( $lng as $shortcut => $lgarry ) {
 </div>
 
 <hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">by <a href="/%7Eluxo/">Luxo</a>
-	| <a href="http://commons.wikimedia.org/wiki/User_talk:Luxo">contact</a>
-	| <a
-		href="http://meta.wikimedia.org/wiki/User:Luxo/Licenses#derivativeFX">license</a><br/>
+<div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
+	| <a href="">about</a>
+	| <a href="//github.com/derivativefx/derivativefx">source & license</a><br/>
 	<br/>
-	<a href="https://wiki.toolserver.org/view/Main_Page"><img
-			style="border: 0px solid ; width: 88px; height: 31px;"
-			alt="powered by Wikimedia Toolserver"
-			title="powered by Wikimedia Toolserver"
-			src="http://tools.wikimedia.de/images/wikimedia-toolserver-button.png"></a>&nbsp;</div>
-
 </body>
 </html>
