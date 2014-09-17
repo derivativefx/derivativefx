@@ -132,7 +132,7 @@ if ( $_POST["addfrkws"] == "true" ) {
 	$formular .= "{{Atelier graphique carte}}\n\n";
 }
 //********* Lizenz
-$formular .= "== {{int:license}} ==\n";
+$formular .= "== {{int:license-header}} ==\n";
 $formular .= "{{" . $_POST["license"] . "}}\n\n";
 
 //history
