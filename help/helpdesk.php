@@ -83,11 +83,5 @@ if ( $url != false ) {
 <br>
 <input name="close" value="Close" type="button" OnClick="self.close();">
 <hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">by <a href="/~luxo/">Luxo</a>
-	| <a href="http://commons.wikimedia.org/wiki/User_talk:Luxo">contact</a>
-
-	| <a
-		href="http://meta.wikimedia.org/wiki/User:Luxo/Licenses#derivativeFX">license</a><br>
-	<br>
 </body>
 </html>
