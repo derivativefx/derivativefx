@@ -82,6 +82,5 @@ if ( $url != false ) {
 <br>
 <br>
 <input name="close" value="Close" type="button" OnClick="self.close();">
-<hr style="height: 2px; width: 60%;">
 </body>
 </html>
