@@ -172,7 +172,7 @@ function checkimg( image ) {
 
 function abbr( originalRequest ) {
 	if ( originalRequest.responseText == "FALSE" ) {
-		$( "falseimg" ).src = "http://toolserver.org/tsthumb/tsthumb?domain=commons.wikimedia.org&w=120&f=" + $( "newfilename" ).value;
+		$( "falseimg" ).src = "https://commons.wikimedia.org/w/thumb.php?w=120&f=" + $( "newfilename" ).value;
 		window.alert( "File name already exist. Please choose a different name." );
 		$( "imgtitle" ).firstChild.data = $( "newfilename" ).value;
 		$( "existwarn" ).show();
