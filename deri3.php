@@ -19,7 +19,7 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-ini_set( 'user_agent', ' derivativeFX by Luxo on toolslabs / PHP' );
+ini_set( 'user_agent', ' derivativeFX by Luxo on the Toolserver / PHP' );
 
 if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 	header( 'Location: http://' . $_SERVER['SERVER_NAME'] . '/derivativeFX/deri1.php' );
@@ -193,7 +193,7 @@ if ( count( $noauthor ) > 0 ) {
 	$authorwarn = "<div><img src='warn.png' /> <b>" . $lng['x']['plscom'] . "</b><br />";
 }
 foreach ( $noauthor as $tempimg ) {
-	$authorwarn .= '- <a target="_blank" href="//commons.wikimedia.org/w/index.php?title=' . urlencode( $tempimg ) . '">' . $tempimg . '</a><br />';
+	$authorwarn .= '- <a target="_blank" href="http://commons.wikimedia.org/w/index.php?title=' . urlencode( $tempimg ) . '">' . $tempimg . '</a><br />';
 }
 
 if ( count( $noauthor ) > 0 ) {
@@ -266,7 +266,7 @@ if ( count( $noauthor ) > 0 ) {
 <img src="derivativeFX_small.png"/>
 
 <form id="comform" method='post' enctype='multipart/form-data'
-	  action="//commons.wikimedia.org/wiki/Special:Upload" name="lastform"><br>
+	  action="http://commons.wikimedia.org/wiki/Special:Upload" name="lastform"><br>
 
 	<?php echo $lng['x']['selfil']; ?>:<br>
 
@@ -334,9 +334,17 @@ if ( count( $noauthor ) > 0 ) {
 	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
 </form>
 <hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-	| <a href="">about</a>
-	| <a href="//github.com/derivativefx/derivativefx">source & license</a></div>
+<div style="text-align: center;">by <a href="/%7Eluxo/">Luxo</a>
+	| <a href="http://commons.wikimedia.org/wiki/User_talk:Luxo">contact</a>
+	| <a
+		href="http://meta.wikimedia.org/wiki/User:Luxo/Licenses#derivativeFX">license</a><br>
+	<br>
+	<a href="http://wiki.ts.wikimedia.org/view/Main_Page"><img
+			style="border: 0px solid ; width: 88px; height: 31px;"
+			alt="powered by Wikimedia Toolserver"
+			title="powered by Wikimedia Toolserver"
+			src="http://tools.wikimedia.de/images/wikimedia-toolserver-button.png"></a>&nbsp;</div>
+
 </body>
 </html>
 
