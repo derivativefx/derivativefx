@@ -41,7 +41,7 @@ include( "language.php" );
 </head>
 <body class="bodynorm container" id="bodyid">
 <br/>
-<img src="image.php?lang=<?php echo $language; ?>"/>
+<img src="derivativeFX_small.png"/>
 <br/>
 <?php
 //SPRACHEN
