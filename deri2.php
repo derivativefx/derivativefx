@@ -1,6 +1,6 @@
 <?php
 ini_set( 'display_errors', 1 );
-ini_set( 'user_agent', ' derivativeFX by Luxo on the Toolserver / PHP' );
+ini_set( 'user_agent', ' derivativeFX on labs / PHP' );
 error_reporting( E_ALL & ~E_NOTICE );
 /*
 Copyright Luxo 2008
@@ -26,7 +26,7 @@ include( "language.php" );
 include( "functions.php" );
 
 if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
-	header( 'Location: http://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php' );
+	header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php' );
 	die();
 }
 
@@ -264,7 +264,7 @@ if ( $isaccord == true ) {
 		echo $imagename . "...<br />";
 		//query laden
 		//http://commons.wikimedia.org/w/query.php?what=content|imageinfo&iihistory&format=txt&titles=Image:Beispiel.jpg|Image:Hund.jpg
-		$url = "http://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=php&titles=" . urlencode( $imagename );
+		$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=php&titles=" . urlencode( $imagename );
 		$tempcache = file_get_contents( $url ) or die( "<div class='notexist'>ERROR - connection to wikimedia server lost!</div><br />" );
 		$tempcache = unserialize( $tempcache );
 		$arkey = array_keys( $tempcache["query"]["pages"] );
@@ -273,7 +273,7 @@ if ( $isaccord == true ) {
 		}
 
 		$thispageid = $arkey[0];
-		$tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = file_get_contents( "http://commons.wikimedia.org/w/index.php?action=raw&title=" . urlencode( $imagename ) );
+		$tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = file_get_contents( "https://commons.wikimedia.org/w/index.php?action=raw&title=" . urlencode( $imagename ) );
 		$imagedatas[$imagename] = $tempcache["query"]["pages"][$arkey[0]];
 		//Array mit Bildinfos erstellt, nun Beschreibung daraus parsen
 
@@ -313,7 +313,7 @@ if ( $isaccord == true ) {
 		  http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=Image:Pferd.jpg&clshow=!hidden&format=txtfm
 		  */
 		echo "get categorys...<br /> \n";
-		$querycat = file_get_contents( "http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=" . urlencode( $imagename ) . "&clshow=!hidden&format=php" );
+		$querycat = file_get_contents( "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&titles=" . urlencode( $imagename ) . "&clshow=!hidden&format=php" );
 		$querycat = unserialize( $querycat );
 		$tempcatar = array();
 		foreach ( $querycat["query"]["pages"][$thispageid]["categories"] as $contxic ) {
@@ -511,8 +511,8 @@ if ( $isaccord == false ) {
 ?>
 	<hr style="height: 2px; width: 60%;">
 <div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-	| <a href="">about</a>
-	| <a href="//github.com/derivativefx/derivativefx">source & license</a><br/>
+	| <a href="https://commons.wikimedia.org/wiki/Commons:DerivativeFX">about</a>
+	| <a href="//github.com/derivativefx/derivativefx">source &amp; license</a><br/>
 </span>
 </body>
 </html>
