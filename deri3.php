@@ -203,14 +203,12 @@ if ( count( $noauthor ) > 0 ) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type">
 	<title>derivativeFX</title>
 	<meta content="Luxo" name="author">
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<script type="text/javascript" src="js/prototype.js"></script>
-	<script type="text/javascript"
-			src="js/checkupload.js.php?lang=<?php echo $language; ?>"></script>
+	<script type="text/javascript" src="js/checkupload.js.php?lang=<?php echo $language; ?>"></script>
 	<script type="text/javascript">
 
 		var checksum = "<?php echo $checksum; ?>";
@@ -249,13 +247,13 @@ if ( count( $noauthor ) > 0 ) {
 <img src="derivativeFX_small.png"/>
 
 <form id="comform" method='post' enctype='multipart/form-data'
-	  action="//commons.wikimedia.org/wiki/Special:Upload" name="lastform"><br>
-
+	  action="//commons.wikimedia.org/wiki/Special:Upload?withjs=Derivativefx-uploadform.js" name="lastform"><br>
+<!---
 	<?php echo $lng['x']['selfil']; ?>:<br>
 
 	<input name="wpUploadFile" type="file" size="50"><br>
 	<input type='hidden' name='wpSourceType' value='file' id="atfile"/>
-<!---  old, no longer works because token handling changed on commons.
+  old, no longer works because token handling changed on commons.
 	<br>
 	<?php echo $lng['x']['destin']; ?>: <br>
   <span style="background-color:white;font-size:x-small"><?php echo $lng['x']['propos']; ?> <a
@@ -289,6 +287,7 @@ if ( count( $noauthor ) > 0 ) {
 	<input type='hidden' name='wpLicense' value=''/>
 	<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label
 		for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
+	<input name="wpIgnoreWarning" value="1" id="wpIgnoreWarning" type="hidden">
 	<br>
 
 	<br>
