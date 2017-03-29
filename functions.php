@@ -37,7 +37,8 @@ function helpcontent( $theme, $text = "?" ) {
 
 function catscan( $image, $kw = "" ) {
 	$url = "http://toolserver.org/~daniel/WikiSense/CommonSense.php?u=en&i=" . urlencode( $image ) . "&r=on&kw=" . urlencode( $kw ) . "&p=_20&go-clean=Kategorien+finden&cl=&w=en&v=0";
-	$return = file_get_contents( $url ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
+//	$return = file_get_contents( $url ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
+	$return = ""; // deprecated, no replacement aviable
 	$start = strpos( $return, "#CATEGORIES" ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
 	$end = strpos( $return, "#GALLERIES" );
 
