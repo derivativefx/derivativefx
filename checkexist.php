@@ -19,6 +19,11 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
+
+echo "<!-- ERROR --> <!-- DEPRECATED -->";
+echo "Deprected! Please use the Wikimedia Commons api";
+
+/*
 $image = $_GET['image'];
 $image = str_replace( " ", "_", $image );
 sleep(2);
@@ -29,5 +34,5 @@ if ( ! $return ) {
 } else {
 	echo "FALSE";
 }
-
+*/
 ?>
