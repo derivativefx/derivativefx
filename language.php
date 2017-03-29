@@ -73,7 +73,7 @@ of the generated content. It has been created in the hope
 that it will be useful, but <span style=\"font-weight: bold;\">WITHOUT
 ANY WARRANTY. You are accountable for
 the correctness! </span>Image name, original files and time is logged.";
-$lng['en']['start'] = "Upload file";
+$lng['en']['start'] = "Conform &amp; select file to upload";
 $lng['en']['attac'] = "Please attach a file.";
 $lng['en']['corfi'] = "No correct file extension found in destination file. (%s)";
 $lng['en']['notsa'] = "Your selected file has not the same file extension (%s) like the destination name (%s)! Change dest. name to '%s'?";
