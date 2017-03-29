@@ -301,22 +301,10 @@ if ( count( $noauthor ) > 0 ) {
 	<textarea rows='25' cols='100' name="wpUploadDescription"
 			  id="desctext"><?php echo htmlspecialchars( $formular ); ?></textarea><br>
 	<?php echo $authorwarn; ?>
-	<input id="prev" name="previewbutton" value="Preview" onclick="preview()" type="button">
-	<input id="hideprev" name="hidepreviewbutton" value="Hide preview" onclick="hideprevx()"
-		   type="button" style="display:none;">
-	<iframe id="prevframe" src="preview.php?text=please wait..." OnLoad="" name="prev" width="100%"
-			height="500" align="center"
-			scrolling="yes" marginheight="0" marginwidth="0" frameborder="2" style="display:none;">
-	</iframe>
 	<br>
 	<input type='hidden' name='wpLicense' value=''/>
 	<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label
 		for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
-	<br>
-
-	<input checked="checked" name="addorig" id="notibutton" value="true" type="checkbox"><label
-		for="notibutton"><?php echo $lng['x']['addnot']; ?></label><br>
-
 	<br>
 
 	<br>
