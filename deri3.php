@@ -260,9 +260,9 @@ if ( count( $noauthor ) > 0 ) {
 		}
 
 	</script>
-
+	<link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
 </head>
-<body style="direction: ltr;" class="bodynorm">
+<body style="direction: ltr;" class="bodynorm container">
 <img src="derivativeFX_small.png"/>
 
 <form id="comform" method='post' enctype='multipart/form-data'
@@ -316,7 +316,7 @@ if ( count( $noauthor ) > 0 ) {
 	<br>
 
 	<input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload'
-		   value="<?php echo $lng['x']['start']; ?>" title="Start upload" type="submit"> &nbsp;<br>
+		   value="<?php echo $lng['x']['start']; ?>" title="Start upload" type="submit" class="btn btn-success"> &nbsp;<br>
 
 	<br>
 	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
