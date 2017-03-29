@@ -55,8 +55,9 @@ if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 
 	</script>
 	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="direction: ltr;" class="bodynorm" onload="$('bodyload').show();$('loading').hide()">
+<body style="direction: ltr;" class="bodynorm container" onload="$('bodyload').show();$('loading').hide()">
 <table
 	style="background-color: rgb(210, 211, 210); width: 100%; height: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 	border="0" cellpadding="0" cellspacing="0" id="loading">
