@@ -255,7 +255,7 @@ if ( count( $noauthor ) > 0 ) {
 
 	<input name="wpUploadFile" type="file" size="50"><br>
 	<input type='hidden' name='wpSourceType' value='file' id="atfile"/>
-
+<!---  old, no longer works because token handling changed on commons.
 	<br>
 	<?php echo $lng['x']['destin']; ?>: <br>
   <span style="background-color:white;font-size:x-small"><?php echo $lng['x']['propos']; ?> <a
@@ -278,6 +278,7 @@ if ( count( $noauthor ) > 0 ) {
 	<span id="dontexist"
 		  style="display:none;border-width:1px;border-color:green;border-style:solid;padding:5px;background-color:#E0FFE0;"><img
 			src="ok.png"> <?php echo $lng['x']['desoke']; ?><br></span>
+-->
 	<br>
 	<?php echo $lng['x']['summar']; ?>:<br>
 
