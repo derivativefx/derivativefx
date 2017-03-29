@@ -19,10 +19,10 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-ini_set( 'user_agent', ' derivativeFX by Luxo on toolslabs / PHP' );
+ini_set( 'user_agent', ' derivativeFX on toolslabs / PHP' );
 
 if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
-	header( 'Location: http://' . $_SERVER['SERVER_NAME'] . '/derivativeFX/deri1.php' );
+	header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivativeFX/deri1.php' );
 	die();
 }
 //error_reporting(E_ALL);
@@ -154,7 +154,7 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 
 }
 $formular .= "\n";
-$formular .= "{{Uploaded with derivativeFX}}\n\n";
+$formular .= "{{Uploaded with derivativeFX|version=2}}\n\n";
 //Kategorien anhängen
 foreach ( $_POST as $Cname => $Cvalue ) {
 	if ( substr( $Cname, 0, 8 ) == "Category" ) {
@@ -335,8 +335,8 @@ if ( count( $noauthor ) > 0 ) {
 </form>
 <hr style="height: 2px; width: 60%;">
 <div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-	| <a href="">about</a>
-	| <a href="//github.com/derivativefx/derivativefx">source & license</a></div>
+	| <a href="https://commons.wikimedia.org/wiki/Commons:DerivativeFX">about</a>
+	| <a href="//github.com/derivativefx/derivativefx">source &amp; license</a></div>
 </body>
 </html>
 
