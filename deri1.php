@@ -1,5 +1,5 @@
 <?php
-ini_set( 'user_agent', ' derivativeFX by Luxo on toolslabs / PHP' );
+ini_set( 'user_agent', ' derivativeFX toolslabs / PHP' );
 /*
 Copyright Luxo 2008
 
@@ -170,8 +170,8 @@ foreach ( $lng as $shortcut => $lgarry ) {
 
 <hr style="height: 2px; width: 60%;">
 <div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-	| <a href="">about</a>
-	| <a href="//github.com/derivativefx/derivativefx">source & license</a><br/>
+	| <a href="https://commons.wikimedia.org/wiki/Commons:DerivativeFX">about</a>
+	| <a href="//github.com/derivativefx/derivativefx">source &amp; license</a><br/>
 	<br/>
 </body>
 </html>
