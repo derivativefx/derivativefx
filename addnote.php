@@ -19,7 +19,7 @@ This file is part of derivativeFX.
     
     */
 session_start();
-ini_set( 'user_agent', ' derivativeFX by Luxo on the Toolserver / PHP' );
+ini_set( 'user_agent', ' derivativeFX on labs / PHP' );
 //empfangen
 $data = $_GET['data'];
 $token = $_GET['token'];
@@ -62,9 +62,7 @@ if ($die == true)
 else if (md5( $dataarray['token'] / 3 ) == $token AND $dataarray['time'] + 3600 > time() AND $file)
 {
 	echo "<h1>Thank you</h1>Your file <b>$file</b> is going to Wikimedia:Commons.<br /><br />";
-	if ( $adanote == "true" ) {
-		echo "User:Bilderbot will add at 02:00 a notice about this new derivative file to the original file(s).\n";
-	}
+
 //print_r($dataarray);
 
 
@@ -77,42 +75,6 @@ else if (md5( $dataarray['token'] / 3 ) == $token AND $dataarray['time'] + 3600 
 	*time
 	*donetime
 	*/
-
-	include( "/home/luxo/public_html/contributions/logindata.php" ); //pw & bn einbinden
-	$dblink = @mysql_connect( $databankname, $userloginname, $databasepw ); //Allgemein (TS-Database)
-
-	mysql_select_db( "u_luxo", $dblink ); //Zurückstellen
-
-	if ( ! $dblink ) {
-		die( "DATABASE ERROR." );
-	}
-
-
-	foreach ( $dataarray['originals'] as $origfile ) {
-
-		if ( $adanote == "true" ) {
-			$status = "open";
-		} else {
-			$status = "nobot";
-		}
-
-
-		$origfile = str_replace( "_", " ", $origfile );
-		$file = str_replace( "_", " ", $file );
-
-		if ( $origfile == "File:" . $file ) //Bei gleichnamigen Dateien name nicht eintragen
-		{
-			$status = "done";
-		}
-
-
-		$time = time();
-		$donetime = "-";
-
-		mysql_query( "INSERT INTO derivativefx SET file='" . mysql_real_escape_string( $origfile ) . "', derivative='" . mysql_real_escape_string( $file ) . "', status='" . mysql_real_escape_string( $status ) . "', time='" . mysql_real_escape_string( $time ) . "', donetime='" . mysql_real_escape_string( $donetime ) . "'", $dblink ) or die( "Error" );
-
-	}
-
 
 }
 else
