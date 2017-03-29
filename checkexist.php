@@ -21,7 +21,8 @@ This file is part of derivativeFX.
     */
 $image = $_GET['image'];
 $image = str_replace( " ", "_", $image );
-$return = @file_get_contents( "http://commons.wikimedia.org/w/index.php?title=Image:" . urlencode( $image ) . "&action=raw" );
+sleep(2);
+$return = @file_get_contents( "https://commons.wikimedia.org/w/index.php?title=Image:" . urlencode( $image ) . "&action=raw" );
 
 if ( ! $return ) {
 	echo "OK";
