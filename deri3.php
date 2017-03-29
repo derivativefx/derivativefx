@@ -286,15 +286,11 @@ if ( count( $noauthor ) > 0 ) {
 	<br>
 	<input type='hidden' name='wpLicense' value=''/>
 	<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label
-		for="wpWatchthis"><?php echo $lng['x']['watcht']; ?></label>
+		for="wpWatchthis"> <?php echo $lng['x']['watcht']; ?></label>
 	<input name="wpIgnoreWarning" value="1" id="wpIgnoreWarning" type="hidden">
 	<br>
-
 	<br>
-
-	<input name="acceptterm" value="true" id="accbut" type="checkbox"
-		   onClick="enableupload();"><span class="acceptterm"> <label for='accbut'>
-			<?php echo $lng['x']['accept']; ?><br></label></span>
+	<input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <label for='accbut'> <?php echo $lng['x']['accept']; ?><br></label></span>
 
 	<br>
 
