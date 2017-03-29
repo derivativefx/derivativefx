@@ -500,7 +500,7 @@ if ( $isaccord == false ) {
  style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
 " . $lng['x']['hincan'] . ".<br />
   <br />
-  <input value='" . $lng['x']['next'] . "' type='submit'><br />
+  <input value='" . $lng['x']['next'] . "' type='submit' class='btn btn-success'><br />
   <br />
 
   <br />
