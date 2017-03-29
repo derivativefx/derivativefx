@@ -247,7 +247,7 @@ if ( count( $noauthor ) > 0 ) {
 <img src="derivativeFX_small.png"/>
 
 <form id="comform" method='post' enctype='multipart/form-data'
-	  action="//commons.wikimedia.org/wiki/Special:Upload?withjs=Derivativefx-uploadform.js" name="lastform"><br>
+	  action="//commons.wikimedia.org/wiki/Special:Upload?withjs=Derivativefx-uploadform.js&specialform=derivativefxinterface" name="lastform"><br>
 <!---
 	<?php echo $lng['x']['selfil']; ?>:<br>
 
@@ -285,12 +285,12 @@ if ( count( $noauthor ) > 0 ) {
 	<?php echo $authorwarn; ?>
 	<br>
 	<input type='hidden' name='wpLicense' value=''/>
-	<input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label
+	<label for="wpWatchthis"> <input checked="checked" name="wpWatchthis" id="wpWatchthis" value="true" type="checkbox"><label
 		for="wpWatchthis"> <?php echo $lng['x']['watcht']; ?></label>
 	<input name="wpIgnoreWarning" value="1" id="wpIgnoreWarning" type="hidden">
 	<br>
 	<br>
-	<input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <label for='accbut'> <?php echo $lng['x']['accept']; ?><br></label></span>
+	<label for='accbut'> <input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <?php echo $lng['x']['accept']; ?><br></label></span>
 
 	<br>
 
