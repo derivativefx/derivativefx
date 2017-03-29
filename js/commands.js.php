@@ -21,7 +21,7 @@ This file is part of derivativeFX.
     */
 
 $language = $_GET['lang'];
-include( "/home/luxo/public_html/derivativeFX/language.php" );
+include( "/data/project/derivative/public_html/language.php" );
 header( "Content-Type: application/x-javascript" );
 ?>
 
@@ -358,7 +358,7 @@ function more() {
 }
 
 function licprevi( temlate ) {
-	var tmpurl = "http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=" + temlate + "|????";
+	var tmpurl = "https://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=" + temlate + "|????";
 
 	/*$("licenceframe").src = tmpurl;
 	 $("licinprev").firstChild.data = temlate;
