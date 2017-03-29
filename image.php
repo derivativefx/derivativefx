@@ -29,7 +29,7 @@ $img = imagecreatefrompng( "derivativeFX_small.png" );
 imageAlphaBlending( $img, true );
 imageSaveAlpha( $img, true );
 
-$font = "/home/luxo/public_html/derivativeFX/font.ttf";
+$font = "/data/project/derivative/public_html/font.ttf";
 
 $red = imagecolorallocate( $img, 225, 0, 0 );
 
