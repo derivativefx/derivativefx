@@ -242,23 +242,6 @@ if ( count( $noauthor ) > 0 ) {
 				probsymb.firstChild.data = "▼";
 			}
 		}
-
-		function hideprevx() {
-			document.getElementById( 'prevframe' ).style.display = 'none';
-			document.getElementById( 'hideprev' ).style.display = 'none';
-			document.getElementById( 'prev' ).value = 'Preview';
-		}
-
-		function preview() {
-			var text = document.getElementById( 'desctext' ).value;
-			var url = "preview.php?text=" + encodeURIComponent( text );
-			document.getElementById( 'prevframe' ).src = url;
-			document.getElementById( 'prevframe' ).style.display = 'block';
-			document.getElementById( 'hideprev' ).style.display = 'block';
-			document.getElementById( 'prev' ).value = 'Refresh preview';
-
-		}
-
 	</script>
 	<link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
 </head>
