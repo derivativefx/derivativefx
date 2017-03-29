@@ -18,26 +18,7 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-$language = $_GET['lang'];
-include( "language.php" );
-
-//*********************IMAGE
 header( "Content-type: image/png" );
-
-
 $img = imagecreatefrompng( "derivativeFX_small.png" );
-imageAlphaBlending( $img, true );
-imageSaveAlpha( $img, true );
-
-$font = "/data/project/derivative/public_html/font.ttf";
-
-$red = imagecolorallocate( $img, 225, 0, 0 );
-
-$spruch = sprintf( $lng['x']['imgu'], $anz );
-
-imageTTFtext( $img, 15, 14, 10, 85, $red, $font, $spruch );
-
 imagepng( $img );
-
-
 ?>
