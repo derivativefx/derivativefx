@@ -20,7 +20,7 @@ This file is part of derivativeFX.
     */
 
 $language = $_GET['lang'];
-include( "/home/luxo/public_html/derivativeFX/language.php" );
+include( "/data/project/derivative/public_html/language.php" );
 header( "Content-Type: application/x-javascript" );
 ?>
 
