@@ -290,7 +290,7 @@ if ( count( $noauthor ) > 0 ) {
 	<br>
 	<label for='accbut'> <input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <?php echo $lng['x']['accept']; ?></label><br></span>
 	<br>
-	<?php $lng['x']['hincan'] ?>
+	<?php echo $lng['x']['hincan']; ?>
 	<br>
 
 	<input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload'
