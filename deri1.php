@@ -1,7 +1,7 @@
 <?php
-ini_set( 'user_agent', ' derivativeFX toolslabs / PHP' );
 /*
 Copyright Luxo 2008
+          derivativeFX Maintainer - 2016
 
 This file is part of derivativeFX.
 
@@ -39,7 +39,8 @@ include( "language.php" );
         <link rel="stylesheet" type="text/css" href="style/style.css">
 
 </head>
-<body class="bodynorm container" id="bodyid">
+<body class="bodynorm" id="bodyid">
+<div class="container">
 <br/>
 <img src="derivativeFX_small.png"/>
 <br/>
@@ -62,15 +63,15 @@ foreach ( $lng as $shortcut => $lgarry ) {
         <br/>
 
         <h1>Sorry,</h1> You must have a browser which support the JavaScript-standards of the <a
-                href="http://www.w3.org/">World Wide Web Consortium</a> (W3C) to use this tool. <br/>
+                href="https://www.w3.org/">World Wide Web Consortium</a> (W3C) to use this tool. <br/>
 
         Please <b>turn on your Javascript</b> or, if your browser don't support this, download a current
         browser like
-        <a href="http://www.firefox.com">Firefox</a>, <a href="http://www.opera.com">Opera</a> or <a
-                href="http://www.apple.com/de/safari/">Safari</a>.
+        <a href="https://www.firefox.com">Firefox</a>, <a href="https://www.opera.com">Opera</a> or <a
+                href="https://www.apple.com/de/safari/">Safari</a>.
         <br/>
         <br/>
-        You can use the <a href="http://commons.wikimedia.org/wiki/Special:Upload">standard upload
+        You can use the <a href="https://commons.wikimedia.org/wiki/Special:Upload">standard upload
                 form</a>, don't forgot to add a notice about the authors of the original files and respect
         their licenses.
         <br/>
@@ -138,9 +139,9 @@ foreach ( $lng as $shortcut => $lgarry ) {
                 </tbody>
         </table>
 </span>
-                <!--http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL-self-->
+                <!--https://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL-self-->
                 <!--<p align="right" id="licprev" style="display:none"><?php echo $lng['x']['prov']; ?> <span id="licinprev" class="license">the GFDL</span>:
-    <iframe src="http://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL" id="licenceframe" width="50%" height="310" align="right"
+    <iframe src="https://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=GFDL" id="licenceframe" width="50%" height="310" align="right"
         scrolling="auto" marginheight="0" marginwidth="0" frameborder="0">
 </iframe></p>-->
                 <?php echo $lng['x']['orwo']; ?>:

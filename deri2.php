@@ -1,9 +1,9 @@
 <?php
 ini_set( 'display_errors', 1 );
-ini_set( 'user_agent', ' derivativeFX on labs / PHP' );
 error_reporting( E_ALL & ~E_NOTICE );
 /*
-Copyright Luxo 2008
+Copyright Luxo 2008 - 2014
+	  derivativeFX Maintainer - 2016
 
 This file is part of derivativeFX.
 
@@ -34,8 +34,7 @@ if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html style="direction: ltr;" lang="en">
 <head>
-	<meta content="text/html; charset=UTF-8"
-		  http-equiv="content-type">
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type">
 	<title>derivativeFX</title>
 	<meta content="Luxo" name="author">
 	<meta content="Derivative Upload" name="description">
@@ -57,14 +56,14 @@ if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="direction: ltr;" class="bodynorm container" onload="$('bodyload').show();$('loading').hide()">
+<body style="direction: ltr;" class="bodynorm" onload="$('bodyload').show();$('loading').hide()">
+<div class="container">
 <table
 	style="background-color: rgb(210, 211, 210); width: 100%; height: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 	border="0" cellpadding="0" cellspacing="0" id="loading">
 <tbody>
 <tr>
-<td style="text-align: center; vertical-align: middle;"><pre><h1 style="color:red">Please
-	wait...</h1><br/>
+<td style="text-align: center; vertical-align: middle;"><pre><h1 style="color:red"><img src="loader.gif"> Please wait...</h1><br/>
 <?php
 
 
@@ -266,7 +265,7 @@ if ( $isaccord == true ) {
 		//query laden
 		//http://commons.wikimedia.org/w/query.php?what=content|imageinfo&iihistory&format=txt&titles=Image:Beispiel.jpg|Image:Hund.jpg
 		$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=php&titles=" . urlencode( $imagename );
-		$tempcache = file_get_contents( $url ) or die( "<div class='notexist'>ERROR - connection to wikimedia server lost!</div><br />" );
+		$tempcache = api( $url ) or die( "<div class='notexist'>ERROR - connection to wikimedia server lost!</div><br />" );
 		$tempcache = unserialize( $tempcache );
 		$arkey = array_keys( $tempcache["query"]["pages"] );
 		if ( $tempcache["query"]["pages"][$arkey[0]] == "-1" ) {
@@ -274,7 +273,7 @@ if ( $isaccord == true ) {
 		}
 
 		$thispageid = $arkey[0];
-		$tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = file_get_contents( "https://commons.wikimedia.org/w/index.php?action=raw&title=" . urlencode( $imagename ) );
+		$tempcache["query"]["pages"][$arkey[0]]["content"]["*"] = api( "https://commons.wikimedia.org/w/index.php?action=raw&title=" . urlencode( $imagename ) );
 		$imagedatas[$imagename] = $tempcache["query"]["pages"][$arkey[0]];
 		//Array mit Bildinfos erstellt, nun Beschreibung daraus parsen
 
@@ -314,7 +313,7 @@ if ( $isaccord == true ) {
 		  http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=Image:Pferd.jpg&clshow=!hidden&format=txtfm
 		  */
 		echo "get categorys...<br /> \n";
-		$querycat = file_get_contents( "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&titles=" . urlencode( $imagename ) . "&clshow=!hidden&format=php" );
+		$querycat = api( "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&titles=" . urlencode( $imagename ) . "&clshow=!hidden&format=php" );
 		$querycat = unserialize( $querycat );
 		$tempcatar = array();
 		foreach ( $querycat["query"]["pages"][$thispageid]["categories"] as $contxic ) {
@@ -329,7 +328,7 @@ if ( $isaccord == true ) {
 		}
 		if ( count( $tempcatar ) < 3 AND $totcatscans < 4 ) //catscan hinzufügen
 		{
-			echo "Search categories with CommonSense...<small style='color:red'>slow</small><br />";
+			// echo "Search categories with CommonSense...<small style='color:red'>slow</small><br />";
 			$tempcatscan = catscan( substr( $imagename, 5 ), $desc );
 			$functioncatscan = true;
 			if ( $tempcatscan == false ) {
@@ -465,7 +464,7 @@ if ( $isaccord == false ) {
 	if ( $functioncatscan === true ) {
 		echo "<small><small>powered by <a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a></small></small><br />";
 	} else if ( $functioncatscan === false ) {
-		echo "<small><small><a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a> not available (technical problem).</small></small><br />";
+		// echo "<small><small><a href='/~daniel/WikiSense/CommonSense.php' target='_blank'>CommonSense</a> not available (technical problem).</small></small><br />";
 	}
 
 	echo "<ul>";

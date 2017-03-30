@@ -3,6 +3,7 @@
 Copyright Luxo 2008
 
 This file is part of derivativeFX.
+          derivativeFX Maintainer - 2016
 
     derivativeFX is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,7 +24,9 @@ This file is part of derivativeFX.
 //Benutze Kategorien, in dem das Bild ist (nicht in dem die vorlagen sind)
 //Vorlagen zurückverfolgen bis zur [[Category:Copyright statuses]]
 
-ini_set( 'user_agent', 'DerivativeFX on labs; license gen; / PHP' );
+if (!function_exists('api')) {
+     include('functions.php');
+}
 
 $output = "";
 $image = trim( $_GET['image'] );
@@ -33,7 +36,7 @@ if ( $image ) {
 
 	$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=templates&format=php&tllimit=500&titles=" . urlencode( $image );
 
-	$raw = file_get_contents( $url );
+	$raw = api( $url );
 
 	if ( $_GET['format'] == "whitelist" ) {
 		echo "Query URL: " . htmlspecialchars( $url ) . " ($image)<br>\n";
@@ -106,7 +109,7 @@ if ( $image ) {
 
 					//Kats der Vorlage laden.
 					$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=php&cllimit=500&titles=" . urlencode( $template );
-					$raw = file_get_contents( $url );
+					$raw = api( $url );
 					$catunserialized = unserialize( $raw );
 					$catid = array_keys( $catunserialized['query']['pages'] );
 					//Vorlagen durchgehen
@@ -122,7 +125,7 @@ if ( $image ) {
 					if ( $islicense[$template] == false && $catunserialized['query']['pages'][$catid['0']]['categories'] ) {
 						foreach ( $catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
 							$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=php&cllimit=500&titles=" . urlencode( $katofTemp['title'] );
-							$raw = file_get_contents( $url );
+							$raw = api( $url );
 							$catunserialized2 = unserialize( $raw );
 							$catid = array_keys( $catunserialized2['query']['pages'] );
 
@@ -144,7 +147,7 @@ if ( $image ) {
 						}
 						foreach ( $catunserialized2['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
 							$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=php&cllimit=500&titles=" . urlencode( $katofTemp['title'] );
-							$raw = file_get_contents( $url );
+							$raw = api( $url );
 							$catunserialized3 = unserialize( $raw );
 							$catid = array_keys( $catunserialized3['query']['pages'] );
 
@@ -207,7 +210,7 @@ if ( $image ) {
 		//thumurl auslesen
 		//http://commons.wikimedia.org/w/api.php?action=query&titles=".urlencode($image)."&prop=imageinfo&iiprop=url&iiurlwidth=120&format=txtfm
 		$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&titles=" . urlencode( $image ) . "&prop=imageinfo&iiprop=url&iiurlwidth=120&format=php";
-		$query = unserialize( file_get_contents( $url ) );
+		$query = unserialize( api( $url ) );
 
 		foreach ( $query['query']['pages'] as $detquery ) {
 			$thumburl = $detquery['imageinfo']['0']['thumburl'];

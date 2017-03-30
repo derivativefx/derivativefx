@@ -23,6 +23,20 @@ This file is part of derivativeFX.
   INCLUDED IN EVERY PAGE
 */
 
+function api($url) {
+	sleep(1);
+        $con = curl_init();
+        $to = 4;
+        curl_setopt($con, CURLOPT_URL, $url);
+        curl_setopt($con, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($con, CURLOPT_CONNECTTIMEOUT, $to);
+        curl_setopt($con, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($con,CURLOPT_USERAGENT,'derivative tool; derivativeFX on tools wmflabs;');
+        $data = curl_exec($con);
+        curl_close($con);
+        return $data;
+}
+
 function helpcontent( $theme, $text = "?" ) {
 	global $language;
 

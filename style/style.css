@@ -40,13 +40,13 @@ a:active {
 
 .bodynorm {
     color: black;
-    background: #f9f9f9 url(http://tools.wikimedia.de/~chm/style/backdrop.png) 0 0 no-repeat;
+    background: #f9f9f9;
     font-family: x-small Arial, sans-serif;
 }
 
 .bodyload {
     color: black;
-    background: #EEEEEE url(http://tools.wikimedia.de/~chm/style/backdrop.png) 0 0 no-repeat;
+    background: #EEEEEE;
     font-family: x-small Arial, sans-serif;
 }
 

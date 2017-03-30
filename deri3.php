@@ -4,6 +4,7 @@
 Copyright Luxo 2008
 
 This file is part of derivativeFX.
+          derivativeFX Maintainer - 2016
 
     derivativeFX is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +20,6 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-ini_set( 'user_agent', ' derivativeFX on toolslabs / PHP' );
 
 if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 	header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivativeFX/deri1.php' );

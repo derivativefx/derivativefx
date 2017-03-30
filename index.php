@@ -1,6 +1,7 @@
 <?php
 /*
 Copyright Luxo 2008
+          derivativeFX Maintainer - 2016
 
 This file is part of derivativeFX.
 
@@ -18,11 +19,5 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-$zusatz = "";
-if ( $_GET['image'] ) {
-	$zusatz = trim( $_GET['image'] );
-	$zusatz = strtr( $zusatz, array( "\n" => '', "\r" => '' ) ); // prevent header injection on old PHP
-	$zusatz = "?image=" . urlencode( $zusatz );
-}
-header( 'Location: http://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php' . $zusatz );
+header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php');
 ?>
