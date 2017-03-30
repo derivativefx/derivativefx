@@ -24,9 +24,9 @@ This file is part of derivativeFX.
 */
 
 function api($url) {
-	sleep(1);
+	usleep(300000);
         $con = curl_init();
-        $to = 4;
+        $to = 2;
         curl_setopt($con, CURLOPT_URL, $url);
         curl_setopt($con, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($con, CURLOPT_CONNECTTIMEOUT, $to);
