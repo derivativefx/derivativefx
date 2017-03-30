@@ -495,9 +495,7 @@ if ( $isaccord == false ) {
 
   <br />
   <br />
-  <hr
- style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\">
-" . $lng['x']['hincan'] . ".<br />
+  <hr style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\"><br />
   <br />
   <input value='" . $lng['x']['next'] . "' type='submit' class='btn btn-success'><br />
   <br />
