@@ -246,8 +246,7 @@ if ( count( $noauthor ) > 0 ) {
 <body style="direction: ltr;" class="bodynorm container">
 <img src="derivativeFX_small.png"/>
 
-<form id="comform" method='post' enctype='multipart/form-data'
-	  action="//commons.wikimedia.org/wiki/Special:Upload?withjs=MediaWiki:Derivativefx-uploadform.js&specialform=derivativefxinterface" name="lastform"><br>
+<form id="comform" method='post' enctype='multipart/form-data' action="//commons.wikimedia.org/wiki/Special:Upload?withJS=MediaWiki:Derivativefx-uploadform.js&specialform=derivativefxinterface" name="lastform"><br>
 <!---
 	<?php echo $lng['x']['selfil']; ?>:<br>
 
@@ -290,7 +289,8 @@ if ( count( $noauthor ) > 0 ) {
 	<br>
 	<br>
 	<label for='accbut'> <input name="acceptterm" value="true" id="accbut" type="checkbox" onClick="enableupload();"><span class="acceptterm"> <?php echo $lng['x']['accept']; ?></label><br></span>
-
+	<br>
+	<?php $lng['x']['hincan'] ?>
 	<br>
 
 	<input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload'
