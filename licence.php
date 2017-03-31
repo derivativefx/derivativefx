@@ -17,7 +17,7 @@ This file is part of derivativeFX.
 
     You should have received a copy of the GNU General Public License
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
-    
+
     */
 
 //Tool um die lizenz eines Bildes herauszufinden.
@@ -34,250 +34,250 @@ $image = str_replace( " ", "_", $image );
 
 if ( $image ) {
 
-	$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=templates&format=php&tllimit=500&titles=" . urlencode( $image );
+        $url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=templates&format=json&tllimit=500&titles=" . urlencode( $image );
 
-	$raw = api( $url );
+        $raw = api( $url );
 
-	if ( $_GET['format'] == "whitelist" ) {
-		echo "Query URL: " . htmlspecialchars( $url ) . " ($image)<br>\n";
-	}
+        if ( $_GET['format'] == "whitelist" ) {
+                echo "Query URL: " . htmlspecialchars( $url ) . " ($image)<br>\n";
+        }
 
-	$unserialized = unserialize( $raw );
+        $unserialized = json_decode($raw, true);
 //Array key (pageid) herausfinden
-	$pageid = array_keys( $unserialized['query']['pages'] );
+        $pageid = array_keys( $unserialized['query']['pages'] );
 
-	if ( $_GET['format'] == "whitelist" ) {
-		echo "<pre> $raw >>>";
-		print_r( $unserialized );
-		echo "<<< </pre>\n";
-	}
+        if ( $_GET['format'] == "whitelist" ) {
+                echo "<pre> $raw >>>";
+                print_r( $unserialized );
+                echo "<<< </pre>\n";
+        }
 
-	if ( $unserialized['query']['pages'][$pageid['0']]['templates'] ) {
+        if ( $unserialized['query']['pages'][$pageid['0']]['templates'] ) {
 
 //whitelist erstellen (Templates, die sicher keine Lizenzen sind)
-		$whitelist = array();
-		$addtowhitelist = array();
+                $whitelist = array();
+                $addtowhitelist = array();
 
 //whitelist aus datei laden
-		$rawwhitelist = file( "whitelist.txt" );
-		foreach ( $rawwhitelist as $whitelistentry ) {
-			if ( trim( $whitelistentry ) != "" ) {
-				$whitelist[] = trim( $whitelistentry );
-			}
-		}
+                $rawwhitelist = file( "whitelist.txt" );
+                foreach ( $rawwhitelist as $whitelistentry ) {
+                        if ( trim( $whitelistentry ) != "" ) {
+                                $whitelist[] = trim( $whitelistentry );
+                        }
+                }
 
 
 //blacklist erstellen (Templates, die sicher Lizenzen sind)
-		$suretemplatelist = array();
-		$addtosuretemplatelist = array();
+                $suretemplatelist = array();
+                $addtosuretemplatelist = array();
 
 //whitelist aus datei laden
-		$rawblacklist = file( "blacklist.txt" );
-		foreach ( $rawblacklist as $blacklistentry ) {
-			if ( trim( $blacklistentry ) != "" ) {
-				$suretemplatelist[] = trim( $blacklistentry );
-			}
-		}
+                $rawblacklist = file( "blacklist.txt" );
+                foreach ( $rawblacklist as $blacklistentry ) {
+                        if ( trim( $blacklistentry ) != "" ) {
+                                $suretemplatelist[] = trim( $blacklistentry );
+                        }
+                }
 
 
-		if ( $_GET['format'] == "whitelist" ) {
-			echo "Query URL: " . htmlspecialchars( $url ) . "<br>\n";
-			echo "The following templates are on the whitelist:<br>\n";
-			htmltemplatelist( $whitelist );
+                if ( $_GET['format'] == "whitelist" ) {
+                        echo "Query URL: " . htmlspecialchars( $url ) . "<br>\n";
+                        echo "The following templates are on the whitelist:<br>\n";
+                        htmltemplatelist( $whitelist );
 
-			echo "The following templates are on the license template list:<br>\n";
-			htmltemplatelist( $suretemplatelist );
-		}
+                        echo "The following templates are on the license template list:<br>\n";
+                        htmltemplatelist( $suretemplatelist );
+                }
 
-		foreach ( $unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl ) {
+                foreach ( $unserialized['query']['pages'][$pageid['0']]['templates'] as $tmpl ) {
 
-			$template = $tmpl['title']; //easyer
-			$arraytemplates[] = $template;
+                        $template = $tmpl['title']; //easyer
+                        $arraytemplates[] = $template;
 
-			if ( ! in_array( $template, $whitelist ) AND preg_match( "/\/[a-z][a-z]$/", $template ) === 0 ) //nicht in whitelist und keine sprachvariante "/en" , "/de", ...
-			{
+                        if ( ! in_array( $template, $whitelist ) AND preg_match( "/\/[a-z][a-z]$/", $template ) === 0 ) //nicht in whitelist und keine sprachvariante "/en" , "/de", ...
+                        {
 
-				if ( strlen( $template ) > 11 AND $template != "Template:PD" AND substr( $template, 0, 14 ) != "Template:Potd/" ) {
+                                if ( strlen( $template ) > 11 AND $template != "Template:PD" AND substr( $template, 0, 14 ) != "Template:Potd/" ) {
 
-					if ( $_GET['echo'] == true ) {
-						$output .= $template . "<br>";
-					}
-					//Jede Vorlage prüfen: ist es eine Lizenz?
+                                        if ( $_GET['echo'] == true ) {
+                                                $output .= $template . "<br>";
+                                        }
+                                        //Jede Vorlage prüfen: ist es eine Lizenz?
 
-					$islicense[$template] = false; //default
-					//Kategorien prüfen, dann noch Subkategorien auf "License tags" prüfen.
+                                        $islicense[$template] = false; //default
+                                        //Kategorien prüfen, dann noch Subkategorien auf "License tags" prüfen.
 
-					//Kats der Vorlage laden.
-					$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=php&cllimit=500&titles=" . urlencode( $template );
-					$raw = api( $url );
-					$catunserialized = unserialize( $raw );
-					$catid = array_keys( $catunserialized['query']['pages'] );
-					//Vorlagen durchgehen
-					if ( $catunserialized['query']['pages'][$catid['0']]['categories'] ) {
-						foreach ( $catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
-							if ( $katofTemp['title'] == "Category:License tags" ) {
-								$islicense[$template] = true;
-							}
-						}
-					}
+                                        //Kats der Vorlage laden.
+                                        $url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=json&cllimit=500&titles=" . urlencode( $template );
+                                        $raw = api( $url );
+                                        $catunserialized = json_decode($raw, true);
+                                        $catid = array_keys( $catunserialized['query']['pages'] );
+                                        //Vorlagen durchgehen
+                                        if ( $catunserialized['query']['pages'][$catid['0']]['categories'] ) {
+                                                foreach ( $catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
+                                                        if ( $katofTemp['title'] == "Category:License tags" ) {
+                                                                $islicense[$template] = true;
+                                                        }
+                                                }
+                                        }
 
-					//Noch nicht als Lizenz identifiziert. Nun Kategorien der Kategorie durchsuchen.
-					if ( $islicense[$template] == false && $catunserialized['query']['pages'][$catid['0']]['categories'] ) {
-						foreach ( $catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
-							$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=php&cllimit=500&titles=" . urlencode( $katofTemp['title'] );
-							$raw = api( $url );
-							$catunserialized2 = unserialize( $raw );
-							$catid = array_keys( $catunserialized2['query']['pages'] );
+                                        //Noch nicht als Lizenz identifiziert. Nun Kategorien der Kategorie durchsuchen.
+                                        if ( $islicense[$template] == false && $catunserialized['query']['pages'][$catid['0']]['categories'] ) {
+                                                foreach ( $catunserialized['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
+                                                        $url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=json&cllimit=500&titles=" . urlencode( $katofTemp['title'] );
+                                                        $raw = api( $url );
+                                                        $catunserialized2 = json_decode($raw, true);
+                                                        $catid = array_keys( $catunserialized2['query']['pages'] );
 
-							if ( $catunserialized2['query']['pages'][$catid['0']]['categories'] ) {
-								foreach ( $catunserialized2['query']['pages'][$catid['0']]['categories'] as $KatOfKat ) {
-									if ( $KatOfKat['title'] == "Category:License tags" ) {
-										$islicense[$template] = true;
-									}
-								}
-							}
-						}
-					}
+                                                        if ( $catunserialized2['query']['pages'][$catid['0']]['categories'] ) {
+                                                                foreach ( $catunserialized2['query']['pages'][$catid['0']]['categories'] as $KatOfKat ) {
+                                                                        if ( $KatOfKat['title'] == "Category:License tags" ) {
+                                                                                $islicense[$template] = true;
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                        }
 
 //**
-					//Noch nicht als Lizenz identifiziert. Nun Kategorien der Unterkategorie durchsuchen.
-					if ( $islicense[$template] == false && $catunserialized2['query']['pages'][$catid['0']]['categories'] ) {
-						if ( $_GET['format'] == "whitelist" ) {
-							echo "Prüfe $template 3. mal!";
-						}
-						foreach ( $catunserialized2['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
-							$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=php&cllimit=500&titles=" . urlencode( $katofTemp['title'] );
-							$raw = api( $url );
-							$catunserialized3 = unserialize( $raw );
-							$catid = array_keys( $catunserialized3['query']['pages'] );
+                                        //Noch nicht als Lizenz identifiziert. Nun Kategorien der Unterkategorie durchsuchen.
+                                        if ( $islicense[$template] == false && $catunserialized2['query']['pages'][$catid['0']]['categories'] ) {
+                                                if ( $_GET['format'] == "whitelist" ) {
+                                                        echo "Prüfe $template 3. mal!";
+                                                }
+                                                foreach ( $catunserialized2['query']['pages'][$catid['0']]['categories'] as $katofTemp ) {
+                                                        $url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&format=json&cllimit=500&titles=" . urlencode( $katofTemp['title'] );
+                                                        $raw = api( $url );
+                                                        $catunserialized3 = json_decode($raw, true);
+                                                        $catid = array_keys( $catunserialized3['query']['pages'] );
 
-							if ( $catunserialized3['query']['pages'][$catid['0']]['categories'] ) {
-								foreach ( $catunserialized3['query']['pages'][$catid['0']]['categories'] as $KatOfKat ) {
-									if ( $KatOfKat['title'] == "Category:License tags" ) {
-										$islicense[$template] = true;
-									}
-								}
-							}
-						}
-					}
+                                                        if ( $catunserialized3['query']['pages'][$catid['0']]['categories'] ) {
+                                                                foreach ( $catunserialized3['query']['pages'][$catid['0']]['categories'] as $KatOfKat ) {
+                                                                        if ( $KatOfKat['title'] == "Category:License tags" ) {
+                                                                                $islicense[$template] = true;
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                        }
 //**
 
-				}
-			}
+                                }
+                        }
 
-			if ( $islicense[$template] == false AND ! in_array( $template, $whitelist ) AND ! in_array( $template, $suretemplatelist ) ) {
-				if ( ! stristr( $template, "Template:Potd/" ) ) {
-					$addtowhitelist[] = $template;
-				}
-			} else if ( $islicense[$template] == true AND ! in_array( $template, $suretemplatelist ) AND ! in_array( $template, $whitelist ) AND ! in_array( $template, $addtowhitelist ) ) {
-				$addtosuretemplatelist[] = $template;
-			}
+                        if ( $islicense[$template] == false AND ! in_array( $template, $whitelist ) AND ! in_array( $template, $suretemplatelist ) ) {
+                                if ( ! stristr( $template, "Template:Potd/" ) ) {
+                                        $addtowhitelist[] = $template;
+                                }
+                        } else if ( $islicense[$template] == true AND ! in_array( $template, $suretemplatelist ) AND ! in_array( $template, $whitelist ) AND ! in_array( $template, $addtowhitelist ) ) {
+                                $addtosuretemplatelist[] = $template;
+                        }
 
 
-		}
-	} else {
+                }
+        } else {
 //Bild existiert nicht
-		$output .= "NOTEXIST";
-	}
+                $output .= "NOTEXIST";
+        }
 
-	if ( $islicense ) {
+        if ( $islicense ) {
 
-		$blacklist = array( "Template:Nonderivative", "Template:Speedy delete text", "Template:Speedydelete", "Template:Delete", "Template:Copyvio", "Template:Nld", "Template:Own work", "Template:No license" );
-		$save = true;
-		foreach ( $blacklist as $blacklisted ) {
-			if ( in_array( $blacklisted, $arraytemplates ) ) {
-				$save = false;
-			}
-		}
+                $blacklist = array( "Template:Nonderivative", "Template:Speedy delete text", "Template:Speedydelete", "Template:Delete", "Template:Copyvio", "Template:Nld", "Template:Own work", "Template:No license" );
+                $save = true;
+                foreach ( $blacklist as $blacklisted ) {
+                        if ( in_array( $blacklisted, $arraytemplates ) ) {
+                                $save = false;
+                        }
+                }
 
-		if ( $save == true ) {
-			foreach ( $islicense as $lizenz => $isit ) {
-				if ( $isit == true ) {
+                if ( $save == true ) {
+                        foreach ( $islicense as $lizenz => $isit ) {
+                                if ( $isit == true ) {
 
-					$output .= substr( $lizenz, 9 ) . "|";
-				}
-			}
-		} else {
-			$output .= "DELETE";
-		}
+                                        $output .= substr( $lizenz, 9 ) . "|";
+                                }
+                        }
+                } else {
+                        $output .= "DELETE";
+                }
 
-	}
-
-
-	if ( $_GET['format'] == "JSON" ) {
-		//JSON format
-
-		//thumurl auslesen
-		//http://commons.wikimedia.org/w/api.php?action=query&titles=".urlencode($image)."&prop=imageinfo&iiprop=url&iiurlwidth=120&format=txtfm
-		$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&titles=" . urlencode( $image ) . "&prop=imageinfo&iiprop=url&iiurlwidth=120&format=php";
-		$query = unserialize( api( $url ) );
-
-		foreach ( $query['query']['pages'] as $detquery ) {
-			$thumburl = $detquery['imageinfo']['0']['thumburl'];
-		}
+        }
 
 
-		header( 'Content-type: application/json' );
+        if ( $_GET['format'] == "JSON" ) {
+                //JSON format
+
+                //thumurl auslesen
+                //http://commons.wikimedia.org/w/api.php?action=query&titles=".urlencode($image)."&prop=imageinfo&iiprop=url&iiurlwidth=120&format=txtfm
+                $url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&titles=" . urlencode( $image ) . "&prop=imageinfo&iiprop=url&iiurlwidth=120&format=json";
+                $query = json_decode( api( $url ), true );
+
+                foreach ( $query['query']['pages'] as $detquery ) {
+                        $thumburl = $detquery['imageinfo']['0']['thumburl'];
+                }
 
 
-		if ( trim( $output ) == "" ) {
-			$output = "NOLIC";
-		}
+                header( 'Content-type: application/json' );
 
-		echo '{
+
+                if ( trim( $output ) == "" ) {
+                        $output = "NOLIC";
+                }
+
+                echo '{
   "licenses": "' . htmlspecialchars( $output ) . '",
   "tumburl": "' . htmlspecialchars( $thumburl ) . '",
   "url": "' . $url . '",
 }';
 
-	} else if ( $_GET['format'] == "IEEX" ) {
-		header( 'Content-type: application/json' );
-		echo $output;
-	} else {
-		echo "\n\n\n<br><br><b>Output:</b><pre>" . $output . "</pre><br><br>\n\n";
-	}
+        } else if ( $_GET['format'] == "IEEX" ) {
+                header( 'Content-type: application/json' );
+                echo $output;
+        } else {
+                echo "\n\n\n<br><br><b>Output:</b><pre>" . $output . "</pre><br><br>\n\n";
+        }
 
 
 //Whitelist updaten
-	foreach ( $addtowhitelist as $temptowhite ) {
-		$addit .= $temptowhite . "\n";
-	}
-	if ( trim( $addit ) != "" ) {
-		//schreiben
-		file_put_contents( "whitelist.txt", $addit, FILE_APPEND | LOCK_EX );
-	}
+        foreach ( $addtowhitelist as $temptowhite ) {
+                $addit .= $temptowhite . "\n";
+        }
+        if ( trim( $addit ) != "" ) {
+                //schreiben
+                file_put_contents( "whitelist.txt", $addit, FILE_APPEND | LOCK_EX );
+        }
 
 
 //**
 //$addtosuretemplatelist updaten
-	foreach ( $addtosuretemplatelist as $temptosure ) {
-		$addit .= $temptosure . "\n";
-	}
-	if ( trim( $addit ) != "" ) {
-		//schreiben
-		file_put_contents( "blacklist.txt", $addit, FILE_APPEND | LOCK_EX );
-	}
+        foreach ( $addtosuretemplatelist as $temptosure ) {
+                $addit .= $temptosure . "\n";
+        }
+        if ( trim( $addit ) != "" ) {
+                //schreiben
+                file_put_contents( "blacklist.txt", $addit, FILE_APPEND | LOCK_EX );
+        }
 
-	if ( $_GET['format'] == "whitelist" ) {
-		echo "put the following templates to the whitelist:<br>\n";
-		htmltemplatelist( $addtowhitelist );
+        if ( $_GET['format'] == "whitelist" ) {
+                echo "put the following templates to the whitelist:<br>\n";
+                htmltemplatelist( $addtowhitelist );
 
-		echo "put the following templates to the license template list:<br>\n";
-		htmltemplatelist( $addtosuretemplatelist );
-	}
+                echo "put the following templates to the license template list:<br>\n";
+                htmltemplatelist( $addtosuretemplatelist );
+        }
 
 
 }
 
 function htmltemplatelist( $templates ) {
-	echo "<ol>\n";
-	foreach ( $templates as $template ) {
-		echo "<li><a href=\"https://commons.wikimedia.org/w/index.php?title=" . urlencode( $template ) . "\">" . htmlspecialchars( $template ) . "</a></li>\n";
-	}
-	if ( count( $templates ) == 0 ) {
-		echo "<li><i>nothing...</i></li>\n";
-	}
-	echo "</ol><br><br>\n\n";
+        echo "<ol>\n";
+        foreach ( $templates as $template ) {
+                echo "<li><a href=\"https://commons.wikimedia.org/w/index.php?title=" . urlencode( $template ) . "\">" . htmlspecialchars( $template ) . "</a></li>\n";
+        }
+        if ( count( $templates ) == 0 ) {
+                echo "<li><i>nothing...</i></li>\n";
+        }
+        echo "</ol><br><br>\n\n";
 }
 
 
