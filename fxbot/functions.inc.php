@@ -19,12 +19,11 @@ This file is part of derivativeFX.
     
     */
 
-
 //Funktion um Quelltext zu laden
 function wikitextload( $page ) {
 	$project = "commons.wikimedia.org";
 	$page = str_replace( " ", "_", $page );
-	$url = "http://" . $project . "/w/index.php?title=" . urlencode( $page ) . "&action=raw";
+	$url = "https://" . $project . "/w/index.php?title=" . urlencode( $page ) . "&action=raw";
 	$wikitext = file_get_contents( $url );
 	return ( $wikitext );
 }
@@ -57,7 +56,7 @@ function checkderivative( $imagename ) {
 
 	if ( ! $deristatus[$imagename] ) {
 		//Existenz prüfen
-		$api = unserialize( file_get_contents( "http://commons.wikimedia.org/w/api.php?action=query&format=php&titles=" . urlencode( $imagename ) . "&prop=imageinfo" ) );
+		$api = json_decode( file_get_contents( "https://commons.wikimedia.org/w/api.php?action=query&format=json&titles=" . urlencode( $imagename ) . "&prop=imageinfo" ), true );
 
 		if ( $api["query"]["pages"]["-1"] ) {
 			//nicht existent
@@ -184,7 +183,7 @@ function remove_nowiki( $msg, $origtitle ) {
 	$rgx_search = "/<nowiki>(.*)<\/nowiki>/Uie";
 	$msg = str_replace( "\n", "¶", $msg );
 	do {
-		$msg = preg_replace( $rgx_search, 'nowiki_replacer("\\1","' . mysql_real_escape_string( $origtitle ) . '")', $msg, - 1, $ct );
+		$msg = preg_replace( $rgx_search, 'nowiki_replacer("\\1","' . mysqli_real_escape_string( $origtitle ) . '")', $msg, - 1, $ct );
 	} while ( $ct != 0 );
 	$msg = str_replace( "¶", "\n", $msg );
 	return $msg;
