@@ -21,6 +21,7 @@ This file is part of derivativeFX.
     */
 include( "functions.php" );
 i18n();
+include( "language.php" );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html style="direction: ltr;" lang="en">
