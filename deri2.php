@@ -21,9 +21,9 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-$language = $_GET['lang'];
-include( "language.php" );
 include( "functions.php" );
+i18n();
+include( "language.php" );
 
 if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 	header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php' );
@@ -508,9 +508,7 @@ if ( $isaccord == false ) {
 }
 ?>
 	<hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-	| <a href="https://commons.wikimedia.org/wiki/Commons:DerivativeFX">about</a>
-	| <a href="//github.com/derivativefx/derivativefx">source &amp; license</a><br/>
+<?php fxfooter(); ?>
 </span>
 </body>
 </html>
