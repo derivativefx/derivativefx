@@ -25,10 +25,12 @@ This file is part of derivativeFX.
 
 function i18n() {
 	$fla = $_GET['lang'];
-	if(preg_match("/^[a-z]{1,4}(-[a-z]{1,4}|)+$/",$fla)) {
+	if(preg_match("/^[a-z]{1,4}(-[a-z]{1,4}|)+$/", $fla)) {
 	     $language = htmlspecialchars($fla);
+	     $lang = htmlspecialchars($fla);
 	} else {
 	     $language = "en";
+	     $lang = "en";
 	}
 }
 	
