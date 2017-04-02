@@ -24,6 +24,7 @@ This file is part of derivativeFX.
 */
 
 function i18n() {
+	global $language, $lang;
 	$fla = $_GET['lang'];
 	if(preg_match("/^[a-z]{1,4}(-[a-z]{1,4}|)+$/", $fla)) {
 	     $language = htmlspecialchars($fla);
