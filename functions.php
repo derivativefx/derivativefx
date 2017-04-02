@@ -30,7 +30,6 @@ function i18n() {
 	} else {
 	     $language = "en";
 	}
-	include( "language.php" );
 }
 	
 function api($url) {
