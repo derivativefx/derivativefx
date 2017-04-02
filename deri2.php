@@ -264,9 +264,9 @@ if ( $isaccord == true ) {
 		echo $imagename . "...<br />";
 		//query laden
 		//http://commons.wikimedia.org/w/query.php?what=content|imageinfo&iihistory&format=txt&titles=Image:Beispiel.jpg|Image:Hund.jpg
-		$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=php&titles=" . urlencode( $imagename );
+		$url = "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=imageinfo&iilimit=50&iiprop=timestamp|user|comment|url|size|sha1|metadata&format=jsom&titles=" . urlencode( $imagename );
 		$tempcache = api( $url ) or die( "<div class='notexist'>ERROR - connection to wikimedia server lost!</div><br />" );
-		$tempcache = unserialize( $tempcache );
+		$tempcache = json_decode( $tempcache , true );
 		$arkey = array_keys( $tempcache["query"]["pages"] );
 		if ( $tempcache["query"]["pages"][$arkey[0]] == "-1" ) {
 			die( "<div class='notexist'>ERROR - $imagename not found!</div>" );
