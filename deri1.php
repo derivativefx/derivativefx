@@ -19,9 +19,8 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
 
     */
-$language = $_GET['lang'];
 include( "functions.php" );
-include( "language.php" );
+i18n();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html style="direction: ltr;" lang="en">
@@ -171,9 +170,6 @@ foreach ( $lng as $shortcut => $lgarry ) {
 </div>
 
 <hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-        | <a href="https://commons.wikimedia.org/wiki/Commons:DerivativeFX">about</a>
-        | <a href="//github.com/derivativefx/derivativefx">source &amp; license</a><br/>
-        <br/>
+<?php fxfooter(); ?>
 </body>
 </html>
