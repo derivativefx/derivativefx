@@ -31,7 +31,7 @@ i18n();
 include( "language.php" );
 
 //print_r($_POST);
-$imagesdata = unserialize( base64_decode( $_POST['data'] ) );
+$imagesdata = json_decode( base64_decode( $_POST['data'] ) , true );
 //print_r($imagesdata);
 //Autor(en) auslesen, nicht ganz einfach
 //1.) Wenn |author angegeben, dieses Feld verwenden
