@@ -102,7 +102,7 @@ function bigfirst( $name ) {
 
 $countimage = count( $images );
 if ( $countimage == 0 ) {
-	die( "no images received!" );
+	die( "no images received! <br><br> <a href=\"deri2.php\" class=\"btn btn-warning\">Start from scratch</a>" );
 }
 echo "$countimage Image(s) received...<br />";
 //Lizenzen und Bilder im Array $images gespeichert.
