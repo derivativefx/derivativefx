@@ -429,7 +429,7 @@ if ( $isaccord == false ) {
 	echo "<form enctype='multipart/form-data' method='post' action='deri3.php?lang=$language' name='sendform'>" . $lng['x']['descri'] . ":" . helpcontent( "description" ) . " <br />
 
   <font style='font-style: italic;' size='-1'>" . $lng['x']['forpar'] . "</font><br />
-  <textarea name='data' style='display:none'>" . base64_encode( serialize( $imagedatas ) ) . "</textarea>
+  <textarea name='data' style='display:none'>" . base64_encode( json_encode( $imagedatas ) ) . "</textarea>
   <textarea cols='70' rows='10' name='description'>" . htmlspecialchars( $outputdescription ) . "</textarea><br />
 
   <br />
