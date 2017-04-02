@@ -18,8 +18,26 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-$theme = htmlspecialchars( $_GET['theme'] );
-$lang = htmlspecialchars( $_GET['lang'] );
+if ( $_GET['theme'] == "whatisthat") {
+    $theme = "whatisthat";
+} elseif ( $_GET['theme'] == "description" ) {
+    $theme = "description";
+} elseif ( $_GET['theme'] == "license" ) {
+    $theme = "license";
+} elseif ( $_GET['theme'] == "templateretouched" ) {
+    $theme = "templateretouched";
+} else {
+    $theme = "unknown";
+}
+
+if ( $_GET['lang'] == "en") {
+    $lang = "en";
+} elseif ( $_GET['lang'] == "de" ) {
+    $lang = "de";
+} else {
+    $lang = "en";
+}
+
 $output = "";
 
 $add = "-en";
