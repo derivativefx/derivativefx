@@ -313,8 +313,8 @@ if ( $isaccord == true ) {
 		  http://commons.wikimedia.org/w/api.php?action=query&prop=categories&titles=Image:Pferd.jpg&clshow=!hidden&format=txtfm
 		  */
 		echo "get categorys...<br /> \n";
-		$querycat = api( "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&titles=" . urlencode( $imagename ) . "&clshow=!hidden&format=php" );
-		$querycat = unserialize( $querycat );
+		$querycat = api( "https://commons.wikimedia.org/w/api.php?action=query&rawcontinue=1&prop=categories&titles=" . urlencode( $imagename ) . "&clshow=!hidden&format=json" );
+		$querycat = json_decode( $querycat, true );
 		$tempcatar = array();
 		foreach ( $querycat["query"]["pages"][$thispageid]["categories"] as $contxic ) {
 			$cat = substr( $contxic["title"], 9 );
