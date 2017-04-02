@@ -146,7 +146,7 @@ foreach ( $lng as $shortcut => $lgarry ) {
 </iframe></p>-->
                 <?php echo $lng['x']['orwo']; ?>:
                 <br/>
-                <input id="firstfield" size="50" name="original_1" value="File:"
+                <input id="firstfield" size="50" name="original_1" class="form-control" value="File:"
                            onkeyup="loadlic('1',this.value)" onchange="loadlic('1',this.value)"
                            autocomplete="off">
                 <input name="origliz_1" id="origlizid_1" value="" type="hidden">
@@ -158,7 +158,6 @@ foreach ( $lng as $shortcut => $lgarry ) {
                 <div id="placeformore">
 
                 </div>
-                <br/>
                 <br/>
                 <input id="mtobut" name="morethanone" value="<?php echo $lng['x']['admo']; ?>" type="button"  class="btn btn-primary"
                            OnClick="more()">
