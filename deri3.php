@@ -26,7 +26,8 @@ if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
 	die();
 }
 //error_reporting(E_ALL);
-$language = $_GET['lang'];
+include( "functions.php" );
+i18n();
 include( "language.php" );
 
 //print_r($_POST);
@@ -300,22 +301,6 @@ if ( count( $noauthor ) > 0 ) {
 	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
 </form>
 <hr style="height: 2px; width: 60%;">
-<div style="text-align: center;">The tool was originally written by <a href="//commons.wikimedia.org/wiki/User:Luxo">Luxo</a>
-	| <a href="https://commons.wikimedia.org/wiki/Commons:DerivativeFX">about</a>
-	| <a href="//github.com/derivativefx/derivativefx">source &amp; license</a></div>
+<?php fxfooter(); ?>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
