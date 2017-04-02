@@ -23,7 +23,7 @@ This file is part of derivativeFX.
   INCLUDED IN EVERY PAGE
 */
 
-function i18n($url) {
+function i18n() {
 	$fla = $_GET['lang'];
 	if(preg_match("/^[a-z]{1,4}(-[a-z]{1,4}|)+$/",$fla)) {
 	     $language = htmlspecialchars($fla);
