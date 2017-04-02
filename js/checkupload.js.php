@@ -19,7 +19,8 @@ This file is part of derivativeFX.
     
     */
 
-$language = $_GET['lang'];
+include( "/data/project/derivative/public_html/functions.php" );
+i18n();
 include( "/data/project/derivative/public_html/language.php" );
 header( "Content-Type: application/x-javascript" );
 ?>
