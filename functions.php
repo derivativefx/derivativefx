@@ -19,9 +19,11 @@ This file is part of derivativeFX.
     
     */
 
-/*  FUNCTIONS
-  INCLUDED IN EVERY PAGE
+/*
+FUNCTIONS INCLUDED IN EVERY PAGE
 */
+
+error_reporting(0);
 
 function i18n() {
 	global $language, $lang;
