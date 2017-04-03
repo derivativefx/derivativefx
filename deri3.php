@@ -164,15 +164,6 @@ foreach ( $_POST as $Cname => $Cvalue ) {
 
 }
 
-
-//Array zur übergabe vorbereiten
-
-$token = rand( 100000, 999999 );
-$checksum = md5( $token / 3 );
-$nextarray = array( "originals" => $originals, "token" => $token, "time" => time() );
-
-$nextarray = base64_encode( serialize( $nextarray ) );
-
 //new filename propositions
 
 foreach ( $imagesdata as $imagename => $imagedata ) {
@@ -212,10 +203,6 @@ if ( count( $noauthor ) > 0 ) {
 	<script type="text/javascript" src="js/checkupload.js.php?lang=<?php echo $language; ?>"></script>
 	<script type="text/javascript">
 
-		var checksum = "<?php echo $checksum; ?>";
-		var data = "<?php echo $nextarray; ?>";
-
-
 		function enableupload() {
 			var button = $( "startupload" );
 			var cb = $( "accbut" );
@@ -225,20 +212,6 @@ if ( count( $noauthor ) > 0 ) {
 			}
 			else {
 				button.disabled = true;
-			}
-		}
-
-		function propositionsc() {
-			var props = $( "propositions" );
-			var probsymb = $( "probsymb" );
-
-			if ( props.style.display == "none" ) {
-				props.style.display = "block";
-				probsymb.firstChild.data = "▲";
-			}
-			else {
-				props.style.display = "none";
-				probsymb.firstChild.data = "▼";
 			}
 		}
 	</script>
@@ -259,11 +232,7 @@ if ( count( $noauthor ) > 0 ) {
   <span style="background-color:white;font-size:x-small"><?php echo $lng['x']['propos']; ?> <a
 		  href="javascript:propositionsc();" id="probsymb">▼</a><br>
   <span style="display:none" id="propositions"><ul>
-		  <?php
-		  foreach ( $newnames as $titlesx ) {
-			  echo "<li><a href='javascript:$(\"newfilename\").value=\"" . htmlspecialchars( $titlesx ) . "\";checkimg($(\"newfilename\").value);'>" . htmlspecialchars( $titlesx ) . "</a></li>\n";
-		  }
-		  ?></ul></span>
+</ul></span>
   <br></span>
 	<input type="text" name="wpDestFile" size="50" id="newfilename" onchange="checkimg(this.value);"
 		   onkeyup="lasttatch();checkimg(this.value);"><br><br>
@@ -280,8 +249,7 @@ if ( count( $noauthor ) > 0 ) {
 	<br>
 	<?php echo $lng['x']['summar']; ?>:<br>
 
-	<textarea rows='25' cols='100' name="wpUploadDescription"
-			  id="desctext"><?php echo htmlspecialchars( $formular ); ?></textarea><br>
+	<textarea rows='25' cols='100' name="wpUploadDescription" id="desctext"><?php echo htmlspecialchars( $formular ); ?></textarea><br>
 	<?php echo $authorwarn; ?>
 	<br>
 	<input type='hidden' name='wpLicense' value=''/>
@@ -294,8 +262,7 @@ if ( count( $noauthor ) > 0 ) {
 	<?php echo $lng['x']['hincan']; ?>
 	<br>
 
-	<input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload'
-		   value="<?php echo $lng['x']['start']; ?>" title="Start upload" type="submit" class="btn btn-success"> &nbsp;<br>
+	<input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload' value="<?php echo $lng['x']['start']; ?>" title="Start upload" type="submit" class="btn btn-success"> &nbsp;<br>
 
 	<br>
 	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
