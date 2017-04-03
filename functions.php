@@ -99,4 +99,10 @@ function fxfooter() {
 	echo"<div style=\"text-align: center; font-size: x-small;\">Tool originally written by <a href=\"//commons.wikimedia.org/wiki/User:Luxo\">Luxo</a> | <a href=\"https://commons.wikimedia.org/wiki/Commons:DerivativeFX\">about</a> | <a href=\"//github.com/derivativefx/derivativefx\">source &amp; license</a><br></div>";
 }
 
+$stash = 'stash.php';
+
+if (file_exists($stash)) {
+    include $stash;
+}
+
 ?>
