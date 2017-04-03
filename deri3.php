@@ -22,7 +22,7 @@ This file is part of derivativeFX.
     */
 
 if ( $_SERVER["REQUEST_METHOD"] != "POST" ) {
-	header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivativeFX/deri1.php' );
+	header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php' );
 	die();
 }
 //error_reporting(E_ALL);
@@ -140,7 +140,7 @@ $formular .= "{{" . $_POST["license"] . "}}\n\n";
 $formular .= "== {{Original upload log}} ==\nThis image is a derivative work of the following images:\n";
 
 foreach ( $imagesdata as $imagename => $imagedata ) {
-	$formular .= "\n*[[:$imagename]] licensed with ";
+	$formular .= "\n* [[:$imagename]] licensed with ";
 	foreach ( $imagedata["licenses"] as $key => $lizenz ) {
 		if ( $key != 0 ) {
 			$formular .= ", " . $lizenz;
@@ -150,7 +150,7 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 	}
 	$formular .= "\n";
 	foreach ( $imagedata["imageinfo"] as $vkey => $cntns ) {
-		$formular .= "**" . $imagedata["imageinfo"][$vkey]["timestamp"] . " [[User:" . $imagedata["imageinfo"][$vkey]["user"] . "|" . $imagedata["imageinfo"][$vkey]["user"] . "]] " . $imagedata["imageinfo"][$vkey]["width"] . "x" . $imagedata["imageinfo"][$vkey]["height"] . " (" . $imagedata["imageinfo"][$vkey]["size"] . " Bytes) ''<nowiki>" . substr( strip_tags( str_replace( "\n", " ", $imagedata["imageinfo"][$vkey]["comment"] ) ), 0, 225 ) . "</nowiki>''\n";
+		$formular .= "** " . $imagedata["imageinfo"][$vkey]["timestamp"] . " [[User:" . $imagedata["imageinfo"][$vkey]["user"] . "|" . $imagedata["imageinfo"][$vkey]["user"] . "]] " . $imagedata["imageinfo"][$vkey]["width"] . "x" . $imagedata["imageinfo"][$vkey]["height"] . " (" . $imagedata["imageinfo"][$vkey]["size"] . " Bytes) ''<nowiki>" . substr( strip_tags( str_replace( "\n", " ", $imagedata["imageinfo"][$vkey]["comment"] ) ), 0, 225 ) . "</nowiki>''\n";
 	}
 
 }
