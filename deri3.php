@@ -96,7 +96,7 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 	}
 
 	if ( $author ) {
-		$Authors .= "*[[:$imagename|]]: " . trim( $author ) . "\n";
+		$Authors .= "* [[:$imagename|]]: " . trim( $author ) . "\n";
 	}
 
 }
@@ -109,7 +109,7 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 }
 $formular .= "|display=50}}\n";
 $formular .= "|Date=" . date( "Y-m-d H:i", time() ) . " (UTC)\n";
-$formular .= "|Author=" . $Authors . "*derivative work: [[User:{{subst:REVISIONUSER}}|{{subst:REVISIONUSER}}]]\n";
+$formular .= "|Author=" . $Authors . "* derivative work: [[User:{{subst:REVISIONUSER}}|{{subst:REVISIONUSER}}]]\n";
 $formular .= "|Permission=\n";
 $formular .= "|other_versions=\n}}\n\n";
 
