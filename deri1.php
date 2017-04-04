@@ -85,13 +85,13 @@ foreach ( $lng as $shortcut => $lgarry ) {
 
         <br/> <?php echo $lng['x']['conf']; ?>
         <br/>
-        <iframe src="//commons.wikimedia.org/wiki/Special:Mypage"
+        <iframe src="https://commons.wikimedia.org/wiki/Special:Mypage"
                         OnLoad="$('onlyfornext').enable('loggedinnext')" name="checkuser" width="700"
                         height="200" align="left"
                         scrolling="no" marginheight="0" marginwidth="0" frameborder="1">
         </iframe>
-        <br style="clear:both"><?php echo $lng['x']['look']; ?> <a href="https://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br/>
         <img src="transparent.gif" style="position:absolute;left:9px;"/>
+        <br style="clear:both"><?php echo $lng['x']['look']; ?> <a href="https://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br/>
         <input id="checkskip" name="checkskip" value="true"
                    type="checkbox"> <?php echo $lng['x']['skip']; ?><br/>
         <br/>
