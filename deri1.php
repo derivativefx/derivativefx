@@ -90,9 +90,7 @@ foreach ( $lng as $shortcut => $lgarry ) {
                         height="200" align="left"
                         scrolling="no" marginheight="0" marginwidth="0" frameborder="1">
         </iframe>
-        <img src="transparent.gif" style="position:absolute;left:9px;"/>
-        <br style="clear:both"><?php echo $lng['x']['look']; ?> <a
-                href="//commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br/>
+        <br style="clear:both"><?php echo $lng['x']['look']; ?> <a href="https://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br/>
         <input id="checkskip" name="checkskip" value="true"
                    type="checkbox"> <?php echo $lng['x']['skip']; ?><br/>
         <br/>
