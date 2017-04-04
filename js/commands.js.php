@@ -358,15 +358,6 @@ function more() {
 	}
 }
 
-function licprevi( temlate ) {
-	var tmpurl = "https://commons.wikimedia.org/w/index.php?action=ajax&rs=UploadForm%3A%3AajaxGetLicensePreview&rsargs[]=" + temlate + "|????";
-
-	/*$("licenceframe").src = tmpurl;
-	 $("licinprev").firstChild.data = temlate;
-	 $('licprev').show();*/
-
-}
-
 function supname( image ) {
 	// name überprüfen
 	var checkerc = image.substr( 0, 6 );
