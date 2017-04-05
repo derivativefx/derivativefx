@@ -96,7 +96,8 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 	}
 
 	if ( $author ) {
-		$Authors .= "* [[:$imagename|]]: " . trim( $author ) . "\n";
+		$imagenamclean =  str_replace ( "_" , " " , $imagename );
+		$Authors .= "* [[:$imagenamclean|$imagenamclean]]: " . trim( $author ) . "\n";
 	}
 
 }
