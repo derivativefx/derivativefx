@@ -39,7 +39,7 @@ function i18n() {
 }
 	
 function api($url) {
-	$ac = ( "/data/project/derivativel/apicalls.txt" );
+	$ac = ( "/data/project/derivative/apicalls.txt" );
 	$hii = file( $ac );
 	$hii[0] ++;
 	$fp = fopen( $ac , "w" );
