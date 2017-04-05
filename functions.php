@@ -49,6 +49,13 @@ function api($url) {
         $data = curl_exec($con);
         curl_close($con);
         return $data;
+	
+	$ac = ( "apicalls.txt" );
+	$hii = file( $ac );
+	$hii[0] ++;
+	$fp = fopen( $ac , "w" );
+	fputs( $fp , "$hii[0]" );
+	fclose( $fp );
 }
 
 function helpcontent( $theme, $text = "?" ) {
