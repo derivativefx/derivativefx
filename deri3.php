@@ -200,7 +200,6 @@ if ( count( $noauthor ) > 0 ) {
 	<meta content="Luxo" name="author">
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<script type="text/javascript" src="js/prototype.js"></script>
-	<script type="text/javascript" src="js/checkupload.js.php?lang=<?php echo $language; ?>"></script>
 	<script type="text/javascript">
 
 		function enableupload() {
