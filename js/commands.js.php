@@ -133,13 +133,13 @@ function loadlic( name, image ) {
 									< rawlicenses.length; i++ ) {
 
 									if ( rawlicenses[i] != "" ) {
-										licprevi( rawlicenses[i] );
+										// licprevi( rawlicenses[i] );
 
 
 										var clear = "";
 										var myA = document.createElement( "a" );
 										var mysrc = document.createAttribute( "href" );
-										mysrc.nodeValue = "javascript:licprevi('" + rawlicenses[i] + "')";
+										// mysrc.nodeValue = "javascript:licprevi('" + rawlicenses[i] + "')";
 										myA.setAttributeNode( mysrc );
 										var Textlink = document.createTextNode( rawlicenses[i] );
 										myA.appendChild( Textlink );
