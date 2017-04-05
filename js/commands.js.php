@@ -139,7 +139,7 @@ function loadlic( name, image ) {
 										var clear = "";
 										var myA = document.createElement( "a" );
 										var mysrc = document.createAttribute( "href" );
-										// mysrc.nodeValue = "javascript:licprevi('" + rawlicenses[i] + "')";
+										mysrc.nodeValue = "https://commons.wikimedia.org/wiki/Template:" + rawlicenses[i] + "";
 										myA.setAttributeNode( mysrc );
 										var Textlink = document.createTextNode( rawlicenses[i] );
 										myA.appendChild( Textlink );
