@@ -72,7 +72,7 @@ his developer assume no accountability about the correctness
 of the generated content. It has been created in the hope
 that it will be useful, but <span style=\"font-weight: bold;\">WITHOUT
 ANY WARRANTY. You are accountable for
-the correctness! </span>Image name, original files and time is logged.";
+the correctness!</span>";
 $lng['en']['start'] = "Confirm &amp; select file to upload";
 $lng['en']['attac'] = "Please attach a file.";
 $lng['en']['corfi'] = "No correct file extension found in destination file. (%s)";
@@ -130,7 +130,7 @@ $lng['de']['addnot'] = "Bei den Originalen einen Hinweis über diese Bearbeitung
 $lng['de']['accept'] = "Du bestätigst dass alle Details in der Dateibeschreibung
   <span style=\"font-weight: bold;\">korrekt und kompatibel mit den Originaldateien sind. Dateien können geschützte Teile enthalten. Die Originallizenz gilt nicht für Bearbeitungen, welche diese freistellen.</span> Dieses Tool ist nicht in der Lage, solche geschützten Teile zu finden. derivativeFX  und sein Entwickler
  übernehmen keine Verantwortung für den generierten Inhalt. Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber <span style=\"font-weight: bold;\">OHNE IRGENDEINE GARANTIE.
- Du bist verantwortlich für die Richtigkeit der Angaben! </span>Zielname, Originaldateien und Zeit wird aufgezeichent.";
+ Du bist verantwortlich für die Richtigkeit der Angaben!</span>";
 $lng['de']['start'] = "Datei Hochladen";
 $lng['de']['attac'] = "Bitte gib eine Datei an.";
 $lng['de']['corfi'] = "Keine korrekte Dateiendung gefunden im Dateiname. (%s)";
