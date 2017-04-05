@@ -141,6 +141,7 @@ function loadlic( name, image ) {
 										var mysrc = document.createAttribute( "href" );
 										mysrc.nodeValue = "https://commons.wikimedia.org/wiki/Template:" + rawlicenses[i] + "";
 										myA.setAttributeNode( mysrc );
+										myA.setAttribute( "target","_blank" );
 										var Textlink = document.createTextNode( rawlicenses[i] );
 										myA.appendChild( Textlink );
 
