@@ -249,7 +249,7 @@ if ( count( $noauthor ) > 0 ) {
 	<br>
 	<?php echo $lng['x']['summar']; ?>:<br>
 
-	<textarea rows='25' cols='100' name="wpUploadDescription" id="desctext"><?php echo htmlspecialchars( $formular ); ?></textarea><br>
+	<textarea rows='25' cols='100' class='form-control' name="wpUploadDescription" id="desctext"><?php echo htmlspecialchars( $formular ); ?></textarea><br>
 	<?php echo $authorwarn; ?>
 	<br>
 	<input type='hidden' name='wpLicense' value=''/>
@@ -262,7 +262,7 @@ if ( count( $noauthor ) > 0 ) {
 	<?php echo $lng['x']['hincan']; ?>
 	<br>
 
-	<input onclick="return upchecker()" disabled="disabled" id="startupload" name='wpUpload' value="<?php echo $lng['x']['start']; ?>" title="Start upload" type="submit" class="btn btn-success"> &nbsp;<br>
+	<input disabled="disabled" id="startupload" name='wpUpload' value="<?php echo $lng['x']['start']; ?>" title="Start upload" type="submit" class="btn btn-success"> &nbsp;<br>
 
 	<br>
 	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
