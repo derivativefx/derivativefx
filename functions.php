@@ -1,6 +1,7 @@
 <?php
 /*
 Copyright Luxo 2008
+          derivativeFX Maintainer - 2016
 
 This file is part of derivativeFX.
 
@@ -38,14 +39,13 @@ function i18n() {
 }
 	
 function api($url) {
-	usleep(300000);
+	usleep(100000);
         $con = curl_init();
         $to = 2;
         curl_setopt($con, CURLOPT_URL, $url);
         curl_setopt($con, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($con, CURLOPT_CONNECTTIMEOUT, $to);
-        curl_setopt($con, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($con,CURLOPT_USERAGENT,'derivative tool; derivativeFX on tools wmflabs;');
+        curl_setopt($con, CURLOPT_USERAGENT,'derivativeFX 2.0; labs2api; derivativeFX on Tool Labs;');
         $data = curl_exec($con);
         curl_close($con);
         return $data;
@@ -64,8 +64,8 @@ function helpcontent( $theme, $text = "?" ) {
 
 
 function catscan( $image, $kw = "" ) {
-	$url = "http://toolserver.org/~daniel/WikiSense/CommonSense.php?u=en&i=" . urlencode( $image ) . "&r=on&kw=" . urlencode( $kw ) . "&p=_20&go-clean=Kategorien+finden&cl=&w=en&v=0";
-//	$return = file_get_contents( $url ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
+	$url = "https://tools.wmflabs.org/wikisense/CommonSense.php?u=en&i=" . urlencode( $image ) . "&r=on&kw=" . urlencode( $kw ) . "&p=_20&go-clean=Kategorien+finden&cl=&w=en&v=0";
+//	$return = api( $url ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
 	$return = ""; // deprecated, no replacement aviable
 	$start = strpos( $return, "#CATEGORIES" ) or print( "<span style='color:red'>CommonSense not accessible!</span><br/>" );
 	$end = strpos( $return, "#GALLERIES" );
