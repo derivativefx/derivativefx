@@ -39,7 +39,15 @@ function i18n() {
 }
 	
 function api($url) {
-	usleep(100000);
+	$ac = ( "/data/project/derivativel/apicalls.txt" );
+	$hii = file( $ac );
+	$hii[0] ++;
+	$fp = fopen( $ac , "w" );
+	fputs( $fp , "$hii[0]" );
+	fclose( $fp );
+	
+	usleep(200000);
+	
         $con = curl_init();
         $to = 2;
         curl_setopt($con, CURLOPT_URL, $url);
@@ -49,13 +57,6 @@ function api($url) {
         $data = curl_exec($con);
         curl_close($con);
         return $data;
-	
-	$ac = ( "apicalls.txt" );
-	$hii = file( $ac );
-	$hii[0] ++;
-	$fp = fopen( $ac , "w" );
-	fputs( $fp , "$hii[0]" );
-	fclose( $fp );
 }
 
 function helpcontent( $theme, $text = "?" ) {
