@@ -428,7 +428,7 @@ if ( $isaccord == false ) {
 
   <font style='font-style: italic;' size='-1'>" . $lng['x']['forpar'] . "</font><br />
   <textarea name='data' style='display:none'>" . base64_encode( json_encode( $imagedatas ) ) . "</textarea>
-  <textarea cols='70' rows='10' name='description'>" . htmlspecialchars( $outputdescription ) . "</textarea><br />
+  <textarea cols='70' rows='10' name='description' class='form-control'>" . htmlspecialchars( $outputdescription ) . "</textarea><br />
 
   <br />
   <hr
@@ -490,8 +490,6 @@ if ( $isaccord == false ) {
   <select name='license'>
   $licenseausw
   </select>
-
-  <br />
   <br />
   <hr style=\"height: 1px; width: 50%; margin-left: 0px; margin-right: auto;\"><br />
   <br />
