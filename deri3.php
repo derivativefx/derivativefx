@@ -105,7 +105,7 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 $formular = "== {{int:filedesc}} ==\n{{Information\n|Description=" . trim( stripslashes( $_POST['description'] ) ) . "\n";
 $formular .= "|Source={{Derived from";
 foreach ( $imagesdata as $imagename => $imagedata ) {
-	$imstr = substr( $imagename, 5 )
+	$imstr = substr( $imagename, 5 );
 	$imgc =  str_replace ( "_" , " " , $imgc );
 	$formular .= "|" . $derif;
 	$tmpimg = $imagename;
