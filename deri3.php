@@ -105,8 +105,11 @@ foreach ( $imagesdata as $imagename => $imagedata ) {
 $formular = "== {{int:filedesc}} ==\n{{Information\n|Description=" . trim( stripslashes( $_POST['description'] ) ) . "\n";
 $formular .= "|Source={{Derived from";
 foreach ( $imagesdata as $imagename => $imagedata ) {
-	$formular .= "|" . substr( $imagename, 5 );
+	$imstr = substr( $imagename, 5 )
+	$imgc =  str_replace ( "_" , " " , $imgc );
+	$formular .= "|" . $derif;
 	$tmpimg = $imagename;
+	$tmpclean = $imgc;
 }
 $formular .= "|display=50}}\n";
 $formular .= "|Date=" . date( "Y-m-d H:i", time() ) . " (UTC)\n";
@@ -116,12 +119,12 @@ $formular .= "|other_versions=\n}}\n\n";
 
 //Vorlage RetouchedPicture
 if ( $_POST["addtempret"] == "true" ) {
-	$formular .= "{{RetouchedPicture|" . $_POST["changestemp"] . "|editor=" . $_POST['editor'] . "|orig=" . substr( $tmpimg, 5 ) . "}}\n\n";
+	$formular .= "{{RetouchedPicture|" . $_POST["changestemp"] . "|editor=" . $_POST['editor'] . "|orig=" . $tmpclean . "}}\n\n";
 }
 
 //Template:BWS
 if ( $_POST["addbwstemp"] == "true" ) {
-	$formular .= "{{Bilderwerkstatt|changes=" . $_POST["changesbws"] . "|editor=~~~|orig=" . substr( $tmpimg, 5 ) . "}}\n\n";
+	$formular .= "{{Bilderwerkstatt|changes=" . $_POST["changesbws"] . "|editor=~~~|orig=" $tmpclean . "}}\n\n";
 }
 
 //Template {{Atelier graphique}}
@@ -141,7 +144,8 @@ $formular .= "{{" . $_POST["license"] . "}}\n\n";
 $formular .= "== {{Original upload log}} ==\nThis image is a derivative work of the following images:\n";
 
 foreach ( $imagesdata as $imagename => $imagedata ) {
-	$formular .= "\n* [[:$imagename]] licensed with ";
+	$imgc =  str_replace ( "_" , " " , $imagename );
+	$formular .= "\n* [[:$imgc]] licensed with ";
 	foreach ( $imagedata["licenses"] as $key => $lizenz ) {
 		if ( $key != 0 ) {
 			$formular .= ", " . $lizenz;
