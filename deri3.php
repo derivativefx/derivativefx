@@ -124,7 +124,7 @@ if ( $_POST["addtempret"] == "true" ) {
 
 //Template:BWS
 if ( $_POST["addbwstemp"] == "true" ) {
-	$formular .= "{{Bilderwerkstatt|changes=" . $_POST["changesbws"] . "|editor=~~~|orig=" $tmpclean . "}}\n\n";
+	$formular .= "{{Bilderwerkstatt|changes=" . $_POST["changesbws"] . "|editor=~~~|orig=" . $tmpclean . "}}\n\n";
 }
 
 //Template {{Atelier graphique}}
