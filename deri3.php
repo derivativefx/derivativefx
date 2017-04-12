@@ -106,7 +106,7 @@ $formular = "== {{int:filedesc}} ==\n{{Information\n|Description=" . trim( strip
 $formular .= "|Source={{Derived from";
 foreach ( $imagesdata as $imagename => $imagedata ) {
 	$imstr = substr( $imagename, 5 );
-	$imgc =  str_replace ( "_" , " " , $imgc );
+	$imgc =  str_replace ( "_" , " " , $imstr );
 	$formular .= "|" . $derif;
 	$tmpimg = $imagename;
 	$tmpclean = $imgc;
