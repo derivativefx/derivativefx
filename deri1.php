@@ -160,8 +160,7 @@ foreach ( $lng as $shortcut => $lgarry ) {
                 <br/>
 
                 <br/>
-                <input value="<?php echo $lng['x']['next']; ?>" disabled="disabled" type="submit"  class="btn btn-success"
-                           id="sendtonext"><!-- disabled="disabled" -->
+                <input value="<?php echo $lng['x']['next']; ?>" type="submit" class="btn btn-success" id="sendtonext">       
         </form>
 </div>
 
