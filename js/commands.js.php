@@ -72,7 +72,7 @@ function loadlic( name, image ) {
 			origvalues[name] = image;
 			// Laden anzeigen
 			$( 'loading' ).show();
-			$( 'sendform' ).disable();
+			$( 'sendtonext' ).hide();
 			$( 'bodyid' ).className = "bodyload";
 			if ( navigator.appName.indexOf( "Explorer" ) == -1 ) { // für nicht-IE-Browser
 				var url = 'licence.php?format=JSON&image=' + encodeURIComponent( image );
@@ -205,6 +205,7 @@ function loadlic( name, image ) {
 					}
 
 					$( 'loading' ).hide(); // Loading wieder verstecken
+					$( 'sendtonext' ).show();
 					$( 'bodyid' ).className = "bodynorm";
 				}
 			} );
