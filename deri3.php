@@ -107,7 +107,7 @@ $formular .= "|Source={{Derived from";
 foreach ( $imagesdata as $imagename => $imagedata ) {
 	$imstr = substr( $imagename, 5 );
 	$imgc =  str_replace ( "_" , " " , $imstr );
-	$formular .= "|" . $derif;
+	$formular .= "|" . $imgc;
 	$tmpimg = $imagename;
 	$tmpclean = $imgc;
 }
