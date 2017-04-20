@@ -443,7 +443,7 @@ if ( $isaccord == false ) {
 <br /><a href=\"Javascript:showhide('othertemplates')\">" . $lng['x']['others'] . "...</a><br />
 <span id='othertemplates' style='display:none'>
 <div class='tempinc'>
-<input onClick=\"showhide('bwstemp')\" name='addbwstemp' value='true' type='checkbox'>" . sprintf( $lng['x']['addtem'], "{{Bilderwerkstatt}}" ) . "
+<input onClick=\"showhide('bwstemp')\" name='addbwstemp' value='true' type='checkbox'>" . sprintf( $lng['x']['addtem'], "{{Fotowerkstatt}}" ) . "
 <br/><span id='bwstemp'style='display:none'>
   " . $lng['x']['change'] . ": <input size='50' name='changesbws'><br />
   </span>
