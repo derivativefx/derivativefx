@@ -426,6 +426,62 @@ $lng['pl']['imgu'] = "%s pliki załadowane!";
 $lng['pl']['plscom'] = "Proszę uzupełnij informację o autorze w następujących plikach:";
 $lng['pl']['wrncom'] = "Proszę uzupełnij informację o autorze";
 
+//############################# MALAY (Bahasa Melayu) ########################
+
+//Malay Translation by MuhdNurHidayat (Wikipedia username: MNH48)
+$lng['ms']['name'] = "Bahasa Melayu";
+$lng['ms']['welc'] = "Selamat datang ke derivativeFX!";
+$lng['ms']['what'] = "Apakah itu derivativeFX?";
+$lng['ms']['conf'] = "Sila pastikan anda sudah log masuk ke Wikimedia:Commons.";
+$lng['ms']['look'] = "Jika anda nampak laman pengguna anda dalam bingkai ini, anda telah pun log masuk. Jika tidak, sila";
+$lng['ms']['loin'] = "log masuk";
+$lng['ms']['skip'] = "Langkau pemeriksaan ini pada masa akan datang";
+$lng['ms']['okin'] = "OK - Saya dah log masuk.";
+$lng['ms']['load'] = "Memuatkan";
+$lng['ms']['wait'] = "Sila tunggu";
+$lng['ms']['prof'] = "pralihat";
+$lng['ms']['orwo'] = "Karya Asal";
+$lng['ms']['lotf'] = "Lesen fail ini";
+$lng['ms']['pan'] = "sila tambah nama";
+$lng['ms']['admo'] = "tambah lebih banyak fail asal";
+$lng['ms']['next'] = "OK - Seterusnya";
+$lng['ms']['skco'] = "Sila bolehkan kuki untuk melangkau pemeriksaan log masuk pada masa akan datang.";
+$lng['ms']['reqdel'] = "Imej ini telah diminta untuk dihapuskan!";
+$lng['ms']['notex'] = "Fail tidak wujud!";
+$lng['ms']['orig'] = "Asal";
+//***** Form1 fertig, Form2
+$lng['ms']['nomerg'] = "<h1>Maaf,</h1> imej anda tidak boleh dicantumkan!<br /><br /><b>Lesen imej tidak serasi</b> atau <b>lesen imej tidak dapat dikesan</b>.<br /> Lihat di atas untuk semua tag yang alat ini jumpa untuk imej-imej ini:";
+$lng['ms']['unktem'] = "Templat tidak diketahui";
+$lng['ms']['unlimg'] = "tiada lesen diketahui umum yang dijumpai untuk imej ini!";
+$lng['ms']['descri'] = "Perihalan";
+$lng['ms']['forpar'] = "untuk parameter <code>|description=</code> dalam {{Information}}";
+$lng['ms']['addtem'] = "Tambah templat %s ke dalam perihalan";
+$lng['ms']['change'] = "Perubahan";
+$lng['ms']['editor'] = "Editor";
+$lng['ms']['edihin'] = 'Tanpa sintaks wiki, cth. "Test" untuk User:Test';
+$lng['ms']['others'] = "Templat Lain";
+$lng['ms']['categs'] = "Kategori";
+$lng['ms']['nocats'] = "Tiada kategori dijumpai";
+$lng['ms']['licens'] = "Lesen";
+$lng['ms']['hincan'] = "Anda boleh menukar keseluruhan ringkasan pada laman seterusnya";
+//**********Form2 fertig, Form3
+$lng['ms']['selfil'] = "Pilih fail terbitan anda";
+$lng['ms']['destin'] = "Nama fail destinasi";
+$lng['ms']['propos'] = "kenyataan";
+$lng['ms']['desexi'] = "Nama fail destinasi telah wujud. Adakah anda ingin menulis ganti fail sedia ada?";
+$lng['ms']['desoke'] = "Nama fail destinasi tidak wujud.";
+$lng['ms']['summar'] = "Ringkasan";
+$lng['ms']['watcht'] = "Pantau laman ini";
+$lng['ms']['addnot'] = "Tambah pemberitahuan kepada fail asal berkenaan karya terbitan ini. (oleh 'User:Bilderbot', pada 02:00 UTC)";
+$lng['ms']['accept'] = "Anda pasti bahawa semua keterangan di dalam perihalan fail di atas adalah <span style=\"font-weight: bold;\">benar dan menuruti lesen-lesen daripada fail-fail asal. Imej-imej boleh mengandungi lukisan berhak cipta dan lesen asal tidak dipanjangkan kepada terbitan-terbitan yang mengasingkan mereka.</span> Alatan ini tidak berupaya untuk menyemak benda berhak cipta tersebut. derivativeFX dan para pembangunnya menganggap tiada kebertanggungjawapan terhadap ketepatan kandungan yang dijana. Alat ini telah dicipta dengan harapan agar ianya boleh meringankan beban, tetapi <span style=\"font-weight: bold;\">TIDAK ADA JAMINAN. Anda bertanggungjawab sepenuhnya kepada ketepatan tersebut!</span>";
+$lng['ms']['start'] = "Sahkan &amp; pilih fail untuk muat naik";
+$lng['ms']['attac'] = "Sila lampirkan fail.";
+$lng['ms']['corfi'] = "Tiada sambungan fail yang tepat dijumpai dalam fail destinasi. (%s)";
+$lng['ms']['notsa'] = "Fail yang anda pilih tidak mempunyai sambungan fail (%s) yang sama dengan nama destinasi (%s)! Tukarkan nama destinasi kepada '%s'?";
+$lng['ms']['imgu'] = "%s imej telah dimuat naik!";
+$lng['ms']['plscom'] = "Sila lengkapkan maklumat pencipta untuk imej-imej berikut:";
+$lng['ms']['wrncom'] = "Sila lengkapkan maklumat pencipta";
+
 //##############################################################################
 if ( array_key_exists( $language, $lng ) ) {
 	$sxlang = $language;
