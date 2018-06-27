@@ -100,7 +100,7 @@ function bigfirst( $name ) {
 
 $countimage = count( $images );
 if ( $countimage == 0 ) {
-	die( "no images received! <br><br><button onclick=\"window.history.back()\" class=\"btn btn-warning\">Back</button><br><br> <a href=\"deri2.php\" class=\"btn btn-warning\">Start from scratch</a>" );
+	die( "no images received! <br><br><button onclick=\"window.history.back()\" class=\"btn btn-info\">Back</button><br><br> <a href=\"deri2.php\" class=\"btn btn-warning\">Start from scratch</a>" );
 }
 echo "$countimage Image(s) received...<br />";
 //Lizenzen und Bilder im Array $images gespeichert.
@@ -418,6 +418,7 @@ if ( $isaccord == false ) {
 		}
 		echo "</ul>";
 	}
+	echo "<br><button onclick=\"window.history.back()\" class=\"btn btn-info\">Back</button><br>";
 	echo "</ul>\n<br /><sup class='marker'>1.)</sup>" . $lng['x']['unktem'] . "<br />";
 	echo "<sup class='marker'>2.)</sup>" . $lng['x']['unlimg'];
 } else {
