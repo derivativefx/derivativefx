@@ -31,7 +31,7 @@ include( "language.php" );
         <meta content="Luxo" name="author">
         <meta content="easy upload derivative works!" name="description">
         <script type="text/javascript">
-                var skipcheck = <?php if($_GET['skipcheck'] == 'true' or $_COOKIE['skipcheck'] == 'true') { echo'true'; } else { echo'false'; } ?>;
+                var skipcheck = true<?php //if($_GET['skipcheck'] == 'true' or $_COOKIE['skipcheck'] == 'true') { echo'true'; } else { echo'false'; } ?>;
         </script>
         <link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <script type="text/javascript" src="js/prototype.js"></script>
