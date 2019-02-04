@@ -121,7 +121,7 @@ foreach ( $lng as $shortcut => $lgarry ) {
 
 <div id="secondform" style="display:none">
           <br/> <?php echo $lng['x']['welc']; ?><br/>
-        <br/> <?php echo helpcontent( 'whatisthat', $lng['x']['what'] ); ?><br/>
+        <br/> <?php echo helpcontent( 'whatisthat', $lng['x']['what'] ); ?><br/><br/>
         <form enctype="multipart/form-data" method="post"
                   action="deri2.php?lang=<?php echo $language; ?>" name="imageselect" id="sendform">
 <span id="loading" style="display:none"><table
