@@ -85,7 +85,7 @@ foreach ( $lng as $shortcut => $lgarry ) {
 
         <br/> <?php echo $lng['x']['conf']; ?>
         <br/>
-        <iframe src="<?php if($_GET['skipcheck'] !== 'true' { echo 'https://commons.wikimedia.org/wiki/Special:MyPage'; } ?> " sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        <iframe src="<?php if($_GET['skipcheck'] !== 'true') { echo 'https://commons.wikimedia.org/wiki/Special:MyPage'; } ?> " sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                         OnLoad="$('onlyfornext').enable('loggedinnext')" name="checkuser" width="700"
                         height="200" align="left"
                         scrolling="no" marginheight="0" marginwidth="0" frameborder="1">
