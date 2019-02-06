@@ -224,7 +224,7 @@ if ( count( $noauthor ) > 0 ) {
 <body style="direction: ltr;" class="bodynorm container">
 <img src="derivativeFX_small.png"/>
 
-<form id="comform" method='post' enctype='multipart/form-data' action="//commons.wikimedia.org/wiki/Special:Upload?withJS=MediaWiki:Derivativefx-uploadform.js&specialform=derivativefxinterface" name="lastform"><br>
+<form id="comform" method='post' enctype='multipart/form-data' action="//commons.wikimedia.org/wiki/Special:Upload?withJS=MediaWiki:Derivativefx-uploadform.js&specialform=derivativefxinterface&uploadformstyle=basic" name="lastform"><br>
 <!---
 	<?php echo $lng['x']['selfil']; ?>:<br>
 
