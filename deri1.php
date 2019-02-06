@@ -31,7 +31,7 @@ include( "language.php" );
         <meta content="Luxo" name="author">
         <meta content="easy upload derivative works!" name="description">
         <script type="text/javascript">
-                var skipcheck = true<?php //if($_GET['skipcheck'] == 'true' or $_COOKIE['skipcheck'] == 'true') { echo'true'; } else { echo'false'; } ?>;
+                var skipcheck = <?php if($_GET['skipcheck'] == 'true' or $_COOKIE['skipcheck'] == 'true') { echo'true'; } else { echo'false'; } ?>;
         </script>
         <link href="//tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <script type="text/javascript" src="js/prototype.js"></script>
@@ -85,11 +85,11 @@ foreach ( $lng as $shortcut => $lgarry ) {
 
         <br/> <?php echo $lng['x']['conf']; ?>
         <br/>
-        <!-- <iframe src="https://commons.wikimedia.org/wiki/Special:Mypage"
+        <iframe src="<?php if($_GET['skipcheck'] !== 'true' { echo 'https://commons.wikimedia.org/wiki/Special:MyPage'; } ?> " sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                         OnLoad="$('onlyfornext').enable('loggedinnext')" name="checkuser" width="700"
                         height="200" align="left"
                         scrolling="no" marginheight="0" marginwidth="0" frameborder="1">
-        </iframe> -->
+        </iframe>
         <img src="transparent.gif" style="position:absolute;left:9px;"/>
         <br style="clear:both"><?php echo $lng['x']['look']; ?> <a href="https://commons.wikimedia.org/w/index.php?title=Special:Userlogin"><?php echo $lng['x']['loin']; ?></a>.<br/>
         <input id="checkskip" name="checkskip" value="true"
@@ -120,8 +120,6 @@ foreach ( $lng as $shortcut => $lgarry ) {
 </script>
 
 <div id="secondform" style="display:none">
-          <br/> <?php echo $lng['x']['welc']; ?><br/>
-        <br/> <?php echo helpcontent( 'whatisthat', $lng['x']['what'] ); ?><br/><br/>
         <form enctype="multipart/form-data" method="post"
                   action="deri2.php?lang=<?php echo $language; ?>" name="imageselect" id="sendform">
 <span id="loading" style="display:none"><table
