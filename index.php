@@ -19,5 +19,5 @@ This file is part of derivativeFX.
     along with derivativeFX.  If not, see <http://www.gnu.org/licenses/>.
     
     */
-header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/derivative/deri1.php');
+header( 'Location: https://' . $_SERVER['SERVER_NAME'] . '/deri1.php');
 ?>
